@@ -1,24 +1,30 @@
-# README
+# アイデア帳（仮）
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+### サイトテーマ
+創作用のアイデアを書き溜めていき、同じものが好きな人と繋がるきっかけになるSNS
+​
+### テーマを選んだ理由
+創作をする方たちにとって、頭に浮かんだアイデアはいつどのように形にできるかわからない原石です。
+文字制限なく、ふと頭に浮かんだ瞬間を逃さずに書き残せる場所があるといいな、と思いました。
+また、不特定多数ではなく、好みや苦手なものが近しいとはっきりわかっている人と繋がれる機会を増やせられるとよいのでは、
+と考えてこのテーマにしました。
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### ターゲットユーザ
+文章による創作をしている人
+同じものが好きで、苦手なものが同じ人と趣味を共有したいと思っている人
+​
+### 主な利用シーン
+アイデアが浮かんだのに、手元にメモを取るものが無い時
+残しておいたアイデアを形にしたい時
+趣味を共有できる仲間を探したい時
+​
+## 設計書
+後ほど作成予定
+​
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
