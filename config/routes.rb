@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'customers/edit'
+    get 'customers/update'
+  end
+  namespace :admin do
+    get 'homes/top'
+  end
   namespace :public do
     get 'rooms/create'
     get 'rooms/show'
