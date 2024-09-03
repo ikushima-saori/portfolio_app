@@ -1,58 +1,45 @@
 Rails.application.routes.draw do
-  namespace :admin do
-    get 'customers/edit'
-    get 'customers/update'
-  end
-  namespace :admin do
-    get 'homes/top'
-  end
-  namespace :public do
-    get 'rooms/create'
-    get 'rooms/show'
-  end
-  namespace :public do
-    get 'messages/create'
-  end
-  namespace :public do
+
+  #登録系で使うデバイスのルーティングを先に書く
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {  #新規登録とパス変更は使わない
+    sessions: "admin/sessions"  #管理者が使うのはログインだけ
+  }
+  devise_for :customers,skip: [:passwords], controllers: {  #パス変更は使わない
+    registrations: "public/registrations",
+    sessions: 'public/sessions'  #ユーザーが使うのは新規登録とログイン
+  }
+
+  #publicのルーティング
+  scope module: :public do
+    root to: 'homes#top'
+    get '/about', to:'homes#about', as:'about'
+    get '/customers', to:'customers#index', as:'customers_index'
+    get '/customers/my_page' => 'customers#show'
+    get '/customers/information/edit' => 'customers#edit'
+    patch '/customers/information' => 'customers#update'
+    get '/customers/out' => 'customers#out'
+    resources :relationships, only: %i[create destroy] do
+      collection do
+       get 'followers'
+       get 'followeds'
+      end
+    end
+    resources :ideas, only: %i[index new create edit update destroy] do
+      collection do
+        get 'tags'
+        get 'search'
+      end
+      resource :favorites, only: %i[index create destroy]
+    end
+    resources :rooms, only: %i[show create]
+    resources :messages, only: %i[create]
     get 'searches/search'
   end
-  namespace :public do
-    get 'relationships/create'
-    get 'relationships/destroy'
-    get 'relationships/followers'
-    get 'relationships/followeds'
+
+  #adminのルーティング
+  get 'admin', to: 'admin/homes#top'
+  namespace :admin do
+    resources :customers, only: [:edit, :update]
   end
-  namespace :public do
-    get 'favorites/index'
-    get 'favorites/create'
-    get 'favorites/destroy'
-  end
-  namespace :public do
-    get 'ideas/index'
-    get 'ideas/new'
-    get 'ideas/create'
-    get 'ideas/edit'
-    get 'ideas/update'
-    get 'ideas/destroy'
-    get 'ideas/tags'
-    get 'ideas/search'
-  end
-  namespace :public do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
-    get 'customers/update'
-    get 'customers/out'
-  end
-  namespace :public do
-    get 'homes/top'
-    get 'homes/about'
-  end
-  devise_for :admin, skip: [:registrations, :passwords], controllers: {
-    sessions: "admin/sessions"
-  }
-  devise_for :customers,skip: [:passwords], controllers: {
-    registrations: "public/registrations",
-    sessions: 'public/sessions'
-  }
+
 end

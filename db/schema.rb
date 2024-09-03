@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(version: 2024_09_03_052701) do
     t.integer "tag_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["idea_id", "tag_id"], name: "index_idea_tags_on_idea_id_and_tag_id", unique: true
     t.index ["idea_id"], name: "index_idea_tags_on_idea_id"
     t.index ["tag_id"], name: "index_idea_tags_on_tag_id"
   end

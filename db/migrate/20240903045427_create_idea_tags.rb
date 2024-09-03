@@ -6,5 +6,7 @@ class CreateIdeaTags < ActiveRecord::Migration[6.1]
 
       t.timestamps
     end
+
+    add_index :idea_tags, [:idea_id,:tag_id],unique: true
   end
 end
