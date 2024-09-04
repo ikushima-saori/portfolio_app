@@ -1,5 +1,34 @@
-<h1>Public::Ideas#edit</h1>
-<p>Find me in app/views/public/ideas/edit.html.erb</p>
-
-
 <h1>投稿編集（詳細）</h1>
+
+<h3><%= notice %></h3>
+
+<%= form_with model: @idea do |f| %>
+  <div>
+    <label>アイデアを公開しますか？</label>
+    <%= f.radio_button :is_active, true, id: "active" %>
+    <%= f.label :is_active, "公開", for: "active" %>
+    <%= f.radio_button :is_active, false, id: "inactive" %>
+    <%= f.label :is_active, "非公開", for: "inactive" %>
+    <%= f.submit "切り替える" %>
+  </div>
+<% end %>
+
+<p>タグ編集を入れる</p>
+
+<%= form_with model: @idea do |f| %>
+  <div>
+    <%= f.submit "変更を保存" %>
+  </div>
+  <div>
+    <label for="inputIntroduction">アイデア</label><br />
+    <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+  </div>
+  <div>
+    <label for="inputTitle">タイトル</label><br />
+    <%= f.text_area :title, id:"inputTitle" %>
+  </div>
+  <div>
+    <label for="inputBody">本文</label><br />
+    <%= f.text_area :body, id:"inputBody" %>
+  </div>
+<% end %>
