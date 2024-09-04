@@ -28,6 +28,8 @@ ja:
         name: 名前
         preference: 好物
         weak: 苦手
+      idea:
+        introduction: アイデア
       admin:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
