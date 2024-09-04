@@ -34,6 +34,10 @@ class Public::IdeasController < ApplicationController
   end
 
   def destroy
+    @idea =Idea.find(params[:id])
+    @idea.destroy
+    flash[:notice] = "アイデアが削除されました"
+    redirect_to request.referer
   end
 
   def tags
