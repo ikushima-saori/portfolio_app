@@ -26,9 +26,7 @@
   <%= "アイデア数：#{@customer.ideas.count} " %>
   お気に入りのアイデア：〇
 </div>
-<% if @customer == current_customer %>
-  <div>
-    アイデア一覧
-    <%= render 'public/ideas/list', ideas: @ideas %>
-  </div>
-<% end %>
+<div>
+  アイデア一覧
+  <%= render 'public/ideas/list', ideas: @ideas %>
+</div>

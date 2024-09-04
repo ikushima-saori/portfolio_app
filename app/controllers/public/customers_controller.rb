@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   def index
+    @customers = Customer.all.page(params[:page]).per(5)
   end
 
   def show
@@ -8,7 +9,7 @@ class Public::CustomersController < ApplicationController
     else
       @customer = current_customer
     end
-    @ideas = Idea.all
+      @ideas = @customer.ideas
   end
 
   def edit
