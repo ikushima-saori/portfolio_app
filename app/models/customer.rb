@@ -4,6 +4,15 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
+  has_many :ideas, dependent: :destroy
+
+  validates :name, presence: true
+  validates :preference, presence: true
+  validates :weak, presence: true
+
+  def active_for_authentication?
+    super && (self.is_active == true)
+  end
 
   def get_profile_image(width, height)
     unless profile_image.attached?
