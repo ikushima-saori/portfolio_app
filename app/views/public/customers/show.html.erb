@@ -1,6 +1,34 @@
-<h1>Public::Customers#show</h1>
-<p>Find me in app/views/public/customers/show.html.erb</p>
+<h3><%= notice %></h3>
 
+<% if @customer == current_customer %>
+  <h1>マイページ</h1>
+<% else %>
+  <h1>ユーザー詳細</h1>
+<% end %>
 
-<h1>マイページ</h1>
-<h1>ユーザー詳細</h1>
+<div>
+  <%= image_tag @customer.get_profile_image(100,100) %>
+  <%= @customer.name %>
+  <% if @customer == current_customer %>
+    <%= link_to "編集", customers_information_edit_path %>
+  <% end %>
+</div>
+<div>
+  好物 <%= @customer.preference %>
+</div>
+<div>
+  苦手 <%= @customer.weak %>
+</div>
+<div>
+  フォロー一覧
+</div>
+<div>
+  <%= "アイデア数：#{@customer.ideas.count} " %>
+  お気に入りのアイデア：〇
+</div>
+<% if @customer == current_customer %>
+  <div>
+    アイデア一覧
+    <%= render 'public/ideas/list', ideas: @ideas %>
+  </div>
+<% end %>
