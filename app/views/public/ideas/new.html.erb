@@ -1,5 +1,22 @@
-<h1>Public::Ideas#new</h1>
-<p>Find me in app/views/public/ideas/new.html.erb</p>
-
-
 <h1>新規投稿</h1>
+
+<h3><%= notice %></h3>
+
+<p>タグ登録を入れる</p>
+
+<%= form_with model: @idea do |f| %>
+  <div>
+    <label for="inputIntroduction">アイデア</label><br />
+      <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+  </div>
+  <div>
+    <label>アイデアを公開しますか？</label>
+    <%= f.radio_button :is_active, true, id: "active" %>
+    <%= f.label :is_active, "公開", for: "active" %>
+    <%= f.radio_button :is_active, false, id: "inactive" %>
+    <%= f.label :is_active, "非公開", for: "inactive" %>
+  </div>
+  <div>
+    <%= f.submit 'メモする' %>
+  </div>
+<% end %>
