@@ -9,6 +9,11 @@ class Customer < ApplicationRecord
   validates :name, presence: true
   validates :preference, presence: true
   validates :weak, presence: true
+  validates :email, presence: true,
+                    uniqueness: true,
+                    format: { with: URI::MailTo::EMAIL_REGEXP }
+
+  before_validation :normalize_email
 
   def active_for_authentication?
     super && (self.is_active == true)
@@ -22,4 +27,9 @@ class Customer < ApplicationRecord
     profile_image.variant(resize_to_fill: [width, height]).processed
   end
 
+  private
+
+  def normalize_email
+    self.email = email.downcase.strip if email.present?
+  end
 end

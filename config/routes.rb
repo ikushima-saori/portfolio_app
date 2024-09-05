@@ -15,10 +15,13 @@ Rails.application.routes.draw do
     get '/about', to:'homes#about', as:'about'
     get '/customers', to:'customers#index', as:'customers_index'
     get 'customers/my_page', to: 'customers#show', as: 'my_page'
-    resources :customers, only: [:show]
-    get '/customers/information/edit' => 'customers#edit'
-    patch '/customers/information' => 'customers#update'
-    get '/customers/out' => 'customers#out'
+    resources :customers, only: [:show] do
+      collection do
+        get 'information/edit', to: 'customers#edit', as: 'edit_information'
+        patch 'information', to: 'customers#update', as: 'update_information'
+        delete 'out'
+      end
+    end
     resources :relationships, only: %i[create destroy] do
       collection do
        get 'followers'

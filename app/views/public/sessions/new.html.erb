@@ -1,5 +1,11 @@
 <h2>ログイン</h2>
 
+<% if flash[:alert] %>
+  <div id="error_explanation">
+    <h2><%= flash[:alert] %></h2>
+  </div>
+<% end %>
+
 <%= form_with model: @customer, url: customer_session_path do |f| %>
   <div class="field">
     <%= f.label :email %><br />
