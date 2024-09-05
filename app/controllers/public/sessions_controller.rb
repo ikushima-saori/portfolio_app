@@ -1,6 +1,12 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to root_path, notice: 'ゲストユーザーでログインしました。'
+  end
+
   def after_sign_in_path_for(resource)
     my_page_path
   end

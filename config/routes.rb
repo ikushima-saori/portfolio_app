@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'  #ユーザーが使うのは新規登録とログイン
   }
 
+  devise_scope :customer do
+    post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   #publicのルーティング
   scope module: :public do
     root to: 'homes#top'
