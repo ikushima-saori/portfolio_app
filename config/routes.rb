@@ -21,7 +21,7 @@ Rails.application.routes.draw do
     get 'customers/my_page', to: 'customers#show', as: 'my_page'
     resources :customers, only: [:show] do
       collection do
-        get 'information/edit', to: 'customers#edit', as: 'edit_information'
+        get 'my_page/edit', to: 'customers#edit', as: 'edit_my_page'
         patch 'information', to: 'customers#update', as: 'update_information'
         delete 'out'
       end

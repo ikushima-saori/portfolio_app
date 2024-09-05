@@ -2,5 +2,12 @@
 <p>Find me in app/views/public/homes/top.html.erb</p>
 
 <h3><%= notice %></h3>
+
+<% if flash[:alert] %>
+  <div id="error_explanation">
+    <h2><%= flash[:alert] %></h2>
+  </div>
+<% end %>
+
 <h1>サイト名：アイデア帳（仮）</h1>
 <h1>PFです。予告なく閉鎖します。</h1>
