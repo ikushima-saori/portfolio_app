@@ -1,4 +1,7 @@
 class Public::IdeasController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :is_matching_login_customer, only: [:edit, :update, :destroy]
+
   def index
   end
 
@@ -47,9 +50,14 @@ class Public::IdeasController < ApplicationController
   end
 
   private
+    def is_matching_login_customer
+      @idea = Idea.find(params[:id])
+      unless @idea.customer == current_customer
+        redirect_to my_page_path, alert: 'アクセス権がありません。'
+      end
+    end
 
-  def idea_params
-    params.require(:idea).permit(:introduction, :title, :body, :is_active)
-  end
-
+    def idea_params
+      params.require(:idea).permit(:introduction, :title, :body, :is_active)
+    end
 end

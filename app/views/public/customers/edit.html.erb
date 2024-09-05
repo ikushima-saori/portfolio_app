@@ -37,8 +37,8 @@
   <h5>
     退会すると、会員登録情報や<br>
     これまで投稿したものが全て閲覧できなくなります。<br>
-    退会する場合は、「退会する」をクリックしてください。
+    退会する場合は「退会する」をクリックしてください。
     </h5>
   <p></p>
-  <%= link_to "退会する", customers_out_path, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
+  <%= link_to "退会する", out_customers_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
 </div>

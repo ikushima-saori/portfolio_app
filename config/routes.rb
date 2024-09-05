@@ -9,16 +9,23 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'  #ユーザーが使うのは新規登録とログイン
   }
 
+  devise_scope :customer do
+    post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
+  end
+
   #publicのルーティング
   scope module: :public do
     root to: 'homes#top'
     get '/about', to:'homes#about', as:'about'
     get '/customers', to:'customers#index', as:'customers_index'
     get 'customers/my_page', to: 'customers#show', as: 'my_page'
-    resources :customers, only: [:show]
-    get '/customers/information/edit' => 'customers#edit'
-    patch '/customers/information' => 'customers#update'
-    get '/customers/out' => 'customers#out'
+    resources :customers, only: [:show] do
+      collection do
+        get 'my_page/edit', to: 'customers#edit', as: 'edit_my_page'
+        patch 'information', to: 'customers#update', as: 'update_information'
+        delete 'out'
+      end
+    end
     resources :relationships, only: %i[create destroy] do
       collection do
        get 'followers'

@@ -1,15 +1,22 @@
 class Public::CustomersController < ApplicationController
-  def index
-    @customers = Customer.all.page(params[:page]).per(5)
+  before_action :authenticate_customer!
+
+  def index  #Customer.allの中にゲストユーザーは含まない
+    @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL).page(params[:page]).per(5)  #ページネーションで1ページ5人
   end
 
   def show
     if params[:id]
       @customer = Customer.find(params[:id])
+      if @customer != current_customer
+        @ideas = @customer.ideas.where(is_active: true)
+      else
+        @ideas = @customer.ideas
+      end
     else
       @customer = current_customer
-    end
       @ideas = @customer.ideas
+    end
   end
 
   def edit
@@ -30,7 +37,7 @@ class Public::CustomersController < ApplicationController
     @customer = current_customer
     @customer.update(is_active: false)
     reset_session
-    flash[:notice] = "退会しました"
+    flash[:notice] = "退会しました。"
     redirect_to root_path
   end
 

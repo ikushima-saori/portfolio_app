@@ -6,3 +6,4 @@ header_footer = ヘッダー＆フッター作成
 member = 会員登録機能の作成＆seedファイルに管理者アカウント設定
 idea = アイデア投稿機能作成
 customer = ユーザー機能作成
+restrictions = アクセス制限&ゲストログイン&登録アドレス一意設定
