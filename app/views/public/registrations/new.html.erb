@@ -1,46 +1,51 @@
-<h2>新規登録</h2>
-
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :"ペンネーム" %>
-    <%= f.text_field :name, autofocus: true, placeholder:"ペンネム子"  %>
+<div class=container>
+  <div class=row>
+    <h2>新規登録</h2>
   </div>
 
-  <div class="field">
-    <%= f.label :"好物" %>
-    <%= f.text_area :preference, placeholder:"例）ほのぼの・相棒を庇って重症からのピンチに復帰するシチュ・ロボットもの"  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :"苦手" %>
-    <%= f.text_area :weak, placeholder:"例）死亡エンド・ホラー・三角関係の末に1人だけぼっちで終わるシチュ"  %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> 文字以上)</em>
+  <div class=row>
+    <%= form_with model: @customer, url: customer_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
+      <div class="field">
+        <%= f.label :"ペンネーム" %>
+        <%= f.text_field :name, autofocus: true, placeholder:"ペンネム子"  %>
+      </div>
+      <div class="field">
+        <%= f.label :"好物" %>
+        <%= f.text_area :preference, placeholder:"例）ほのぼの・相棒を庇って重症からのピンチに復帰するシチュ・ロボットもの"  %>
+      </div>
+      <div class="field">
+        <%= f.label :"苦手" %>
+        <%= f.text_area :weak, placeholder:"例）死亡エンド・ホラー・三角関係の末に1人だけぼっちで終わるシチュ"  %>
+      </div>
+      <div class="field">
+        <%= f.label :email %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+      </div>
+      <div class="field">
+        <%= f.label :password %>
+        <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <% end %>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+      <div class="field">
+        <%= f.label :password_confirmation %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+      <div class="actions">
+        <%= f.submit "新規登録" %>
+      </div>
     <% end %>
-    <%= f.password_field :password, autocomplete: "new-password" %>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %>
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class=row>
+    <div>
+      <%= button_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: 'btn btn-secondary btn-sm' %>
+      ※ゲストはTOPページとAboutージのみ閲覧可能です。
+    </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
-  </div>
-<% end %>
+  <%= render "public/shared/links" %>
 
-<%= button_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: 'btn btn-primary' %>
-
-<%= render "public/shared/links" %>
+</div>

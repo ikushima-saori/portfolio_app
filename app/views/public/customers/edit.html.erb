@@ -1,44 +1,50 @@
-<h1>ユーザー編集</h1>
+<div class=container>
+  <div class=row>
+    <h1>ユーザー編集</h1>
+  </div>
 
-<div>
-  <% if @customer.errors.any? %>
-    <%= @customer.errors.count %>箇所エラーがありますので、再度入力を確認してください。
-    <ul>
-      <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+  <div class=row>
+    <div>
+      <% if @customer.errors.any? %>
+        <%= @customer.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-    </ul>
-  <% end %>
-</div>
+    </div>
+  </div>
 
-<%= form_with model: @customer ,url: "/customers/information" do |f| %>
-  <div>
-    <label>プロフィール画像</label>
-    <%= f.file_field :profile_image, accept: "image/*" %>
+  <div class=row>
+    <%= form_with model: @customer ,url: "/customers/information" do |f| %>
+      <div>
+        <label>プロフィール画像</label>
+        <%= f.file_field :profile_image, accept: "image/*" %>
+      </div>
+      <div>
+        <label for="inputName">名前</label>
+        <%= f.text_field :name, autofocus: true, id:"inputName"%>
+      </div>
+      <div>
+        <label for="inputPreference">好物</label><br />
+        <%= f.text_area :preference, id:"inputPreference"%>
+      </div>
+      <div>
+        <label for="inputWeak">苦手</label><br />
+        <%= f.text_area :weak, id:"inputWeak"%>
+      </div>
+      <%= f.submit "更新" %>
+    <% end %>
   </div>
-  <div>
-    <label for="inputName">名前</label>
-    <%= f.text_field :name, autofocus: true, id:"inputName"%>
-  </div>
-  <div>
-    <label for="inputPreference">好物</label><br />
-    <%= f.text_area :preference, id:"inputPreference"%>
-  </div>
-  <div>
-    <label for="inputWeak">苦手</label><br />
-    <%= f.text_area :weak, id:"inputWeak"%>
-  </div>
-  <%= f.submit "更新" %>
-<% end %>
 
-<div>
-  <h3><strong>退会はコチラ</strong></h3>
-  <p></p>
-  <h5>
-    退会すると、会員登録情報や<br>
-    これまで投稿したものが全て閲覧できなくなります。<br>
-    退会する場合は「退会する」をクリックしてください。
+  <div>
+    <h3><strong>退会はコチラ</strong></h3>
+    <h5>
+      退会すると、会員登録情報や<br>
+      これまで投稿したものが全て閲覧できなくなります。<br>
+      退会する場合は「退会する」をクリックしてください。
     </h5>
-  <p></p>
-  <%= link_to "退会する", out_customers_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
+    <%= link_to "退会する", out_customers_path, method: :delete, class: "btn btn-danger", data: {confirm: "本当に退会しますか？"} %>
+  </div>
 </div>

@@ -11,11 +11,14 @@
   </head>
 
   <body>
+    <%= stylesheet_link_tag 'application' %>
     <header>
       <% if customer_signed_in? %>
         <h1><%= link_to "アイデア帳（仮）", root_path %></h1>
-        <div>画像+<%= current_customer.name %></div>
-        <div class="header-bottom">
+        <div><%= image_tag current_customer.get_profile_image(50,50) %>
+          <strong><%= current_customer.name %></strong>
+        </div>
+        <div>
           <ul class="nav nav-pills nav-justified">
             <li><%= link_to "about", about_path, class: "nav-link" %></li>
             <li><%= link_to "マイページ", my_page_path, class:"nav-link" %></li>
@@ -25,16 +28,16 @@
           </ul>
         </div>
       <% elsif admin_signed_in? %>
-        <div class="admin-header">
-          <h1><%= link_to "アイデア帳（仮）", admin_path %></h1>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "会員一覧", admin_path %></li>
-            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
+        <h1><%= link_to "アイデア帳（仮）", admin_path %></h1>
+        <div>
+          <ul class="nav nav-pills nav-justified">
+            <li><%= link_to "会員一覧", admin_path, class: "nav-link" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
           </ul>
         </div>
       <% else %>
         <h1><%= link_to "アイデア帳（仮）", root_path %></h1>
-        <div class="header-bottom">
+        <div>
           <ul class="nav nav-pills nav-justified">
             <li><%= link_to "About", about_path, class:"nav-link" %></li>
             <li><%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %></li>
@@ -45,9 +48,7 @@
     </header>
     <%= yield %>
     <footer>
-      <div class="container">
-        <div class="text-center text-muted" style="margin: 50px 0;">© 2024  アイデア帳（仮）</div>
-      </div>
+      © 2024  アイデア帳（仮）
     </footer>
   </body>
 </html>
