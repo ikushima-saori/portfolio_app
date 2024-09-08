@@ -1,38 +1,59 @@
-<h3><%= notice %></h3>
-
-<% if @customer == current_customer %>
-  <h1>マイページ</h1>
-<% else %>
-  <h1>ユーザー詳細</h1>
-<% end %>
-
-<% if flash[:alert] %>
-  <div id="error_explanation">
-    <h2><%= flash[:alert] %></h2>
+<%= stylesheet_link_tag 'public/customers' %>
+<div class="container">
+  <div class="row">
+    <%= notice %>
   </div>
-<% end %>
 
-<div>
-  <%= image_tag @customer.get_profile_image(100,100) %>
-  <%= @customer.name %>
-  <% if @customer == current_customer %>
-    <%= link_to "編集", edit_my_page_customers_path %>
-  <% end %>
-</div>
-<div>
-  好物 <%= @customer.preference %>
-</div>
-<div>
-  苦手 <%= @customer.weak %>
-</div>
-<div>
-  フォロー一覧
-</div>
-<div>
-  <%= "アイデア数：#{@customer.ideas.count} " %>
-  お気に入りのアイデア：〇
-</div>
-<div>
-  アイデア一覧
-  <%= render 'public/ideas/list', ideas: @ideas %>
+  <div class="row">
+    <% if @customer == current_customer %>
+      <h1>マイページ</h1>
+    <% else %>
+      <h1>ユーザー詳細</h1>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <% if flash[:alert] %>
+      <div id="error_explanation">
+        <h2><%= flash[:alert] %></h2>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <%= image_tag @customer.get_profile_image(100, 100) %>
+            <span><%= @customer.name %></span>
+          </td>
+          <% if @customer == current_customer %>
+            <td>
+              <%= link_to "編集", edit_my_page_customers_path %>
+            </td>
+          <% end %>
+        </tr>
+        <tr>
+          <td>好物</td>
+          <td><%= @customer.preference %></td>
+        </tr>
+        <tr>
+          <td>苦手</td>
+          <td><%= @customer.weak %></td>
+        </tr>
+        <tr>
+          <td>フォロー一覧</td>
+        </tr>
+        <tr>
+          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
+          <td>お気に入りのアイデア：〇</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <%= render 'public/ideas/list', ideas: @ideas %>
+  </div>
 </div>

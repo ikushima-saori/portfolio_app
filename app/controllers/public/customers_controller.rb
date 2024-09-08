@@ -1,8 +1,11 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
 
-  def index  #Customer.allの中にゲストユーザーは含まない
-    @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL).page(params[:page]).per(5)  #ページネーションで1ページ5人
+  def index
+    @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL)  #Customer.allの中にゲストユーザーは含まない
+                       .where(is_active: true)  # is_activeがtrueのユーザーのみを取得
+                       .page(params[:page])
+                       .per(5)  # ページネーションで1ページ5人
   end
 
   def show
@@ -38,7 +41,7 @@ class Public::CustomersController < ApplicationController
     @customer.update(is_active: false)
     reset_session
     flash[:notice] = "退会しました。"
-    redirect_to root_path
+    redirect_to new_customer_registration_path
   end
 
   private

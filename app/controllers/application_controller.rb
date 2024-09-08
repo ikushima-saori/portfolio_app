@@ -10,12 +10,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def guest_user_signed_in?
-    customer_signed_in? && current_customer.email == Customer::GUEST_USER_EMAIL #メールアドレスがゲストのアドレスかどうか
+  def guest_user_signed_in? #メールアドレスがゲストのアドレスかどうか
+    customer_signed_in? && current_customer.email == Customer::GUEST_USER_EMAIL
   end
 
 
-  def allowed_guest_actions?
-    controller_name == 'homes' && %w[top about].include?(action_name) || controller_name == 'sessions' && action_name == 'destroy'  #ゲストユーザーはhomesのtopとaboutしかアクセスできない
+  def allowed_guest_actions?  #ゲストユーザーはhomesのtopとaboutしかアクセスできない
+    controller_name == 'homes' && %w[top about].include?(action_name) || controller_name == 'sessions' && action_name == 'destroy'
   end
 end

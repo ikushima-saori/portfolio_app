@@ -1,35 +1,57 @@
-<% if ideas.empty? %>
-  <p>まだアイデアがありません</p>
-<% else %>
-  <% ideas.each do |idea| %>
-    <div>
-      更新日
-      <% if idea.updated_at.present? %>
-        <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-      <% else %>
-        <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-      <% end %>
-      <% if idea.customer == current_customer %>
-        <span><%= link_to "詳細/編集", edit_idea_path(idea.id) %></span>
-        <span><%= link_to "削除", idea_path(idea.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></span>
-      <% end %>
-    </div>
-    <div>
-      タグ
-      <span>いいね：〇<span>
-      <span>ステータス：<%= idea.is_active ? "公開" : "非公開" %><span>
-    </div>
-    <div>
-      アイデア<br />
-      <%= idea.introduction %>
-    </div>
-    <% if idea.customer == current_customer %>
-      <div>
-        <p>タイトル</p>
-        <%= idea.title %>
-        <p>本文</p>
-        <%= idea.body %>
-      </div>
-    <% end %>
+  <% if ideas.empty? %>
+    <p>アイデアが未投稿または非公開です</p>
+  <% else %>
+    <table>
+      <thead>
+        アイデア一覧
+      </thead>
+      <tbody>
+        <% ideas.each do |idea| %>
+          <tr>
+            <td>更新日</td>
+            <% if idea.updated_at.present? %>
+              <td>
+              <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              </td>
+            <% else %>
+              <td>
+              <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              </td>
+            <% end %>
+            <% if idea.customer == current_customer %>
+              <td><%= link_to "詳細/編集", edit_idea_path(idea.id) %></td>
+              <td><%= link_to "削除", idea_path(idea.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+            <% end %>
+          </tr>
+          <tr>
+            <td>タグ</td>
+            <td>いいね：〇</td>
+            <td>ステータス：<%= idea.is_active ? "公開" : "非公開" %></td>
+          </tr>
+          <tr>
+            <td>投稿に付けられたタグ</td>
+          </tr>
+          <tr>
+            <td>アイデア</td>
+          </tr>
+          <tr>
+            <td><%= idea.introduction %></td>
+          </tr>
+          <% if idea.customer == current_customer %>
+            <tr>
+              <td>タイトル</td>
+            </tr>
+            <tr>
+              <td><%= idea.title %></td>
+            </tr>
+            <tr>
+              <td>本文</td>
+            </tr>
+            <tr>
+              <td><%= idea.body %></td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
   <% end %>
-<% end %>

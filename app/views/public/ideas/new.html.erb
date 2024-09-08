@@ -1,22 +1,31 @@
-<h1>新規投稿</h1>
+<%= stylesheet_link_tag 'public/ideas' %>
+<div class="container">
+  <div class="row">
+    <h3><%= notice %></h3>
+  </div>
 
-<h3><%= notice %></h3>
+  <div class="row">
+    <h1>新規投稿</h1>
+  </div>
 
-<p>タグ登録を入れる</p>
+  <div class="row">
+    <p>タグ登録を入れる</p>
+  </div>
 
-<%= form_with model: @idea do |f| %>
-  <div>
-    <label for="inputIntroduction">アイデア</label><br />
+  <%= form_with model: @idea do |f| %>
+    <div class="row">
+      <label for="inputIntroduction">アイデア</label><br />
       <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
-  </div>
-  <div>
-    <label>アイデアを公開しますか？</label>
-    <%= f.radio_button :is_active, true, id: "active" %>
-    <%= f.label :is_active, "公開", for: "active" %>
-    <%= f.radio_button :is_active, false, id: "inactive" %>
-    <%= f.label :is_active, "非公開", for: "inactive" %>
-  </div>
-  <div>
-    <%= f.submit 'メモする' %>
-  </div>
-<% end %>
+    </div>
+    <div class="row">
+      <label>アイデアを公開しますか？</label>
+      <%= f.radio_button :is_active, true, id: "active" %>
+      <%= f.label :is_active, "公開", for: "active" %>
+      <%= f.radio_button :is_active, false, id: "inactive" %>
+      <%= f.label :is_active, "非公開", for: "inactive" %>
+    </div>
+    <div class="row">
+      <%= f.submit 'メモする' %>
+    </div>
+  <% end %>
+</div>
