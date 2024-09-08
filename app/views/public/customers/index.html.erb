@@ -1,0 +1,44 @@
+<%= stylesheet_link_tag 'public/customers' %>
+<div class="container">
+  <div class="row">
+    <h1>ユーザー一覧</h1>
+  </div>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= link_to customer_path(customer.id) do %>
+                <%= image_tag customer.get_profile_image(100, 100) %>
+                <span><%= customer.name %></span>
+              <% end %>
+            </td>
+            <td>フォローボタン</td>
+            <td>相互ならDMするボタン</td>
+          </tr>
+          <tr>
+            <td>好物</td>
+            <td><%= customer.preference %></td>
+          </tr>
+          <tr>
+            <td>苦手</td>
+            <td><%= customer.weak %></td>
+          </tr>
+          <tr>
+            <td>フォロー一覧</td>
+          </tr>
+          <tr>
+            <td><%= "アイデア数：#{customer.ideas.count} " %></td>
+            <td>お気に入りのアイデア：〇</td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <%= paginate @customers, class: "pagination" %>
+  </div>
+</div>
