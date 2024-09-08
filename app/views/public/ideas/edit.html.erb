@@ -1,14 +1,15 @@
-<div class=container>
-  <div class=row>
+<%= stylesheet_link_tag 'public/ideas' %>
+<div class="container">
+  <div class="row">
     <h3><%= notice %></h3>
   </div>
 
-  <div class=row>
+  <div class="row">
     <h1>投稿編集（詳細）</h1>
   </div>
 
   <%= form_with model: @idea do |f| %>
-    <div class=row>
+    <div class="row">
       <label>アイデアを公開しますか？</label>
       <%= f.radio_button :is_active, true, id: "active" %>
       <%= f.label :is_active, "公開", for: "active" %>
@@ -18,23 +19,23 @@
     </div>
   <% end %>
 
-  <div class=row>
+    <div class="row">
     <p>タグ編集を入れる</p>
   </div>
 
   <%= form_with model: @idea do |f| %>
-    <div class=row>
-      <%= f.submit "変更を保存" %>
+    <div class="row">
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
     </div>
-    <div class=row>
+    <div class="row">
       <label for="inputIntroduction">アイデア</label><br />
-      <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+      <%= f.text_field :introduction, autofocus: true, id: "inputIntroduction" %>
     </div>
-    <div class=row>
+    <div class="row">
       <label for="inputTitle">タイトル</label><br />
-      <%= f.text_area :title, id:"inputTitle" %>
+      <%= f.text_area :title, id: "inputTitle" %>
     </div>
-    <div class=row>
+    <div class="row">
       <label for="inputBody">本文</label><br />
       <%= f.text_area :body, id:"inputBody" %>
     </div>

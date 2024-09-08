@@ -1,3 +1,51 @@
-// Place all the styles related to the public/homes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+/* ノート風のスタイル */
+.container {
+  background-color: #fff; /* 背景色を白に */
+  border: 1px solid #ddd; /* 薄いグレーのボーダー */
+  padding: 20px; /* 内側の余白 */
+  margin: 20px auto; /* 上下のマージンと中央寄せ */
+  max-width: 800px; /* 最大幅を設定 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 軽いシャドウを追加 */
+  border-radius: 5px; /* 角を丸くする */
+}
+
+/* テーブルのスタイル */
+table {
+  width: 100%; /* テーブルの幅を100%に */
+  border-collapse: collapse; /* ボーダーの重なりを解消 */
+  margin-top: 20px; /* 上部に余白を追加 */
+}
+
+td {
+  border: 1px solid #ddd; /* セルのボーダー */
+  padding: 10px; /* セル内の余白 */
+}
+
+th {
+  background-color: #f4f4f4; /* ヘッダーセルの背景色 */
+  padding: 10px; /* ヘッダーセル内の余白 */
+  text-align: left; /* 左揃え */
+}
+
+/* フラッシュメッセージのスタイル */
+#error_explanation {
+  background-color: #f8d7da; /* エラー背景色 */
+  color: #721c24; /* エラーテキスト色 */
+  border: 1px solid #f5c6cb; /* エラーのボーダー */
+  padding: 10px; /* 内側の余白 */
+  border-radius: 3px; /* 角を丸くする */
+  margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+/* 各ページの説明テーブル */
+table {
+  border-collapse: collapse; /* テーブルボーダーの重なりを解消 */
+}
+
+table td {
+  vertical-align: top; /* セルの内容を上揃え */
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9; /* 偶数行の背景色 */
+}

@@ -1,9 +1,10 @@
-<div class=container>
-  <div class=row>
+<%= stylesheet_link_tag 'public/customers' %>
+<div class="container">
+  <div class="row">
     <%= notice %>
   </div>
 
-  <div class=row>
+  <div class="row">
     <% if @customer == current_customer %>
       <h1>マイページ</h1>
     <% else %>
@@ -11,8 +12,7 @@
     <% end %>
   </div>
 
-
-  <div class=row>
+  <div class="row">
     <% if flash[:alert] %>
       <div id="error_explanation">
         <h2><%= flash[:alert] %></h2>
@@ -20,40 +20,40 @@
     <% end %>
   </div>
 
-  <div class=row>
+  <div class="row">
     <table>
       <tbody>
-          <tr>
+        <tr>
+          <td>
+            <%= image_tag @customer.get_profile_image(100, 100) %>
+            <span><%= @customer.name %></span>
+          </td>
+          <% if @customer == current_customer %>
             <td>
-              <%= image_tag @customer.get_profile_image(100,100) %>
-              <span><%= @customer.name %></span>
+              <%= link_to "編集", edit_my_page_customers_path %>
             </td>
-            <% if @customer == current_customer %>
-              <td>
-                <%= link_to "編集", edit_my_page_customers_path %>
-              </td>
-            <% end %>
-          </tr>
-          <tr>
-            <td>好物</td>
-            <td><%= @customer.preference %></td>
-          </tr>
-          <tr>
-            <td>苦手</td>
-            <td><%= @customer.weak %></td>
-          </tr>
-          <tr>
-            <td>フォロー一覧</td>
-          </tr>
-          <tr>
-            <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
-            <td>お気に入りのアイデア：〇</td>
-          </tr>
+          <% end %>
+        </tr>
+        <tr>
+          <td>好物</td>
+          <td><%= @customer.preference %></td>
+        </tr>
+        <tr>
+          <td>苦手</td>
+          <td><%= @customer.weak %></td>
+        </tr>
+        <tr>
+          <td>フォロー一覧</td>
+        </tr>
+        <tr>
+          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
+          <td>お気に入りのアイデア：〇</td>
+        </tr>
       </tbody>
     </table>
   </div>
 
-  <div class=row>
+  <div class="row">
     <%= render 'public/ideas/list', ideas: @ideas %>
   </div>
 </div>

@@ -1,9 +1,10 @@
-<div class=container>
-  <div class=row>
+<%= stylesheet_link_tag 'public/homes' %>
+<div class="container">
+  <div class="row">
     <%= notice %>
   </div>
 
-  <div class=row>
+  <div class="row">
     <% if flash[:alert] %>
       <div id="error_explanation">
         <h2><%= flash[:alert] %></h2>
@@ -11,11 +12,11 @@
     <% end %>
   </div>
 
-  <div class=row>
+  <div class="row">
     <h1>各ページ説明</h1>
   </div>
 
-  <div class=row>
+  <div class="row">
     <table>
       <tbody>
         <tr>
@@ -27,10 +28,12 @@
             ・投稿アイデア一覧(編集・削除)<br />
           </td>
         </tr>
+        <tr>
           <td>ユーザー編集</td>
           <td>
             ・ユーザー情報の編集(退会)
           </td>
+        </tr>
         <tr>
           <td>新規投稿</td>
           <td>
@@ -43,15 +46,15 @@
             ・投稿アイデアの公開非公開の切り替え<br />
             ・投稿アイデアの編集<br />
             ・投稿アイデアを元にタイトルと本文の作成<br />
-              ∟アイデアが公開状態の場合でも、<br />
-                タイトルと本文は他のユーザーには公開されません
+            　∟アイデアが公開状態の場合でも、<br />
+            　タイトルと本文は他のユーザーには公開されません
           </td>
         </tr>
         <tr>
           <td>ユーザー一覧</td>
           <td>
             ・各ユーザーの登録情報・投稿アイデアの確認<br />
-            　  ∟非公開設定になっているアイデアは表示されません<br />
+            　∟非公開設定になっているアイデアは表示されません<br />
             ・相互フォロワーへのDMリンク
             ・ユーザー検索
           </td>

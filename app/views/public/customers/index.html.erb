@@ -1,16 +1,17 @@
-<div class=container>
-  <div class=row>
+<%= stylesheet_link_tag 'public/customers' %>
+<div class="container">
+  <div class="row">
     <h1>ユーザー一覧</h1>
   </div>
 
-  <div class=row>
+  <div class="row">
     <table>
       <tbody>
         <% @customers.each do |customer| %>
           <tr>
             <td>
               <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(100,100) %>
+                <%= image_tag customer.get_profile_image(100, 100) %>
                 <span><%= customer.name %></span>
               <% end %>
             </td>
@@ -33,11 +34,11 @@
             <td>お気に入りのアイデア：〇</td>
           </tr>
         <% end %>
-      <tbody>
+      </tbody>
     </table>
   </div>
 
-  <div class=row>
+  <div class="row">
     <%= paginate @customers, class: "pagination" %>
   </div>
 </div>
