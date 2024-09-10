@@ -28,7 +28,7 @@
               <% end %>
             </td>
             <td>
-              <%= I18n.t("activerecord.attributes.idea.is_active.#{customer.is_active}") %>  <!--ja.ymlの翻訳の記述を適用させて表示する-->
+              <%= customer.is_active ? "有効" : "退会" %>  <!--?で真偽値を判定 is_activeカラムはtrueかfalseなので、trueなら有効falseなら退会を表示-->
             </td>
             <td>
               <%= customer.email %>

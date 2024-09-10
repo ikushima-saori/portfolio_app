@@ -30,9 +30,6 @@ ja:
         weak: 苦手
       idea:
         introduction: アイデア
-        is_active:
-          true: 有効
-          false: 退会
       admin:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン

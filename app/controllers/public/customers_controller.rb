@@ -5,7 +5,7 @@ class Public::CustomersController < ApplicationController
     @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL)  #Customer.allの中にゲストユーザーは含まない
                        .where(is_active: true)  # is_activeがtrueのユーザーのみを取得
                        .page(params[:page])
-                       .per(5)  # ページネーションで1ページ5人
+                       .per(4)  # ページネーションで1ページ5人
   end
 
   def show
