@@ -5,3 +5,6 @@
 //= link public/homes.css
 //= link public/customers.css
 //= link public/ideas.css
+//= link admin/sessions.css
+//= link admin/homes.css
+//= link admin/customers.css

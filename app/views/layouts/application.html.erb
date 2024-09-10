@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>PortfolioApp</title>
+    <title>アイデアノート</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -14,7 +14,7 @@
     <%= stylesheet_link_tag 'application' %>
     <header class="text-center">
       <% if customer_signed_in? %>
-        <h1><%= link_to "アイデア帳（仮）", root_path %></h1>
+        <h1><%= link_to "アイデアノート", root_path %></h1>
         <div class="d-flex justify-content-center align-items-center mb-2">
           <%= image_tag(current_customer.get_profile_image(50, 50), class: 'rounded-circle') %>
           <strong class="ms-2"><%= current_customer.name %></strong>
@@ -29,7 +29,7 @@
           </ul>
         </div>
       <% elsif admin_signed_in? %>
-        <h1><%= link_to "アイデア帳（仮）", admin_path %></h1>
+        <h1><%= link_to "アイデアノート", admin_path %></h1>
         <div>
           <ul class="nav nav-pills nav-justified">
             <li class="nav-item"><%= link_to "会員一覧", admin_path, class: "nav-link" %></li>
@@ -37,7 +37,7 @@
           </ul>
         </div>
       <% else %>
-        <h1><%= link_to "アイデア帳（仮）", root_path %></h1>
+        <h1><%= link_to "アイデアノート", root_path %></h1>
         <div>
           <ul class="nav nav-pills nav-justified">
             <li class="nav-item"><%= link_to "About", about_path, class:"nav-link" %></li>
@@ -51,7 +51,7 @@
       <%= yield %>
     </main>
     <footer class="text-center">
-      © 2024  アイデア帳（仮）
+      © 2024  アイデアノート
     </footer>
   </body>
 </html>

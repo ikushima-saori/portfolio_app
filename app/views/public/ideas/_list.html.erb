@@ -26,7 +26,9 @@
           <tr>
             <td>タグ</td>
             <td>いいね：〇</td>
-            <td>ステータス：<%= idea.is_active ? "公開" : "非公開" %></td>
+            <% if idea.customer == current_customer %>
+              <td>ステータス：<%= idea.is_active ? "公開" : "非公開" %></td>
+            <% end %>
           </tr>
           <tr>
             <td>投稿に付けられたタグ</td>
