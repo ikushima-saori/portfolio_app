@@ -1,5 +1,53 @@
-<h1>Admin::Homes#top</h1>
-<p>Find me in app/views/admin/homes/top.html.erb</p>
+<%= stylesheet_link_tag 'admin/homes' %>
+<div class="container">
+  <div class="row">
+    <h1>会員一覧</h1>
+  </div>
 
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>ペンネーム(編集)</th>
+          <th>会員ステータス</th>
+          <th>メールアドレス</th>
+          <th>最新投稿 or 編集日時</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= customer.id %>
+            </td>
+            <td>
+              <%= link_to edit_admin_customer_path(customer.id) do %>
+                <%= image_tag customer.get_profile_image(50, 50) %>
+                <span><%= customer.name %></span>
+              <% end %>
+            </td>
+            <td>
+              <%= I18n.t("activerecord.attributes.idea.is_active.#{customer.is_active}") %>  <!--ja.ymlの翻訳の記述を適用させて表示する-->
+            </td>
+            <td>
+              <%= customer.email %>
+            </td>
+            <td>
+              <% latest_idea = customer.ideas.order(updated_at: :desc).first %>  <!--全ての投稿をorderメソッドでupdated_atで降順に並べ替えて、最新の投稿を特定-->
+              <% if latest_idea.present? %>  <!--最新の投稿があったら-->
+                <%= latest_idea.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %>  <!--更新日を日本時間で表示-->
+              <% else %>
+                <%= '1度も投稿していません' %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
 
-<h1>管理者側　ユーザー一覧</h1>
+  <div class="row">
+    <%= paginate @customers, class: "pagination" %>
+  </div>
+</div>
