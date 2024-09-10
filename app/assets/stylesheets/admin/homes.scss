@@ -1,3 +1,76 @@
-// Place all the styles related to the admin/homes controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: https://sass-lang.com/
+/* ノート風デザインのスタイル */
+
+.container {
+  background: #fff; /* ノートの背景色を白に */
+  border: 1px solid #ccc; /* ノート風の枠線 */
+  padding: 20px; /* 内側の余白 */
+  border-radius: 5px; /* 角を丸める */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 軽い影をつける */
+  margin-bottom: 20px; /* 下部に余白を追加 */
+}
+
+.row {
+  margin-bottom: 15px; /* 行ごとの余白 */
+}
+
+h1 {
+  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
+  margin-bottom: 15px; /* 見出しの下に余白 */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse; /* テーブルのボーダーを重ねない */
+}
+
+thead {
+  background-color: #f4f4f4; /* ヘッダーの背景色 */
+}
+
+thead th {
+  border-bottom: 2px solid #ddd; /* ヘッダーの下に線 */
+  padding: 10px; /* ヘッダーの内側の余白 */
+  text-align: left; /* 左揃え */
+}
+
+tbody tr {
+  border-bottom: 1px solid #ddd; /* 行ごとの下線 */
+}
+
+tbody td {
+  padding: 10px; /* セル内の余白 */
+}
+
+tbody td img {
+  border-radius: 50%; /* プロフィール画像の丸い角 */
+}
+
+a {
+  text-decoration: none; /* リンクの下線を削除 */
+  color: #007bff; /* リンクの色 */
+}
+
+a:hover {
+  text-decoration: underline; /* ホバー時に下線を表示 */
+}
+
+.pagination {
+  display: flex;
+  justify-content: center; /* ページネーションを中央に配置 */
+  margin-top: 20px; /* 上部に余白 */
+}
+
+.pagination a {
+  background-color: #f4a261; /* ページネーションの背景色 */
+  color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 8px 12px;
+  margin: 0 5px;
+  text-decoration: none;
+  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
+}
+
+.pagination a:hover {
+  background-color: #e76f51; /* ホバー時の色変更 */
+}
