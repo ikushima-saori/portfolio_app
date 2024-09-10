@@ -6,11 +6,8 @@ class Admin::CustomersController < ApplicationController
 
   def update
     @customer = Customer.find(params[:id])
-    if @customer.update(customer_params)
-      redirect_to admin_path
-    else
-      render :edit
-    end
+    @customer.update!(customer_params)  #!=失敗したら、falseではなくエラーメッセージを返す
+    redirect_to admin_path
   end
 
   private

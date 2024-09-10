@@ -112,36 +112,61 @@ ten = Customer.find_or_create_by!(email: '0@test.com') do |customer|
 end
 
 
- idea = Idea.new(
-  introduction: "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ",
-  title: "ぼやけた視界で見る景色",
-  body: "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。",
-  is_active: true,
-  customer_id: 1
- )
- idea.save!
+ Idea.find_or_create_by!(id: 1) do |idea|
+  idea.introduction =  "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ"
+  idea.title =  "ぼやけた視界で見る景色"
+  idea.body =  "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。"
+  idea.is_active =  true
+  idea.customer_id = one.id
+end
 
- idea = Idea.new(
-  introduction: "おじさんが猫を拾う・家族ともめて家出する",
-  title: "家を得た猫と家を無くした人間",
-  body: "かわいいから拾った。それ以上でも以下でもない。",
-  is_active: false,
-  customer_id: 1
- )
- idea.save!
+ Idea.find_or_create_by!(id: 2) do |idea|
+  idea.introduction =  "おじさんが猫を拾う・家族ともめて家出する"
+  idea.title =  "家を得た猫と家を無くした人間"
+  idea.body =  "かわいいから拾った。それ以上でも以下でもない。"
+  idea.is_active =  true
+  idea.customer_id = one.id
+end
 
- idea = Idea.new(
-  introduction: "おじさんが仕事で失敗してヤケ酒あおる話",
-  is_active: true,
-  customer_id: 2
- )
- idea.save!
+ Idea.find_or_create_by!(id: 3) do |idea|
+  idea.introduction =  "サトシがピカチュウとケンカする・初期・他の手持ちが奮闘する感じで全員進化前がいい"
+  idea.title =  "仲良しが一番"
+  idea.is_active =  true
+  idea.customer_id = two.id
+end
 
+ Idea.find_or_create_by!(id: 4) do |idea|
+  idea.introduction =  "シゲルとオーキド博士が森で迷子になって野生に襲われたり戦ったりでじーちゃんに憧れる孫爆誕物語"
+  idea.is_active =  false
+  idea.customer_id = two.id
+end
 
- one_idea_one = Idea.find_or_create_by!(id:1) do |idea|
-  introduction: "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ",
-  title: "ぼやけた視界で見る景色",
-  body: "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。",
-  is_active: true,
-  customer_id: 1
+ Idea.find_or_create_by!(id: 5) do |idea|
+  idea.introduction =  "具がみんなと絡む話"
+  idea.title =  "鍋の具は何にしよう"
+  idea.body =  "我はタヌキである。名は具。マジか。"
+  idea.is_active =  true
+  idea.customer_id = three.id
+end
+
+ Idea.find_or_create_by!(id: 6) do |idea|
+  idea.introduction =  "化ギン・久々に帰ってきた平和時空・冬と雪"
+  idea.title =  "雪関係がいい"
+  idea.is_active =  false
+  idea.customer_id = four.id
+end
+
+ Idea.find_or_create_by!(id: 7) do |idea|
+  idea.introduction =  "敵襲とかないマジで何もない休日・平和に過ごしてほしい"
+  idea.title =  "三蔵一行の平和(笑)な休日"
+  idea.body =  "三蔵の「ぶっ殺すぞテメェら！」から始めたい"
+  idea.is_active =  true
+  idea.customer_id = five.id
+end
+
+ Idea.find_or_create_by!(id: 8) do |idea|
+  idea.introduction =  "過去話・悟空がめちゃくちゃ甘やかされてほしい・幸せにならんとおかしい"
+  idea.title =  "桜入れたい"
+  idea.is_active =  true
+  idea.customer_id = five.id
 end
