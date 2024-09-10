@@ -27,7 +27,7 @@
               <%= f.label :is_active, "有効", for: "active" %>
               <%= f.radio_button :is_active, false, id: "inactive" %>
               <%= f.label :is_active, "退会", for: "inactive" %>
-              <%= f.submit "切り替える" %>
+              <%= f.submit "切り替える", data: { confirm: "本当に切り替えますか？" } %>
             <% end %>
           </td>
         </tr>

@@ -1,4 +1,5 @@
 class Admin::CustomersController < ApplicationController
+  before_action :authenticate_admin!
   def edit
     @customer = Customer.find(params[:id])
   end
