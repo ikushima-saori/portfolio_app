@@ -13,6 +13,18 @@ class Customer < ApplicationRecord
                     uniqueness: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP }
 
+  def self.search_for(word, method)
+    if method == 'perfect'
+      Customer.where("name LIKE ?", "#{word}")
+    elsif method == 'forward'
+      Customer.where("name LIKE ?", "#{word}%")
+    elsif method == 'backward'
+      Customer.where("name LIKE ?", "%#{word}")
+    else
+      Customer.where("name LIKE ?", "%#{word}%")
+    end
+  end
+
   GUEST_USER_EMAIL = "guest@example.com"
   def self.guest
     find_or_create_by!(email: GUEST_USER_EMAIL) do |customer|

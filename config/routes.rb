@@ -41,7 +41,7 @@ Rails.application.routes.draw do
     end
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
-    get 'searches/search'
+    get "/search", to: "searches#search"
   end
 
   #adminのルーティング

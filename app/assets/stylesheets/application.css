@@ -61,6 +61,11 @@ header .nav {
   color: #ddd !important; /* ホバー時にリンクの色を少し明るく */
 }
 
+.searche-form{
+  text-align: center; /* テキストを中央寄せ */
+  padding: 3px 0; /* 上下のパディング */
+}
+
 footer {
   border-top: 1px solid #333; /* フッターの上に薄いボーダーを追加 */
   text-align: center; /* テキストを中央寄せ */

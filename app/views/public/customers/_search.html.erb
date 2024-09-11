@@ -1,18 +1,13 @@
 <%= stylesheet_link_tag 'public/customers' %>
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1>ユーザー一覧</h1>
-    </div>
-    <div class="col">
-      <%= render "public/searches/form" %>
-    </div>
+      <h3>会員："<%= @word %>"の検索結果</h3>
   </div>
 
   <div class="row">
     <table>
       <tbody>
-        <% @customers.each do |customer| %>
+        <% customers.each do |customer| %>
           <tr>
             <td>
               <%= link_to customer_path(customer.id) do %>
@@ -44,6 +39,6 @@
   </div>
 
   <div class="row">
-    <%= paginate @customers, class: "pagination" %>
+    <%= paginate customers, class: "pagination" %>
   </div>
 </div>
