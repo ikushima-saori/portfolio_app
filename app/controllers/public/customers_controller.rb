@@ -12,13 +12,13 @@ class Public::CustomersController < ApplicationController
     if params[:id]
       @customer = Customer.find(params[:id])
       if @customer != current_customer
-        @ideas = @customer.ideas.where(is_active: true)
+        @ideas = @customer.ideas.where(is_active: true).page(params[:page]).per(4)
       else
-        @ideas = @customer.ideas
+        @ideas = @customer.ideas.page(params[:page]).per(4)
       end
     else
       @customer = current_customer
-      @ideas = @customer.ideas
+      @ideas = @customer.ideas.page(params[:page]).per(4)
     end
   end
 
