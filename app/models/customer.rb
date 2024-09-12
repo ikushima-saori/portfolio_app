@@ -5,6 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_one_attached :profile_image
   has_many :ideas, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
   validates :preference, presence: true
