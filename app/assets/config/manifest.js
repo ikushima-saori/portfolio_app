@@ -5,6 +5,9 @@
 //= link public/homes.css
 //= link public/customers.css
 //= link public/ideas.css
+//= link public/customer_searches.css
+//= link public/idea_searches.css
+//= link public/favorites.css
 //= link admin/sessions.css
 //= link admin/homes.css
 //= link admin/customers.css

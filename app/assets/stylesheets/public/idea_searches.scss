@@ -27,21 +27,10 @@ table {
 td {
   padding: 10px; /* セル内の余白 */
   border: 1px solid #ddd; /* 薄いボーダー */
-  vertical-align: top; /* 上部に配置 */
 }
 
 td img {
   border-radius: 50%; /* プロフィール画像を丸くする */
-  max-width: 100px; /* 画像の最大幅を設定 */
-}
-
-a {
-  text-decoration: none; /* リンクの下線を削除 */
-  color: #007bff; /* リンクの色 */
-}
-
-a:hover {
-  text-decoration: underline; /* ホバー時に下線を表示 */
 }
 
 .pagination {

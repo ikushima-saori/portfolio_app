@@ -25,9 +25,19 @@
           </tr>
           <tr>
             <td>タグ</td>
-            <td>いいね：〇</td>
+            <% if @customer == current_customer %>
+              <td>
+                お気に入り数：<%= idea.favorites.count %>
+              </td>
+            <% else %>
+              <td id="favorite_btn_<%= idea.id %>">
+                <%= render "public/favorites/btn", idea: idea %>
+              </td>
+            <% end %>
             <% if idea.customer == current_customer %>
-              <td>ステータス：<%= idea.is_active ? "公開" : "非公開" %></td>
+              <td>
+                ステータス：<%= idea.is_active ? "公開" : "非公開" %>
+              </td>
             <% end %>
           </tr>
           <tr>
@@ -57,3 +67,7 @@
       </tbody>
     </table>
   <% end %>
+
+  <div>
+    <%= paginate ideas, class: "pagination" %>
+  </div>

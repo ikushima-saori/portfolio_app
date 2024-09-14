@@ -1,13 +1,13 @@
-<%= stylesheet_link_tag 'public/idea_searches' %>
+<%= stylesheet_link_tag 'public/favorites' %>
 <div class="container">
   <div class="row">
-    <h3>アイデア："<%= @word %>"の検索結果</h3>
+    <h3>お気に入りアイデア一覧</h3>
   </div>
 
   <div class="row">
     <table>
       <tbody>
-        <% ideas.each do |idea| %>
+        <% @favorite_ideas.each do |idea| %>
           <tr>
             <td>
               <%= link_to customer_path(idea.customer_id) do %>
@@ -28,7 +28,6 @@
           </tr>
           <tr>
             <td>タグ</td>
-            <td><%= "お気に入り数：#{idea.favorites.count}" %></td>
           </tr>
           <tr>
             <td>投稿に付けられたタグ</td>
@@ -45,6 +44,6 @@
   </div>
 
   <div class="row">
-    <%= paginate ideas, class: "pagination" %>
+    <%= paginate @favorite_ideas, class: "pagination" %>
   </div>
 </div>

@@ -25,6 +25,9 @@ Rails.application.routes.draw do
         patch 'information', to: 'customers#update', as: 'update_information'
         delete 'out'
       end
+      member do
+        get 'favorite'
+      end
     end
     resources :relationships, only: %i[create destroy] do
       collection do
@@ -37,7 +40,7 @@ Rails.application.routes.draw do
         get 'tags'
         get 'search'
       end
-      resource :favorites, only: %i[index create destroy]
+      resource :favorites, only: %i[create destroy]
     end
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
