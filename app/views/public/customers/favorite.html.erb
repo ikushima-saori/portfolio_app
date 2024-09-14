@@ -1,0 +1,52 @@
+
+<div class="container">
+  <div class="row">
+    <h3>お気に入りアイデア一覧</h3>
+  </div>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <% @favorite_ideas.each do |idea| %>
+          <tr>
+            <td>
+              <%= link_to customer_path(idea.customer_id) do %>
+                <%= image_tag idea.customer.get_profile_image(100, 100) %>
+                <span><%= idea.customer.name %></span>
+              <% end %>
+            </td>
+            <td>更新日</td>
+            <% if idea.updated_at.present? %>
+              <td>
+              <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              </td>
+            <% else %>
+              <td>
+              <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              </td>
+            <% end %>
+          </tr>
+          <tr>
+            <td>タグ</td>
+            <td id="favorite_btn_<%= idea.id %>">
+              <%= render "public/favorites/btn", idea: idea %>
+            </td>
+          </tr>
+          <tr>
+            <td>投稿に付けられたタグ</td>
+          </tr>
+          <tr>
+            <td>アイデア</td>
+          </tr>
+          <tr>
+            <td><%= idea.introduction %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <%= paginate @favorite_ideas, class: "pagination" %>
+  </div>
+</div>

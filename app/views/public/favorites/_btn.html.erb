@@ -1,0 +1,9 @@
+<% if current_customer %>
+  <% if idea.favorited_by?(current_customer) %>
+    <%= link_to "お気に入り解除　♥：#{idea.favorites.count}", idea_favorites_path(idea), method: :delete, remote: true %>
+  <% else %>
+    <%= link_to "お気に入り登録　♡：#{idea.favorites.count}", idea_favorites_path(idea), method: :post, remote: true %>
+  <% end %>
+<% else %>
+  お気に入り数　♥：<%= idea.favorites.count %>
+<% end %>

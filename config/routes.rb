@@ -37,7 +37,7 @@ Rails.application.routes.draw do
         get 'tags'
         get 'search'
       end
-      resource :favorites, only: %i[index create destroy]
+      resource :favorites, only: %i[create destroy]
     end
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
