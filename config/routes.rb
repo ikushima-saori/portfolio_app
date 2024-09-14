@@ -25,6 +25,9 @@ Rails.application.routes.draw do
         patch 'information', to: 'customers#update', as: 'update_information'
         delete 'out'
       end
+      member do
+        get 'favorite'
+      end
     end
     resources :relationships, only: %i[create destroy] do
       collection do

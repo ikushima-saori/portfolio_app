@@ -25,14 +25,20 @@
           </tr>
           <tr>
             <td>タグ</td>
-            <td id="favorite_btn_<%= idea.id %>">
-              <%= render "public/favorites/btn", idea: idea %>
-            </td>
-            <td>
-              <% if idea.customer == current_customer %>
+            <% if @customer == current_customer %>
+              <td>
+                お気に入り数：<%= idea.favorites.count %>
+              </td>
+            <% else %>
+              <td id="favorite_btn_<%= idea.id %>">
+                <%= render "public/favorites/btn", idea: idea %>
+              </td>
+            <% end %>
+            <% if idea.customer == current_customer %>
+              <td>
                 ステータス：<%= idea.is_active ? "公開" : "非公開" %>
-              <% end %>
-            </td>
+              </td>
+            <% end %>
           </tr>
           <tr>
             <td>投稿に付けられたタグ</td>

@@ -20,6 +20,12 @@ class Public::CustomersController < ApplicationController
       @customer = current_customer
       @ideas = @customer.ideas.page(params[:page]).per(4)
     end
+    @favorite_ideas_count = @customer.favorites.count
+  end
+
+  def favorite
+    @customer = Customer.find(params[:id])
+    @favorite_ideas = @customer.favorites.joins(:idea).select('ideas.*').page(params[:page]).per(4)
   end
 
   def edit

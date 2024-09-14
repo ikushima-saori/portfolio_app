@@ -29,7 +29,7 @@
           <tr>
             <td>フォロー一覧</td>
             <td><%= "アイデア数：#{customer.ideas.count} " %></td>
-            <td><%= link_to 'いいねしたアイデア一覧', favorites_customers_path %></td>
+            <td><%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %></td>
           </tr>
         <% end %>
       </tbody>

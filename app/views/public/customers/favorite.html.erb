@@ -1,4 +1,4 @@
-
+<%= stylesheet_link_tag 'public/favorites' %>
 <div class="container">
   <div class="row">
     <h3>お気に入りアイデア一覧</h3>
@@ -11,7 +11,7 @@
           <tr>
             <td>
               <%= link_to customer_path(idea.customer_id) do %>
-                <%= image_tag idea.customer.get_profile_image(100, 100) %>
+                <%= image_tag idea.customer.get_profile_image(100, 100), class: 'profile-image' %>
                 <span><%= idea.customer.name %></span>
               <% end %>
             </td>
@@ -28,9 +28,6 @@
           </tr>
           <tr>
             <td>タグ</td>
-            <td id="favorite_btn_<%= idea.id %>">
-              <%= render "public/favorites/btn", idea: idea %>
-            </td>
           </tr>
           <tr>
             <td>投稿に付けられたタグ</td>
