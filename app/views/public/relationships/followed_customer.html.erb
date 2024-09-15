@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag 'public/relationships' %>
+<div class="container">
+  <div class="row">
+      <h3><%= @customer.name %>のフォロワー一覧</h3>
+  </div>
+
+  <% if @customers.exists? %>
+    <%= render 'followlist', customers: @customers %>
+  <% else %>
+    <p>ユーザーはいません</p>
+  <% end %>
+
+</div>

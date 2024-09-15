@@ -12,12 +12,12 @@ class Public::RelationshipsController < ApplicationController
   end
 
   def follower_customer
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.follower_customer.where(is_active: true)
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.follower_customer.where(is_active: true).page(params[:page]).per(4)
   end
 
   def followed_customer
-    customer = Customer.find(params[:customer_id])
-    @customers = customer.followed_customer.where(is_active: true)
+    @customer = Customer.find(params[:customer_id])
+    @customers = @customer.followed_customer.where(is_active: true).page(params[:page]).per(4)
   end
 end

@@ -27,7 +27,7 @@
             <td>タグ</td>
             <% if @customer == current_customer %>
               <td>
-                お気に入り数：<%= idea.favorites.count %>
+                お気に入り：<%= idea.favorites.count %>人
               </td>
             <% else %>
               <td id="favorite_btn_<%= idea.id %>">

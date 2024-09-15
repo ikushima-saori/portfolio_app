@@ -45,7 +45,13 @@
         </tr>
         <tr>
           <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
-          <td><%= "お気に入りアイデア数：#{@customer.favorites.count}個" %></td>
+          <td>
+            <% if @customer.favorites.count > 0 %>
+              <%= "お気に入りアイデア数：#{@customer.favorites.count}個" %>
+            <% else %>
+              お気に入り無し
+            <% end %>
+          </td>
         </tr>
       </tbody>
     </table>
