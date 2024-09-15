@@ -10,11 +10,18 @@ class Public::SearchesController < ApplicationController
                        .search_for(@word, @method) # Customerモデル内を検索ワードと検索方法で検索して該当するユーザーを取得
                        .page(params[:page])
                        .per(4)  # ページネーションで1ページ4人
+    @total_count = Customer.where.not(email: Customer::GUEST_USER_EMAIL)
+                              .where(is_active: true)
+                              .search_for(@word, @method)
+                              .count
     else
       @records = Idea.where(is_active: true)  # is_activeがtrueのアイデアのみを取得
                      .search_for(@word, @method) # Customerモデル内を検索ワードと検索方法で検索して該当するユーザーを取得
                      .page(params[:page])
                      .per(4)
+      @total_count = Idea.where(is_active: true)
+                          .search_for(@word, @method)
+                          .count
     end
   end
 end

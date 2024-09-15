@@ -6,6 +6,10 @@ class Customer < ApplicationRecord
   has_one_attached :profile_image
   has_many :ideas, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :follower, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :followed, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  has_many :follower_customer, through: :follower, source: :followed
+  has_many :followed_customer, through: :followed, source: :follower
 
   validates :name, presence: true
   validates :preference, presence: true
@@ -42,6 +46,28 @@ class Customer < ApplicationRecord
 
   def active_for_authentication?
     super && (self.is_active == true)
+  end
+
+  def follow(customer)
+    follower.create(followed_id: customer.id)
+  end
+
+  def unfollow(customer)
+    follower.find_by(followed_id: customer.id).destroy
+  end
+
+  def following?(customer)
+    follower_customer.include?(customer)
+  end
+
+  def follower_customers  # フォロワーを取得するメソッド
+    Customer.joins(:follower)
+            .where(follower: { followed_id: id, is_active: true }) # フォロワーの中でアクティブなユーザーのみ
+  end
+
+  def followed_customers  # フォローしているユーザーを取得するメソッド
+    Customer.joins(:followed)
+            .where(followed: { follower_id: id, is_active: true }) # フォローしている中でアクティブなユーザーのみ
   end
 
   def get_profile_image(width, height)

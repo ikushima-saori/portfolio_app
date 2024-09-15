@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'public/idea_searches' %>
 <div class="container">
   <div class="row">
-    <h3>アイデア："<%= @word %>"の検索結果</h3>
+    <h3>アイデア：【<%= @word %>】の検索結果 <%= @total_count %>件</h3>
   </div>
 
   <div class="row">
@@ -28,7 +28,11 @@
           </tr>
           <tr>
             <td>タグ</td>
-            <td><%= "お気に入り数：#{idea.favorites.count}" %></td>
+            <% if idea.favorites.count > 0 %>
+              <td>
+                <%= "お気に入り：#{idea.favorites.count}人" %>
+              </td>
+            <% end %>
           </tr>
           <tr>
             <td>投稿に付けられたタグ</td>
