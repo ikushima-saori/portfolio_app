@@ -40,7 +40,8 @@
           <td><%= @customer.weak %></td>
         </tr>
         <tr>
-          <td>フォロー一覧</td>
+          <td><%= "フォロー：#{@customer.follower_customer.count}人" %></td>
+          <td><%= "フォロワー：#{@customer.followed_customer.count}人" %></td>
         </tr>
         <tr>
           <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>

@@ -28,13 +28,10 @@ Rails.application.routes.draw do
       member do
         get 'favorite'
       end
-    end
-    resources :relationships, only: %i[create destroy] do
-      collection do
-       get 'followers'
-       get 'followeds'
+      resource :relationships, only: [:create, :destroy]
+        get "follower_customer" => "relationships#follower_customer", as: "follower"
+        get "followed_customer" => "relationships#followed_customer", as: "followed"
       end
-    end
     resources :ideas, only: %i[index new create edit update destroy] do
       collection do
         get 'tags'

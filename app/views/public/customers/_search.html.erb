@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'public/customer_searches' %>
 <div class="container">
   <div class="row">
-      <h3>会員："<%= @word %>"の検索結果</h3>
+      <h3>ユーザー：【<%= @word %>】の検索結果 <%= @total_count %>件</h3>
   </div>
 
   <div class="row">
@@ -15,8 +15,10 @@
                 <span><%= customer.name %></span>
               <% end %>
             </td>
-            <td>フォローボタン</td>
-            <td>相互ならDMするボタン</td>
+              <% if current_customer != customer %>
+                <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>
+                <td>相互ならDMするボタン</td>
+              <% end %>
           </tr>
           <tr>
             <td>好物</td>
@@ -27,7 +29,8 @@
             <td><%= customer.weak %></td>
           </tr>
           <tr>
-            <td>フォロー一覧</td>
+            <td><%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %></td>
+            <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %></td>
             <td><%= "アイデア数：#{customer.ideas.count} " %></td>
             <td><%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %></td>
           </tr>
