@@ -35,6 +35,7 @@ Rails.application.routes.draw do
     resources :ideas, only: %i[index new create edit update destroy] do
       resource :favorites, only: %i[create destroy]
     end
+    resources :tags, only: [:index, :show]
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
     get "/search", to: "searches#search"

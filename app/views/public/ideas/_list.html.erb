@@ -43,7 +43,7 @@
           <tr>
             <td>
               <% idea.tags.each do |tag| %>
-                <span class="tag"><%= tag.word %></span>
+                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %><span>
               <% end %>
             </td>
           </tr>
