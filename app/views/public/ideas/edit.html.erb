@@ -19,13 +19,13 @@
     </div>
   <% end %>
 
-    <div class="row">
-    <p>タグ編集を入れる</p>
-  </div>
-
   <%= form_with model: @idea do |f| %>
     <div class="row">
       <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    </div>
+    <div class="row">
+      <label for="inputTags">タグ（カンマ区切り）</label><br />
+      <%= f.text_field :tag_names, id: "inputTags", value: @idea.tag_names %>
     </div>
     <div class="row">
       <label for="inputIntroduction">アイデア</label><br />

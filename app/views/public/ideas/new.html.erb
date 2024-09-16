@@ -8,11 +8,11 @@
     <h1>新規投稿</h1>
   </div>
 
-  <div class="row">
-    <p>タグ登録を入れる</p>
-  </div>
-
   <%= form_with model: @idea do |f| %>
+    <div class="row">
+      <label for="inputTags">タグ（カンマ区切り）</label><br />
+      <%= f.text_field :tags, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください", name: "idea[tags]" %>
+    </div>
     <div class="row">
       <label for="inputIntroduction">アイデア</label><br />
       <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>

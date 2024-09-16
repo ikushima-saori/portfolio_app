@@ -12,7 +12,9 @@ class Public::IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.customer_id = current_customer.id
+    tag_list = params[:idea][:tags].split(",").map(&:strip) # カンマで分割し、空白を削除
     if @idea.save
+      @idea.save_tag(tag_list)  # タグを保存
       flash[:notice] = "アイデアをメモしました！"
       redirect_to edit_idea_path(@idea.id)
     else
@@ -23,11 +25,14 @@ class Public::IdeasController < ApplicationController
 
   def edit
     @idea = Idea.find(params[:id])
+    @tag_list = @idea.tags.pluck(:word).join(', ')
   end
 
   def update
     @idea = Idea.find(params[:id])
     if @idea.update(idea_params)
+      tag_list = params[:idea][:tag_names].split(",").map(&:strip)  # タグのリストを分割
+      @idea.save_tag(tag_list)  # タグを保存
       flash[:notice] = "変更が保存されました！"
       redirect_to edit_idea_path(@idea.id)
     else
@@ -58,6 +63,6 @@ class Public::IdeasController < ApplicationController
     end
 
     def idea_params
-      params.require(:idea).permit(:introduction, :title, :body, :is_active)
+      params.require(:idea).permit(:introduction, :title, :body, :is_active, :tag_names)
     end
 end
