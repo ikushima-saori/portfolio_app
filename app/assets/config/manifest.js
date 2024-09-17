@@ -9,6 +9,7 @@
 //= link public/idea_searches.css
 //= link public/favorites.css
 //= link public/relationships.css
+//= link public/tags.css
 //= link admin/sessions.css
 //= link admin/homes.css
 //= link admin/customers.css

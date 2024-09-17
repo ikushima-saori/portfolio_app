@@ -35,7 +35,11 @@
             <% end %>
           </tr>
           <tr>
-            <td>投稿に付けられたタグ</td>
+            <td>
+              <% idea.tags.each do |tag| %>
+                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %><span>
+              <% end %>
+            </td>
           </tr>
           <tr>
             <td>アイデア</td>

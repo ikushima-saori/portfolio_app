@@ -33,12 +33,9 @@ Rails.application.routes.draw do
         get "followed_customer" => "relationships#followed_customer", as: "followed"
       end
     resources :ideas, only: %i[index new create edit update destroy] do
-      collection do
-        get 'tags'
-        get 'search'
-      end
       resource :favorites, only: %i[create destroy]
     end
+    resources :tags, only: [:index, :show]
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
     get "/search", to: "searches#search"
