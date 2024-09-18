@@ -33,7 +33,7 @@
         <h1><%= link_to "アイデアノート", admin_path %></h1>
         <div>
           <ul class="nav nav-pills nav-justified">
-            <li class="nav-item"><%= link_to "会員一覧", admin_path, class: "nav-link" %></li>
+            <li class="nav-item"><%= link_to "ユーザー一覧", admin_path, class: "nav-link" %></li>
             <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link" %></li>
           </ul>
         </div>
@@ -49,9 +49,11 @@
       <% end %>
     </header>
     <main>
-      <div class="searche-form">
-        <%= render "public/searches/form" %>
-      </div>
+      <% unless admin_signed_in? %>
+        <div class="searche-form">
+          <%= render "public/searches/form" %>
+        </div>
+      <% end%>
       <%= yield %>
     </main>
     <footer class="text-center">

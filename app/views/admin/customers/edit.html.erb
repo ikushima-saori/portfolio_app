@@ -1,15 +1,8 @@
 <%= stylesheet_link_tag 'admin/customers' %>
 <div class="container">
-  <div class="row">
-    <%= notice %>
-  </div>
 
   <div class="row">
-    <% if flash[:alert] %>
-      <div id="error_explanation">
-        <h2><%= flash[:alert] %></h2>
-      </div>
-    <% end %>
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
   </div>
 
   <div class="row">
@@ -17,41 +10,39 @@
       <tbody>
         <tr>
           <td>
-            <%= image_tag @customer.get_profile_image(50, 50) %>
+            <%= image_tag @customer.get_profile_image(80, 80) %>
             <span><%= @customer.name %></span>
           </td>
           <td>
             <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-              <label>会員ステータス</label>
-              <%= f.radio_button :is_active, true, id: "active" %>
-              <%= f.label :is_active, "有効", for: "active" %>
+              <label>ユーザーステータス</label>
+              <%= f.radio_button :is_active, true, id: "active" %> <!--is_activeがtrueであるラジオボタンを作成-->
+              <%= f.label :is_active, "有効", for: "active" %> <!--ラジオボタンとセットで記述する　id:activeで紐づけて文字クリックでも有効にできる-->
               <%= f.radio_button :is_active, false, id: "inactive" %>
               <%= f.label :is_active, "退会", for: "inactive" %>
-              <%= f.submit "切り替える", data: { confirm: "本当に切り替えますか？" } %>
+              <%= f.submit "切り替える", data: { confirm: "本当に切り替えますか？" } %> <!--確認メッセージを挟む-->
             <% end %>
+          </td>
+        </tr>
+        <tr>
+          <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
+          <td>  <!--お気に入りがあるか確認　?=有りなら個数表示　:=無しならお気に入り無し表示-->
+            <%= @customer.favorites.present? ? "お気に入りアイデア数：#{@customer.favorites.count}個" : "お気に入り無し" %>
+          </td>
+          <td>  <!--フォロー人数にはステータスが有効のユーザーのみ含める-->
+            <%= "フォロー：#{@customer.follower_customer.where(is_active: true).count}人" %>
+          </td>
+          <td>
+            <%= "フォロワー：#{@customer.followed_customer.where(is_active: true).count}人" %>
           </td>
         </tr>
         <tr>
           <td>好物</td>
-          <td><%= @customer.preference %></td>
+          <td colspan="3"><%= @customer.preference %></td>
         </tr>
         <tr>
           <td>苦手</td>
-          <td><%= @customer.weak %></td>
-        </tr>
-        <tr>
-          <td><%= "フォロー：#{@customer.follower_customer.count}人" %></td>
-          <td><%= "フォロワー：#{@customer.followed_customer.count}人" %></td>
-        </tr>
-        <tr>
-          <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
-          <td>
-            <% if @customer.favorites.count > 0 %>
-              <%= "お気に入りアイデア数：#{@customer.favorites.count}個" %>
-            <% else %>
-              お気に入り無し
-            <% end %>
-          </td>
+          <td colspan="3"><%= @customer.weak %></td>
         </tr>
       </tbody>
     </table>
