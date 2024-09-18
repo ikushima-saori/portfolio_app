@@ -30,18 +30,20 @@ class Customer < ApplicationRecord
     end
   end
 
-  GUEST_USER_EMAIL = "guest@example.com"
-  def self.guest
-    find_or_create_by!(email: GUEST_USER_EMAIL) do |customer|
+  #ゲストユーザーを設定
+  GUEST_USER_EMAIL = "guest@example.com" #メールアドレスの変数定義
+  def self.guest #
+    find_or_create_by!(email: GUEST_USER_EMAIL) do |customer| #メールがゲストメールのユーザーがいなければ作成する
       customer.password = SecureRandom.urlsafe_base64
       customer.password_confirmation = customer.password
       customer.name = 'ゲスト'
-      customer.preference = 'ミステリー・ポケモン・学園もの・仲間を庇って重症離脱からのピンチに復活シチュ'
-      customer.weak = 'バッドエンド・三角関係からの1人がぼっちで終わる・バイオハザード'
+      customer.preference = 'ゲストはTOPとaboutしか触れない' #バリデーションに引っかかるので必要
+      customer.weak = 'ゲストはTOPとaboutしか触れない' #バリデーションに引っかかるので必要
       customer.is_active = true
     end
   end
 
+  #Eメール正規化
   before_validation :normalize_email
 
   def active_for_authentication?

@@ -1,12 +1,13 @@
 <%= stylesheet_link_tag 'public/registrations' %>
 <div class="container">
-  <div class="row">
-    <%= notice %>
-  </div>
 
   <div class="row">
     <h2>新規登録</h2>
   </div>
+
+   <div class="row">
+      <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+    </div>
 
   <div class="row">
     <%= form_with model: @customer, url: customer_registration_path do |f| %>
@@ -28,9 +29,8 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
       </div>
       <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <%= f.label :password do %>
+          パスワード<% if @minimum_password_length %>(<%= @minimum_password_length %> 文字以上)<% end %>  <!--1行で表示させる-->
         <% end %>
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>

@@ -1,1 +1,95 @@
 @use '~bootstrap/scss/bootstrap';
+
+/* すべての要素のリセット */
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* すべてのリンクのスタイル */
+a {
+  color: inherit; /* リンクの色を親要素から継承 */
+  text-decoration: none; /* 下線を削除 */
+}
+
+body {
+  background-color: #f4f4f4; /* 背景色は薄いグレーに */
+}
+
+header, footer {
+  background-color: black; /* 背景色は黒に */
+  color: white; /* テキストは白に */
+  padding: 10px 0; /* 上下のパディング */
+}
+
+/* ヘッダーのスタイル */
+header {
+  border-bottom: 1px solid #333; /* ヘッダーの下に薄いボーダーを追加 */
+  display: flex; /* 要素を横並びにする */
+  align-items: center; /* 縦方向に中央揃え */
+  justify-content: space-between; /* 左右に要素を配置 */
+  padding: 0 20px; /* 左右のパディング */
+}
+
+header h1 {
+  font-family: 'Courier New', Courier, monospace; /* ノートのようなフォントを使用 */
+  margin: 0; /* マージンを削除 */
+}
+
+header .d-flex {
+  display: flex;
+  align-items: center; /* 縦方向に中央揃え */
+}
+
+header .d-flex img {
+  border-radius: 50%; /* 円形にする */
+  margin-right: 10px; /* 画像と名前の間にマージンを追加 */
+}
+
+header .nav {
+  display: flex;
+}
+
+.nav-link {
+  color: #fff !important; /* ナビゲーションリンクの色を白に設定 */
+  margin: 0 5px; /* 各リンクの間にマージンを追加 */
+  white-space: nowrap; /* テキストの折り返しを防止 */
+  overflow: hidden; /* はみ出た部分を隠す */
+  text-overflow: ellipsis; /* はみ出た部分に省略記号を追加 */
+}
+
+.nav-link:hover {
+  color: #ddd !important; /* ホバー時にリンクの色を少し明るく */
+}
+
+.search-form{
+  text-align: center; /* テキストを中央寄せ */
+  padding: 3px 0; /* 上下のパディング */
+}
+
+footer {
+  border-top: 1px solid #333; /* フッターの上に薄いボーダーを追加 */
+  text-align: center; /* テキストを中央寄せ */
+}
+
+/* フラッシュメッセージのスタイル */
+.flash-message {
+  background-color: #f8d7da; /* エラー背景色 */
+  color: #721c24; /* エラーテキスト色 */
+  border: 1px solid #f5c6cb; /* エラーのボーダー */
+  padding: 10px; /* 内側の余白 */
+  border-radius: 3px; /* 角を丸くする */
+  margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+/* ノート風のスタイル */
+.container {
+  background-color: #fff; /* 背景色を白に */
+  border: 1px solid #ddd; /* 薄いグレーのボーダー */
+  padding: 20px; /* 内側の余白 */
+  margin: 20px auto; /* 上下のマージンと中央寄せ */
+  max-width: 600px; /* 最大幅を設定 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 軽いシャドウを追加 */
+  border-radius: 5px; /* 角を丸くする */
+}

@@ -1,15 +1,8 @@
 <%= stylesheet_link_tag 'public/homes' %>
 <div class="container">
-  <div class="row">
-    <%= notice %>
-  </div>
 
   <div class="row">
-    <% if flash[:alert] %>
-      <div id="error_explanation">
-        <h2><%= flash[:alert] %></h2>
-      </div>
-    <% end %>
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
   </div>
 
   <div class="row">
@@ -18,13 +11,13 @@
 
   <div class="row">
     <div>
-      ここは、文章での創作活動をする方向けに作成された、<br />
-      アイデアを書き溜めていくネタ帳サイトです。<br />
-      <br />
-      各ページの説明は、aboutページを参照してください。<br />
-      <br />
-      ※このサイトはオンラインスクールで作成したポートフォリオです。<br />
-      　予告なく閉鎖する可能性がございますので、その点ご了承をお願いいたします。<br />
+      <p>ここは、文章での創作活動をする方向けに作成された、<br />
+          アイデアを書き溜めていくネタ帳サイトです。</p>
+
+      <p>各ページの説明は、aboutページを参照してください。</p>
+
+      <p>※このサイトはオンラインスクールで作成したポートフォリオです。<br />
+      　予告なく閉鎖する可能性がございますので、その点ご了承をお願いいたします。</p>
     </div>
   </div>
 </div>
