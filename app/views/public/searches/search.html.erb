@@ -1,3 +1,4 @@
+<!--検索モデルによって@recordsの中身が変わるようにsearchesコントローラで定義-->
 <% if @model == 'customer' %>
   <%= render 'public/customers/search', customers: @records %>
 <% elsif @model == 'idea' %>

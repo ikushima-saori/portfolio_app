@@ -2,16 +2,23 @@
 <div class="container">
 
   <div class="row">
-    <h2>新規登録</h2>
+    <h1>新規登録</h1>
   </div>
 
    <div class="row">
       <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+      <% if @customer.errors.any? %>
+        <%= @customer.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
     </div>
 
   <div class="row">
     <%= form_with model: @customer, url: customer_registration_path do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
       <div class="field">
         <%= f.label :"ペンネーム" %>
         <%= f.text_field :name, autofocus: true, placeholder:"ペンネム子"  %>

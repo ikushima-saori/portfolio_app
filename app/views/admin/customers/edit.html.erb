@@ -1,10 +1,5 @@
 <%= stylesheet_link_tag 'admin/customers' %>
 <div class="container">
-
-  <div class="row">
-    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
-  </div>
-
   <div class="row">
     <table>
       <tbody>
@@ -13,9 +8,9 @@
             <%= image_tag @customer.get_profile_image(80, 80) %>
             <span><%= @customer.name %></span>
           </td>
+          <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
           <td>
             <%= form_with model: @customer, url: admin_customer_path(@customer), method: :patch do |f| %>
-              <label>ユーザーステータス</label>
               <%= f.radio_button :is_active, true, id: "active" %> <!--is_activeがtrueであるラジオボタンを作成-->
               <%= f.label :is_active, "有効", for: "active" %> <!--ラジオボタンとセットで記述する　id:activeで紐づけて文字クリックでも有効にできる-->
               <%= f.radio_button :is_active, false, id: "inactive" %>
@@ -25,23 +20,26 @@
           </td>
         </tr>
         <tr>
-          <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
-          <td>  <!--お気に入りがあるか確認　?=有りなら個数表示　:=無しならお気に入り無し表示-->
-            <%= @customer.favorites.present? ? "お気に入りアイデア数：#{@customer.favorites.count}個" : "お気に入り無し" %>
-          </td>
           <td>  <!--フォロー人数にはステータスが有効のユーザーのみ含める-->
             <%= "フォロー：#{@customer.follower_customer.where(is_active: true).count}人" %>
           </td>
           <td>
             <%= "フォロワー：#{@customer.followed_customer.where(is_active: true).count}人" %>
           </td>
+          <td>  <!--お気に入りがあるか確認　?=有りなら個数表示　:=無しならお気に入り無し表示-->
+            <%= @customer.favorites.present? ? "お気に入りアイデア数：#{@customer.favorites.count}個" : "お気に入り無し" %>
+          </td>
         </tr>
         <tr>
           <td>好物</td>
+        </tr>
+        <tr>
           <td colspan="3"><%= @customer.preference %></td>
         </tr>
         <tr>
           <td>苦手</td>
+        </tr>
+        <tr>
           <td colspan="3"><%= @customer.weak %></td>
         </tr>
       </tbody>

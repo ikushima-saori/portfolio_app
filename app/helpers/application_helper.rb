@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  #デバイスメッセージ・バリデーションメッセージ・カスタムメッセージなどfrashに入る全てのメッセージにまとめて対応できる
+  #frashに入る全てのメッセージにまとめて対応できる
   def display_flash_messages
     return "" if flash.empty?
     flash.map do |key, message|  #noticeやalertがkeyに格納され、メッセージ文はmessageに格納される
