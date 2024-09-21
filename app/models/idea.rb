@@ -5,6 +5,7 @@ class Idea < ApplicationRecord
   has_many :tags, through: :idea_tags
 
   validates :introduction, presence: true
+  validates :tags, presence: { message: "を入力してください" }, if: -> { tags.blank? }
 
   def self.search_for(word, method)
     if method == 'perfect'
@@ -28,7 +29,7 @@ class Idea < ApplicationRecord
     end
 
     new_tags.each do |new|  # 新しいタグを保存
-      new_post_tag = Tag.find_or_create_by(word: new)
+      new_post_tag = Tag.find_or_initialize_by(word: new)
       self.tags << new_post_tag
    end
   end
