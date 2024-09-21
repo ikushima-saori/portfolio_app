@@ -20,9 +20,9 @@
   <%= form_with model: @idea do |f| %>
     <div class="row">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
-      <% if @idea.tags.present? %>
+      <% if @idea.tags.present? %>  <!--タグが入力されていたら表示させる-->
         <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
-      <% else %>
+      <% else %>  <!--タグが未入力ならホルダー表示-->
         <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください" %>
       <% end %>
     </div>

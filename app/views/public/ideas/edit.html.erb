@@ -19,22 +19,18 @@
 
   <%= form_with model: @idea do |f| %>
     <div class="row">
+      <%= f.submit "変更を保存", class: "btn btn-primary" %>
+    </div>
+    <div class="row">
       <label>アイデアを公開しますか？</label>
       <%= f.radio_button :is_active, true, id: "active" %>
       <%= f.label :is_active, "公開", for: "active" %>
       <%= f.radio_button :is_active, false, id: "inactive" %>
       <%= f.label :is_active, "非公開", for: "inactive" %>
-      <%= f.submit "切り替える" %>
-    </div>
-  <% end %>
-
-  <%= form_with model: @idea do |f| %>
-    <div class="row">
-      <%= f.submit "変更を保存", class: "btn btn-primary" %>
     </div>
     <div class="row">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
-      <%= f.text_field :tag_names, id: "inputTags", value: @idea.tag_names %>
+      <%= f.text_field :tag_names, id: "inputTags", value: @idea.tag_names %>  <!--tag_namesはideaモデルで定義　表示用メソッド-->
     </div>
     <div class="row">
       <label for="inputIntroduction">アイデア</label><br />

@@ -11,33 +11,33 @@
           <tr>
             <td>
               <%= link_to customer_path(idea.customer_id) do %>
-                <%= image_tag idea.customer.get_profile_image(100, 100), class: 'profile-image' %>
+                <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
                 <span><%= idea.customer.name %></span>
               <% end %>
             </td>
             <td>更新日</td>
-            <% if idea.updated_at.present? %>
-              <td>
-              <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-              </td>
-            <% else %>
-              <td>
-              <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-              </td>
-            <% end %>
+            <td><%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
           </tr>
           <tr>
             <td>タグ</td>
-            <% if idea.favorites.count > 0 %>
-              <td>
-                <%= "お気に入り：#{idea.favorites.count}人" %>
-              </td>
-            <% end %>
+              <% if idea.customer == current_customer %>
+                <td>
+                  <% if idea.favorites.count > 0 %>
+                    <%= link_to "お気に入りアイデア数：#{idea.favorites.count}個", favorite_customer_path(idea.customer_id) %>
+                  <% else %>
+                    お気に入り無し
+                  <% end %>
+                </td>
+              <% else %>
+                <td id="favorite_btn_<%= idea.id %>">
+                  <%= render "public/favorites/btn", idea: idea %>
+                </td>
+              <% end %>
           </tr>
           <tr>
-            <td>
+            <td colspan=3>
               <% idea.tags.each do |tag| %>
-                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %><span>
+                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %></span>
               <% end %>
             </td>
           </tr>
@@ -45,7 +45,7 @@
             <td>アイデア</td>
           </tr>
           <tr>
-            <td><%= idea.introduction %></td>
+            <td colspan=3><%= idea.introduction %></td>
           </tr>
         <% end %>
       </tbody>

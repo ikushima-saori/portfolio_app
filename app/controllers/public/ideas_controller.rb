@@ -9,8 +9,8 @@ class Public::IdeasController < ApplicationController
   def create
     @idea = Idea.new(idea_params)
     @idea.customer_id = current_customer.id
-    tag_list = params[:idea][:tag_list].split(",").map(&:strip)
-    @idea.save_tag(tag_list)
+    tag_list = params[:idea][:tag_list].split(",").map(&:strip)  #new.htmlのf.text_field :tag_listに入力されたタグをカンマ区切りで空白を消して格納
+    @idea.save_tag(tag_list)  #ideaモデルで定義　タグの保存
     if @idea.save
       flash[:notice] = "アイデアをメモしました！"
       redirect_to edit_idea_path(@idea.id)
@@ -21,14 +21,14 @@ class Public::IdeasController < ApplicationController
 
   def edit
     @idea = Idea.find(params[:id])
-    @tag_list = @idea.tags.pluck(:word).join(', ')
+    @tag_list = @idea.tags.pluck(:word).join(', ')  #@ideaのタグwordをカンマで区切って(繋げて)表示する
   end
 
   def update
     @idea = Idea.find(params[:id])
     if @idea.update(idea_params)
-      tag_list = params[:idea][:tag_names].split(",").map(&:strip)  # タグのリストを分割
-      @idea.save_tag(tag_list)  # タグを保存
+      tag_list = params[:idea][:tag_names].split(",").map(&:strip)  #edit.htmlのf.text_field :tag_namesに入力されたタグをカンマ区切りで空白を消して格納
+      @idea.save_tag(tag_list)  #ideaモデルで定義　タグの保存
       flash[:notice] = "変更が保存されました！"
       redirect_to edit_idea_path(@idea.id)
     else
@@ -41,12 +41,6 @@ class Public::IdeasController < ApplicationController
     @idea.destroy
     flash[:notice] = "アイデアが削除されました"
     redirect_to request.referer
-  end
-
-  def tags
-  end
-
-  def search
   end
 
   private

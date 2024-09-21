@@ -1,24 +1,15 @@
   <% if ideas.empty? %>
-    <p>アイデアが未投稿または非公開です</p>
+    <div>アイデアが未投稿または非公開です</div>
   <% else %>
+    <div>
+      アイデア一覧
+    </div>
     <table>
-      <thead>
-        アイデア一覧
-      </thead>
       <tbody>
         <% ideas.each do |idea| %>
           <tr>
-            <td>更新日</td>
-            <% if idea.updated_at.present? %>
-              <td>
-              <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-              </td>
-            <% else %>
-              <td>
-              <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-              </td>
-            <% end %>
-            <% if idea.customer == current_customer %>
+            <td colspan=2>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
+            <% if idea.customer == current_customer %>  <!--編集と削除は自分だけ-->
               <td><%= link_to "詳細/編集", edit_idea_path(idea.id) %></td>
               <td><%= link_to "削除", idea_path(idea.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
             <% end %>
@@ -34,16 +25,14 @@
                 <%= render "public/favorites/btn", idea: idea %>
               </td>
             <% end %>
-            <% if idea.customer == current_customer %>
-              <td>
-                ステータス：<%= idea.is_active ? "公開" : "非公開" %>
-              </td>
+            <% if idea.customer == current_customer %>  <!--公開ステータスは自分だけ-->
+              <td>ステータス：<%= idea.is_active ? "公開" : "非公開" %></td>
             <% end %>
           </tr>
           <tr>
             <td colspan=4>
               <% idea.tags.each do |tag| %>
-                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %><span>
+                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %></span>
               <% end %>
             </td>
           </tr>
