@@ -5,6 +5,6 @@ class Public::TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @ideas = @tag.idea.where(is_active: true).page(params[:page]).per(4)
+    @ideas = @tag.ideas.where(is_active: true).page(params[:page]).per(4)
   end
 end

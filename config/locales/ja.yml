@@ -28,6 +28,7 @@ ja:
         name: ペンネーム
         preference: 好物
         weak: 苦手
+        profile_image: プロフィール画像
       idea:
         introduction: アイデア
       admin:

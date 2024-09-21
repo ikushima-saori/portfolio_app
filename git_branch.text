@@ -13,4 +13,5 @@ admin = 管理者機能作成
 search = 検索機能作成
 favorite = いいね機能作成
 follow = フォロー機能作成
-tag = タグ登録機能作成
+ideatag = タグ登録機能作成
+2nd_layout = 2ndデプロイ用コード確認&レイアウト調整
