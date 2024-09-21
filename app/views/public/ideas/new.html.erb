@@ -1,18 +1,31 @@
 <%= stylesheet_link_tag 'public/ideas' %>
 <div class="container">
-  <div class="row">
-    <h3><%= notice %></h3>
-  </div>
 
   <div class="row">
     <h1>新規投稿</h1>
   </div>
 
-  <div class="row">
-    <p>タグ登録を入れる</p>
-  </div>
+   <div class="row">
+      <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+      <% if @idea.errors.any? %>
+        <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+        <ul>
+          <% @idea.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
   <%= form_with model: @idea do |f| %>
+    <div class="row">
+      <label for="inputTags">タグ（カンマ区切り）</label><br />
+      <% if @idea.tags.present? %>
+        <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
+      <% else %>
+        <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください" %>
+      <% end %>
+    </div>
     <div class="row">
       <label for="inputIntroduction">アイデア</label><br />
       <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>

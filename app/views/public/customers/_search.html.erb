@@ -1,0 +1,54 @@
+<%= stylesheet_link_tag 'public/customer_searches' %>
+<div class="container">
+  <div class="row">
+      <h3>ユーザー：【<%= @word %>】の検索結果 <%= @total_count %>件</h3>
+  </div>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <% customers.each do |customer| %>
+          <tr>
+            <td>
+              <%= link_to customer_path(customer.id) do %>
+                <%= image_tag customer.get_profile_image(80, 80) %>
+                <span><%= customer.name %></span>
+              <% end %>
+            </td>
+            <td><%= "アイデア数：#{customer.ideas.count} " %></td>
+              <% if current_customer != customer %>
+                <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>
+              <% end %>
+          </tr>
+          <tr>
+            <td>好物</td>
+          </tr>
+          <tr>
+            <td colspan=3><%= customer.preference %></td>
+          </tr>
+          <tr>
+            <td>苦手</td>
+          </tr>
+          <tr>
+            <td colspan=3><%= customer.weak %></td>
+          </tr>
+          <tr>
+            <td><%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %></td>
+            <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %></td>
+            <td>
+              <% if customer.favorites.count > 0 %>
+                <%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>
+              <% else %>
+                お気に入り無し
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <%= paginate customers, class: "pagination" %>
+  </div>
+</div>

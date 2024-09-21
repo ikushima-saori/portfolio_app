@@ -1,23 +1,13 @@
 <%= stylesheet_link_tag 'public/customers' %>
 <div class="container">
+
   <div class="row">
-    <%= notice %>
+    <% is_current_user = @customer == current_customer %>  <!--↓2回出てくる@customer == current_customerを変数に入れて利用-->
+    <h1><%= is_current_user ? 'マイページ' : 'ユーザー詳細' %></h1>  <!--currentユーザーならマイページを表示-->
   </div>
 
   <div class="row">
-    <% if @customer == current_customer %>
-      <h1>マイページ</h1>
-    <% else %>
-      <h1>ユーザー詳細</h1>
-    <% end %>
-  </div>
-
-  <div class="row">
-    <% if flash[:alert] %>
-      <div id="error_explanation">
-        <h2><%= flash[:alert] %></h2>
-      </div>
-    <% end %>
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
   </div>
 
   <div class="row">
@@ -27,27 +17,38 @@
           <td>
             <%= image_tag @customer.get_profile_image(100, 100) %>
             <span><%= @customer.name %></span>
+          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
           </td>
-          <% if @customer == current_customer %>
+          <% if is_current_user %>
             <td>
               <%= link_to "編集", edit_my_page_customers_path %>
             </td>
+          <% else %>
+            <td><%= render "public/relationships/followbtn", customer: @customer, options: { class: ""} %></td>  <!--options:{classは共通テンプレに渡す-->
           <% end %>
         </tr>
         <tr>
           <td>好物</td>
-          <td><%= @customer.preference %></td>
+        <tr>
+        </tr>
+          <td colspan=4><%= @customer.preference %></td>
         </tr>
         <tr>
           <td>苦手</td>
-          <td><%= @customer.weak %></td>
+        <tr>
+        </tr>
+          <td colspan=4><%= @customer.weak %></td>
         </tr>
         <tr>
-          <td>フォロー一覧</td>
-        </tr>
-        <tr>
-          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
-          <td>お気に入りのアイデア：〇</td>
+          <td><%= link_to "フォロー：#{@customer.follower_customer.count}人", customer_follower_path(@customer) %></td>
+          <td><%= link_to "フォロワー：#{@customer.followed_customer.count}人", customer_followed_path(@customer) %></td>
+          <td>
+              <% if @customer.favorites.count > 0 %>
+                <%= link_to "お気に入りアイデア数：#{@favorite_ideas_count}個", favorite_customer_path(@customer) %>
+              <% else %>
+                お気に入り無し
+              <% end %>
+          </td>
         </tr>
       </tbody>
     </table>

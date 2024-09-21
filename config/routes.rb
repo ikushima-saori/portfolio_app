@@ -25,23 +25,20 @@ Rails.application.routes.draw do
         patch 'information', to: 'customers#update', as: 'update_information'
         delete 'out'
       end
-    end
-    resources :relationships, only: %i[create destroy] do
-      collection do
-       get 'followers'
-       get 'followeds'
+      member do
+        get 'favorite'
       end
-    end
+      resource :relationships, only: [:create, :destroy]
+        get "follower_customer" => "relationships#follower_customer", as: "follower"
+        get "followed_customer" => "relationships#followed_customer", as: "followed"
+      end
     resources :ideas, only: %i[index new create edit update destroy] do
-      collection do
-        get 'tags'
-        get 'search'
-      end
-      resource :favorites, only: %i[index create destroy]
+      resource :favorites, only: %i[create destroy]
     end
+    resources :tags, only: [:index, :show]
     resources :rooms, only: %i[show create]
     resources :messages, only: %i[create]
-    get 'searches/search'
+    get "/search", to: "searches#search"
   end
 
   #adminのルーティング

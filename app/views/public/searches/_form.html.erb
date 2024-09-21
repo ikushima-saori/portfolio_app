@@ -1,0 +1,14 @@
+<div>
+  <%= form_with url: search_path, method: :get, local: true do |f| %>
+    <%= f.label :word, "検索ワード" %>
+    <%= f.text_field :word, placeholder: "検索ワードを入力" %>
+
+    <%= f.label :model, "検索対象" %>
+    <%= f.select :model, options_for_select({"ユーザー" => "customer", "アイデア" => "idea"}) %>
+
+    <%= f.label :method, "検索方法" %>
+    <%= f.select :method, options_for_select({"部分一致" => "partial", "から始まる" => "forward", "で終わる" => "backward", "完全一致" => "perfect"}) %>
+
+    <%= f.submit "検索" %>
+  <% end %>
+</div>

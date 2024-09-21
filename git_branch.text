@@ -1,5 +1,6 @@
 main = メインブランチ
-develop = フェーズ1最終確認用
+develop = 最終確認用
+
 install = プラグインなどのインストール用
 mvc = モデル・ビュー・コントローラ作成+ルーティング
 header_footer = ヘッダー＆フッター作成
@@ -9,5 +10,8 @@ customer = ユーザー機能作成
 restrictions = アクセス制限&ゲストログイン&登録アドレス一意設定
 admin = 管理者機能作成
 1st-layout = 1stデプロイ用レイアウト調整
-
-develop2 = フェーズ2最終確認用
+search = 検索機能作成
+favorite = いいね機能作成
+follow = フォロー機能作成
+ideatag = タグ登録機能作成
+2nd_layout = 2ndデプロイ用コード確認&レイアウト調整

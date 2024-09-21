@@ -1,7 +1,12 @@
 <%= stylesheet_link_tag 'public/customers' %>
 <div class="container">
+
   <div class="row">
     <h1>ユーザー一覧</h1>
+  </div>
+
+  <div class="row">
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
   </div>
 
   <div class="row">
@@ -11,27 +16,43 @@
           <tr>
             <td>
               <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(100, 100) %>
+                <%= image_tag customer.get_profile_image(80, 80) %>
                 <span><%= customer.name %></span>
               <% end %>
             </td>
-            <td>フォローボタン</td>
-            <td>相互ならDMするボタン</td>
+            <td>
+              <%= "アイデア数：#{customer.ideas.count}個 " %>
+            </td>
+            <% if current_customer != customer %>
+              <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>  <!--options:{classは共通テンプレに渡す-->
+            <% end %>
           </tr>
           <tr>
             <td>好物</td>
-            <td><%= customer.preference %></td>
+          </tr>
+          <tr>
+            <td colspan=3><%= customer.preference %></td>
           </tr>
           <tr>
             <td>苦手</td>
-            <td><%= customer.weak %></td>
           </tr>
           <tr>
-            <td>フォロー一覧</td>
+            <td colspan=3><%= customer.weak %></td>
           </tr>
           <tr>
-            <td><%= "アイデア数：#{customer.ideas.count} " %></td>
-            <td>お気に入りのアイデア：〇</td>
+            <td>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
+              <%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %>
+            </td>
+            <td>
+              <%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %>
+            </td>
+            <td>
+              <% if customer.favorites.count > 0 %>  <!---customerに紐づいたfavoritesテーブルのレコードがあれば-->
+                <%= link_to "お気に入りアイデア：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>
+              <% else %>
+                お気に入り無し
+              <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>

@@ -1,0 +1,51 @@
+<%= stylesheet_link_tag 'public/favorites' %>
+<div class="container">
+  <div class="row">
+    <h3>お気に入りアイデア一覧</h3>
+  </div>
+
+  <div class="row">
+    <table>
+      <tbody>
+        <% @favorite_ideas.each do |idea| %>
+          <tr>
+            <td>
+              <%= link_to customer_path(idea.customer_id) do %>
+                <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
+                <span><%= idea.customer.name %></span>
+              <% end %>
+            </td>
+            <td>
+              更新日
+              <% if idea.updated_at.present? %>
+                <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              <% else %>
+                <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>タグ</td>
+          </tr>
+          <tr>
+            <td colspan=2>
+              <% idea.tags.each do |tag| %>
+                <%= link_to tag.word, tag_path(tag), class: 'tag' %>
+              <% end %>
+            </td>
+          </tr>
+          <tr>
+            <td>アイデア</td>
+          </tr>
+          <tr>
+            <td colspan=2><%= idea.introduction %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row">
+    <%= paginate @favorite_ideas, class: "pagination" %>
+  </div>
+</div>

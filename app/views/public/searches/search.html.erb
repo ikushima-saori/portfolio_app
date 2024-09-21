@@ -1,2 +1,6 @@
-<h1>Public::Searches#search</h1>
-<p>Find me in app/views/public/searches/search.html.erb</p>
+<!--検索モデルによって@recordsの中身が変わるようにsearchesコントローラで定義-->
+<% if @model == 'customer' %>
+  <%= render 'public/customers/search', customers: @records %>
+<% elsif @model == 'idea' %>
+  <%= render 'public/ideas/search', ideas: @records %>
+<% end %>

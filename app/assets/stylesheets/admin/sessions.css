@@ -46,7 +46,7 @@
 }
 
 /* フラッシュメッセージのスタイル */
-#error_explanation {
+.flash-message {
   background-color: #f8d7da; /* エラー背景色 */
   color: #721c24; /* エラーテキスト色 */
   border: 1px solid #f5c6cb; /* エラーのボーダー */

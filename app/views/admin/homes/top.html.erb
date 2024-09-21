@@ -1,16 +1,18 @@
 <%= stylesheet_link_tag 'admin/homes' %>
 <div class="container">
+
   <div class="row">
-    <h1>会員一覧</h1>
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
   </div>
 
   <div class="row">
+    <h1>ユーザー一覧</h1>
     <table>
       <thead>
         <tr>
-          <th>会員ID</th>
-          <th>ペンネーム(編集)</th>
-          <th>会員ステータス</th>
+          <th>ユーザーID</th>
+          <th>ユーザー</th>
+          <th>ユーザーステータス</th>
           <th>メールアドレス</th>
           <th>最新投稿 or 編集日時</th>
         </tr>
@@ -27,17 +29,17 @@
                 <span><%= customer.name %></span>
               <% end %>
             </td>
-            <td>
-              <%= customer.is_active ? "有効" : "退会" %>  <!--?で真偽値を判定 is_activeカラムはtrueかfalseなので、trueなら有効falseなら退会を表示-->
+            <td>  <!--?で真偽値を判定 is_activeカラムはtrueかfalseで判断するので、trueなら有効falseなら退会を表示が使える-->
+              <%= customer.is_active ? "有効" : "退会" %>
             </td>
             <td>
               <%= customer.email %>
             </td>
             <td>
-              <% latest_idea = customer.ideas.order(updated_at: :desc).first %>  <!--全ての投稿をorderメソッドでupdated_atで降順に並べ替えて、最新の投稿を特定-->
+              <% latest_idea = customer.ideas.order(updated_at: :desc).first %>  <!--全ての投稿をorderメソッドでupdated_atで降順(desc)に並べ替えて、最新の投稿を特定-->
               <% if latest_idea.present? %>  <!--最新の投稿があったら-->
                 <%= latest_idea.updated_at.in_time_zone('Tokyo').strftime('%Y-%m-%d %H:%M:%S') %>  <!--更新日を日本時間で表示-->
-              <% else %>
+              <% else %>  <!--最新の投稿が無い＝1度も投稿していない-->
                 <%= '1度も投稿していません' %>
               <% end %>
             </td>
@@ -48,6 +50,6 @@
   </div>
 
   <div class="row">
-    <%= paginate @customers, class: "pagination" %>
+    <%= paginate @customers, class: "pagination" %> <!--ページネーション-->
   </div>
 </div>

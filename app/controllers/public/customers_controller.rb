@@ -3,23 +3,32 @@ class Public::CustomersController < ApplicationController
 
   def index
     @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL)  #Customer.allの中にゲストユーザーは含まない
-                       .where(is_active: true)  # is_activeがtrueのユーザーのみを取得
-                       .page(params[:page])
-                       .per(4)  # ページネーションで1ページ5人
+                        .where(is_active: true)  # is_activeがtrueのユーザーのみを取得
+                        .page(params[:page]).per(4)  # ページネーションで1ページ4人
   end
 
   def show
-    if params[:id]
-      @customer = Customer.find(params[:id])
-      if @customer != current_customer
-        @ideas = @customer.ideas.where(is_active: true)
+    if params[:id]  #currentユーザーの詳細URLにidは含まれないので、
+      @customer = Customer.find(params[:id])  #idがあればidユーザーの情報
+      if @customer != current_customer  #自分以外の詳細ページの場合
+        @ideas = @customer.ideas.where(is_active: true).page(params[:page]).per(4)  #投稿ステータスが公開のアイデアのみ含める
       else
-        @ideas = @customer.ideas
+        @ideas = @customer.ideas.page(params[:page]).per(4)  #自分は全てのアイデアを取得
       end
     else
-      @customer = current_customer
-      @ideas = @customer.ideas
+      @customer = current_customer  #idが無ければcurrentユーザーの情報
+      @ideas = @customer.ideas.page(params[:page]).per(4)
     end
+    @favorite_ideas_count = @customer.favorites.count  #ユーザーのお気に入りアイデアの数を取得
+  end
+
+  def favorite
+    @customer = Customer.find(params[:id])
+    @favorite_ideas = Idea.joins(:favorites)  #favoritesとideasテーブルを結合
+                         .where(favorites: { customer_id: @customer.id })  #favoritesテーブルからcustomerに紐づいたお気に入りアイデアを取得
+                         .where(is_active: true)  #公開状態のみを含める
+                         .includes(:tags)  # アイデアに関連するタグも同時に読み込むためのメソッド
+                         .page(params[:page]).per(4)
   end
 
   def edit
@@ -38,15 +47,15 @@ class Public::CustomersController < ApplicationController
 
   def out
     @customer = current_customer
-    @customer.update(is_active: false)
-    reset_session
+    @customer.update(is_active: false)  #更新時にis_activeをfalseに変更
+    reset_session  #sessionをリセットしてログアウト状態に
     flash[:notice] = "退会しました。"
     redirect_to new_customer_registration_path
   end
 
   private
     def customer_params
-      params.require(:customer).permit(:name, :profile_image, :preference, :weak, :email, :password)
+      params.require(:customer).permit(:name, :profile_image, :preference, :weak)
     end
 
 end

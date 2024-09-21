@@ -1,16 +1,24 @@
 <%= stylesheet_link_tag 'public/registrations' %>
 <div class="container">
-  <div class="row">
-    <%= notice %>
-  </div>
 
   <div class="row">
-    <h2>新規登録</h2>
+    <h1>新規登録</h1>
   </div>
+
+   <div class="row">
+      <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+      <% if @customer.errors.any? %>
+        <%= @customer.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
 
   <div class="row">
     <%= form_with model: @customer, url: customer_registration_path do |f| %>
-      <%= render "public/shared/error_messages", resource: resource %>
       <div class="field">
         <%= f.label :"ペンネーム" %>
         <%= f.text_field :name, autofocus: true, placeholder:"ペンネム子"  %>
@@ -28,9 +36,8 @@
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
       </div>
       <div class="field">
-        <%= f.label :password %>
-        <% if @minimum_password_length %>
-          <em>(<%= @minimum_password_length %> 文字以上)</em>
+        <%= f.label :password do %>
+          パスワード<% if @minimum_password_length %>(<%= @minimum_password_length %> 文字以上)<% end %>  <!--1行で表示させる-->
         <% end %>
         <%= f.password_field :password, autocomplete: "new-password" %>
       </div>

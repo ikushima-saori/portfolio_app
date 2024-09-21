@@ -112,61 +112,86 @@ ten = Customer.find_or_create_by!(email: '0@test.com') do |customer|
 end
 
 
- Idea.find_or_create_by!(id: 1) do |idea|
-  idea.introduction =  "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ"
-  idea.title =  "ぼやけた視界で見る景色"
-  idea.body =  "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。"
-  idea.is_active =  true
-  idea.customer_id = one.id
+ idea1 = Idea.find_or_create_by!(id: 1) do |i|
+  i.introduction =  "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ"
+  i.title =  "ぼやけた視界で見る景色"
+  i.body =  "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。"
+  i.is_active =  true
+  i.customer_id = one.id
 end
 
- Idea.find_or_create_by!(id: 2) do |idea|
-  idea.introduction =  "おじさんが猫を拾う・家族ともめて家出する"
-  idea.title =  "家を得た猫と家を無くした人間"
-  idea.body =  "かわいいから拾った。それ以上でも以下でもない。"
-  idea.is_active =  true
-  idea.customer_id = one.id
+ idea2 = Idea.find_or_create_by!(id: 2) do |i|
+  i.introduction =  "おじさんが猫を拾う・家族ともめて家出する"
+  i.title =  "家を得た猫と家を無くした人間"
+  i.body =  "かわいいから拾った。それ以上でも以下でもない。"
+  i.is_active =  true
+  i.customer_id = one.id
 end
 
- Idea.find_or_create_by!(id: 3) do |idea|
-  idea.introduction =  "サトシがピカチュウとケンカする・初期・他の手持ちが奮闘する感じで全員進化前がいい"
-  idea.title =  "仲良しが一番"
-  idea.is_active =  true
-  idea.customer_id = two.id
+ idea3 = Idea.find_or_create_by!(id: 3) do |i|
+  i.introduction =  "サトシがピカチュウとケンカする・初期・他の手持ちが奮闘する感じで全員進化前がいい"
+  i.title =  "仲良しが一番"
+  i.is_active =  true
+  i.customer_id = two.id
 end
 
- Idea.find_or_create_by!(id: 4) do |idea|
-  idea.introduction =  "シゲルとオーキド博士が森で迷子になって野生に襲われたり戦ったりでじーちゃんに憧れる孫爆誕物語"
-  idea.is_active =  false
-  idea.customer_id = two.id
+idea4 = Idea.find_or_create_by!(id: 4) do |i|
+  i.introduction =  "シゲルとオーキド博士が森で迷子になって野生に襲われたり戦ったりでじーちゃんに憧れる孫爆誕物語"
+  i.is_active =  false
+  i.customer_id = two.id
 end
 
- Idea.find_or_create_by!(id: 5) do |idea|
-  idea.introduction =  "具がみんなと絡む話"
-  idea.title =  "鍋の具は何にしよう"
-  idea.body =  "我はタヌキである。名は具。マジか。"
-  idea.is_active =  true
-  idea.customer_id = three.id
+idea5 = Idea.find_or_create_by!(id: 5) do |i|
+  i.introduction =  "具がみんなと絡む話"
+  i.title =  "鍋の具は何にしよう"
+  i.body =  "我はタヌキである。名は具。マジか。"
+  i.is_active =  true
+  i.customer_id = three.id
 end
 
- Idea.find_or_create_by!(id: 6) do |idea|
-  idea.introduction =  "化ギン・久々に帰ってきた平和時空・冬と雪"
-  idea.title =  "雪関係がいい"
-  idea.is_active =  false
-  idea.customer_id = four.id
+idea6 = Idea.find_or_create_by!(id: 6) do |i|
+  i.introduction =  "化ギン・久々に帰ってきた平和時空・冬と雪"
+  i.title =  "雪関係がいい"
+  i.is_active =  false
+  i.customer_id = four.id
 end
 
- Idea.find_or_create_by!(id: 7) do |idea|
-  idea.introduction =  "敵襲とかないマジで何もない休日・平和に過ごしてほしい"
-  idea.title =  "三蔵一行の平和(笑)な休日"
-  idea.body =  "三蔵の「ぶっ殺すぞテメェら！」から始めたい"
-  idea.is_active =  true
-  idea.customer_id = five.id
+idea7 = Idea.find_or_create_by!(id: 7) do |i|
+  i.introduction =  "敵襲とかないマジで何もない休日・平和に過ごしてほしい"
+  i.title =  "三蔵一行の平和(笑)な休日"
+  i.body =  "三蔵の「ぶっ殺すぞテメェら！」から始めたい"
+  i.is_active =  true
+  i.customer_id = five.id
 end
 
- Idea.find_or_create_by!(id: 8) do |idea|
-  idea.introduction =  "過去話・悟空がめちゃくちゃ甘やかされてほしい・幸せにならんとおかしい"
-  idea.title =  "桜入れたい"
-  idea.is_active =  true
-  idea.customer_id = five.id
+idea8 = Idea.find_or_create_by!(id: 8) do |i|
+  i.introduction =  "過去話・悟空がめちゃくちゃ甘やかされてほしい・幸せにならんとおかしい"
+  i.title =  "桜入れたい"
+  i.is_active =  true
+  i.customer_id = five.id
 end
+
+tag1 = Tag.find_or_create_by!(word: "眼鏡")
+tag2 = Tag.find_or_create_by!(word: "全員幸せ")
+tag3 = Tag.find_or_create_by!(word: "かわいい")
+tag4 = Tag.find_or_create_by!(word: "ライバル")
+tag5 = Tag.find_or_create_by!(word: "もふもふ")
+tag6 = Tag.find_or_create_by!(word: "いちゃいちゃ")
+tag7 = Tag.find_or_create_by!(word: "日常")
+tag8 = Tag.find_or_create_by!(word: "お花見")
+
+tag1.ideas << idea1 unless tag1.ideas.include?(idea1)
+tag2.ideas << idea1 unless tag2.ideas.include?(idea1)
+tag2.ideas << idea2 unless tag2.ideas.include?(idea2)
+tag2.ideas << idea3 unless tag2.ideas.include?(idea3)
+tag2.ideas << idea4 unless tag2.ideas.include?(idea4)
+tag2.ideas << idea5 unless tag2.ideas.include?(idea5)
+tag2.ideas << idea6 unless tag2.ideas.include?(idea6)
+tag2.ideas << idea7 unless tag2.ideas.include?(idea7)
+tag2.ideas << idea8 unless tag2.ideas.include?(idea8)
+tag3.ideas << idea3 unless tag3.ideas.include?(idea3)
+tag4.ideas << idea4 unless tag4.ideas.include?(idea4)
+tag5.ideas << idea5 unless tag5.ideas.include?(idea5)
+tag6.ideas << idea6 unless tag6.ideas.include?(idea6)
+tag7.ideas << idea7 unless tag7.ideas.include?(idea7)
+tag8.ideas << idea8 unless tag8.ideas.include?(idea8)
