@@ -2,6 +2,7 @@
 
 class Public::RegistrationsController < Devise::RegistrationsController
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :admin_notview!
 
   def after_sign_up_path_for(resource)
     my_page_path

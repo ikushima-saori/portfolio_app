@@ -31,6 +31,7 @@ ja:
         profile_image: プロフィール画像
       idea:
         introduction: アイデア
+        tags: タグ
       admin:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン

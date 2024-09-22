@@ -17,7 +17,7 @@
             </td>
             <td><%= "アイデア数：#{customer.ideas.count} " %></td>
               <% if current_customer != customer %>
-                <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>
+                <td><%= render "public/relationships/followbtn", customer: customer %></td>
               <% end %>
           </tr>
           <tr>
@@ -33,8 +33,8 @@
             <td colspan=3><%= customer.weak %></td>
           </tr>
           <tr>
-            <td><%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %></td>
-            <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %></td>
+            <td><%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer) %></td>
+            <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer) %></td>
             <td>
               <% if customer.favorites.count > 0 %>
                 <%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>

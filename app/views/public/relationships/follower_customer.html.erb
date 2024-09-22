@@ -1,13 +1,15 @@
 <%= stylesheet_link_tag 'public/relationships' %>
 <div class="container">
   <div class="row">
-      <h3><%= @customer.name %>のフォロー一覧</h3>
+      <h1><%= @customer.name %>のフォロー一覧</h1>
   </div>
 
-  <% if @customers.exists? %>
-    <%= render 'followlist', customers: @customers %>
-  <% else %>
-    <p>ユーザーはいません</p>
-  <% end %>
+  <div class="row">
+    <% if @customers.exists? %>
+      <%= render 'followlist', customers: @customers %>
+    <% else %>
+      <p>ユーザーはいません</p>
+    <% end %>
+  </div>
 
 </div>

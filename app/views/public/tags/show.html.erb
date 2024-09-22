@@ -5,54 +5,51 @@
     <% if @ideas.empty? %>
       <p>このタグが付いたアイデアはありません。もしくは非公開となっています。</p>
     <% else %>
-      <div class="row">
         <table>
-          <tbody>
-            <% @ideas.each do |idea| %>
-              <tr>
-                <td class="profile-info">
-                  <%= link_to customer_path(idea.customer_id) do %>
-                    <%= image_tag idea.customer.get_profile_image(100, 100), class: 'profile-image' %>
-                    <span class="customer-name"><%= idea.customer.name %></span>
+        <tbody>
+          <% @ideas.each do |idea| %>
+            <tr>
+              <td class="profile-info">
+                <%= link_to customer_path(idea.customer_id) do %>
+                  <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
+                  <span class="customer-name"><%= idea.customer.name %></span>
+                <% end %>
+              </td>
+              <td>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
+            </tr>
+            <tr>
+              <td>タグ</td>
+              <% if idea.customer == current_customer %>
+                <td>
+                  <% if idea.favorites.count > 0 %>
+                    <%= link_to "お気に入りアイデア数：#{idea.favorites.count}個", favorite_customer_path(idea.customer_id) %>
+                  <% else %>
+                    お気に入り無し
                   <% end %>
                 </td>
-                <td>更新日</td>
-                <% if idea.updated_at.present? %>
-                  <td>
-                    <%= idea.updated_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-                  </td>
-                <% else %>
-                  <td>
-                    <%= idea.created_at.in_time_zone('Tokyo').strftime("%Y/%m/%d %H:%M") %>
-                  </td>
-                <% end %>
-              </tr>
-              <tr>
-                <td>タグ</td>
-                <% if idea.favorites.count > 0 %>
-                  <td>
-                    <%= "お気に入り：#{idea.favorites.count}人" %>
-                  </td>
-                <% end %>
-              </tr>
-              <tr>
-                <td class="tags-list">
-                  <% idea.tags.each do |tag| %>
-                    <%= link_to tag.word, tag_path(tag), class: 'tag' %>
-                  <% end %>
+              <% else %>
+                <td id="favorite_btn_<%= idea.id %>">
+                  <%= render "public/favorites/btn", idea: idea %>
                 </td>
-              </tr>
-              <tr>
-                <td>アイデア</td>
-              </tr>
-              <tr>
-                <td class="idea-introduction"><%= idea.introduction %></td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
-      </div>
-      <div class="row">
+              <% end %>
+            </tr>
+            <tr>
+              <td colspan=3>
+                <% idea.tags.each do |tag| %>
+                  <%= link_to tag.word, tag_path(tag), class: 'tag' %>
+                <% end %>
+              </td>
+            </tr>
+            <tr>
+              <td>アイデア</td>
+            </tr>
+            <tr>
+              <td colspan=3><%= idea.introduction %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div>
         <%= paginate @ideas, class: "pagination" %>
       </div>
     <% end %>

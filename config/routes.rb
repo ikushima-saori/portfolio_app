@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     sessions: 'public/sessions'  #ユーザーが使うのは新規登録とログイン
   }
 
+  #ゲストログインのルーティング
   devise_scope :customer do
     post 'customer/guest_sign_in', to: 'public/sessions#guest_sign_in'
   end
@@ -27,17 +28,15 @@ Rails.application.routes.draw do
       end
       member do
         get 'favorite'
+        resource :relationships, only: [:create, :destroy]
+          get "follower_customer" => "relationships#follower_customer", as: "follower"
+          get "followed_customer" => "relationships#followed_customer", as: "followed"
       end
-      resource :relationships, only: [:create, :destroy]
-        get "follower_customer" => "relationships#follower_customer", as: "follower"
-        get "followed_customer" => "relationships#followed_customer", as: "followed"
-      end
-    resources :ideas, only: %i[index new create edit update destroy] do
+    end
+    resources :ideas, only: %i[new create edit update destroy] do
       resource :favorites, only: %i[create destroy]
     end
     resources :tags, only: [:index, :show]
-    resources :rooms, only: %i[show create]
-    resources :messages, only: %i[create]
     get "/search", to: "searches#search"
   end
 

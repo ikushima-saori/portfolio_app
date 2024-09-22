@@ -111,66 +111,6 @@ ten = Customer.find_or_create_by!(email: '0@test.com') do |customer|
   customer.profile_image = ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/app/assets/images/number_10.jpg"), filename: "number_10.jpg")
 end
 
-
- idea1 = Idea.find_or_create_by!(id: 1) do |i|
-  i.introduction =  "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ"
-  i.title =  "ぼやけた視界で見る景色"
-  i.body =  "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。"
-  i.is_active =  true
-  i.customer_id = one.id
-end
-
- idea2 = Idea.find_or_create_by!(id: 2) do |i|
-  i.introduction =  "おじさんが猫を拾う・家族ともめて家出する"
-  i.title =  "家を得た猫と家を無くした人間"
-  i.body =  "かわいいから拾った。それ以上でも以下でもない。"
-  i.is_active =  true
-  i.customer_id = one.id
-end
-
- idea3 = Idea.find_or_create_by!(id: 3) do |i|
-  i.introduction =  "サトシがピカチュウとケンカする・初期・他の手持ちが奮闘する感じで全員進化前がいい"
-  i.title =  "仲良しが一番"
-  i.is_active =  true
-  i.customer_id = two.id
-end
-
-idea4 = Idea.find_or_create_by!(id: 4) do |i|
-  i.introduction =  "シゲルとオーキド博士が森で迷子になって野生に襲われたり戦ったりでじーちゃんに憧れる孫爆誕物語"
-  i.is_active =  false
-  i.customer_id = two.id
-end
-
-idea5 = Idea.find_or_create_by!(id: 5) do |i|
-  i.introduction =  "具がみんなと絡む話"
-  i.title =  "鍋の具は何にしよう"
-  i.body =  "我はタヌキである。名は具。マジか。"
-  i.is_active =  true
-  i.customer_id = three.id
-end
-
-idea6 = Idea.find_or_create_by!(id: 6) do |i|
-  i.introduction =  "化ギン・久々に帰ってきた平和時空・冬と雪"
-  i.title =  "雪関係がいい"
-  i.is_active =  false
-  i.customer_id = four.id
-end
-
-idea7 = Idea.find_or_create_by!(id: 7) do |i|
-  i.introduction =  "敵襲とかないマジで何もない休日・平和に過ごしてほしい"
-  i.title =  "三蔵一行の平和(笑)な休日"
-  i.body =  "三蔵の「ぶっ殺すぞテメェら！」から始めたい"
-  i.is_active =  true
-  i.customer_id = five.id
-end
-
-idea8 = Idea.find_or_create_by!(id: 8) do |i|
-  i.introduction =  "過去話・悟空がめちゃくちゃ甘やかされてほしい・幸せにならんとおかしい"
-  i.title =  "桜入れたい"
-  i.is_active =  true
-  i.customer_id = five.id
-end
-
 tag1 = Tag.find_or_create_by!(word: "眼鏡")
 tag2 = Tag.find_or_create_by!(word: "全員幸せ")
 tag3 = Tag.find_or_create_by!(word: "かわいい")
@@ -180,18 +120,129 @@ tag6 = Tag.find_or_create_by!(word: "いちゃいちゃ")
 tag7 = Tag.find_or_create_by!(word: "日常")
 tag8 = Tag.find_or_create_by!(word: "お花見")
 
-tag1.ideas << idea1 unless tag1.ideas.include?(idea1)
-tag2.ideas << idea1 unless tag2.ideas.include?(idea1)
-tag2.ideas << idea2 unless tag2.ideas.include?(idea2)
-tag2.ideas << idea3 unless tag2.ideas.include?(idea3)
-tag2.ideas << idea4 unless tag2.ideas.include?(idea4)
-tag2.ideas << idea5 unless tag2.ideas.include?(idea5)
-tag2.ideas << idea6 unless tag2.ideas.include?(idea6)
-tag2.ideas << idea7 unless tag2.ideas.include?(idea7)
-tag2.ideas << idea8 unless tag2.ideas.include?(idea8)
-tag3.ideas << idea3 unless tag3.ideas.include?(idea3)
-tag4.ideas << idea4 unless tag4.ideas.include?(idea4)
-tag5.ideas << idea5 unless tag5.ideas.include?(idea5)
-tag6.ideas << idea6 unless tag6.ideas.include?(idea6)
-tag7.ideas << idea7 unless tag7.ideas.include?(idea7)
-tag8.ideas << idea8 unless tag8.ideas.include?(idea8)
+ idea1 = Idea.find_or_create_by!(id: 1) do |i|
+  i.introduction =  "おじさんが眼鏡を新調する・フレーム選びで店員さんとわちゃわちゃ"
+  i.title =  "ぼやけた視界で見る景色"
+  i.body =  "朝起きたら、目覚ましの代わりにレンズの外れたメガネが手の下にあった時の気持ちを20文字で答えよ。"
+  i.is_active =  true
+  i.customer_id = one.id
+  i.tags << tag1
+  i.tags << tag2
+end
+
+ idea2 = Idea.find_or_create_by!(id: 2) do |i|
+  i.introduction =  "おじさんが猫を拾う・家族ともめて家出する"
+  i.title =  "家を得た猫と家を無くした人間"
+  i.body =  "かわいいから拾った。それ以上でも以下でもない。"
+  i.is_active =  true
+  i.customer_id = one.id
+  i.tags << tag2
+end
+
+ idea3 = Idea.find_or_create_by!(id: 3) do |i|
+  i.introduction =  "サトシがピカチュウとケンカする・初期・他の手持ちが奮闘する感じで全員進化前がいい"
+  i.title =  "仲良しが一番"
+  i.is_active =  true
+  i.customer_id = two.id
+  i.tags << tag2
+  i.tags << tag3
+end
+
+idea4 = Idea.find_or_create_by!(id: 4) do |i|
+  i.introduction =  "シゲルとオーキド博士が森で迷子になって野生に襲われたり戦ったりでじーちゃんに憧れる孫爆誕物語"
+  i.is_active =  false
+  i.customer_id = two.id
+  i.tags << tag2
+  i.tags << tag4
+end
+
+idea5 = Idea.find_or_create_by!(id: 5) do |i|
+  i.introduction =  "具がみんなと絡む話"
+  i.title =  "鍋の具は何にしよう"
+  i.body =  "我はタヌキである。名は具。マジか。"
+  i.is_active =  true
+  i.customer_id = three.id
+  i.tags << tag2
+  i.tags << tag5
+
+end
+
+idea6 = Idea.find_or_create_by!(id: 6) do |i|
+  i.introduction =  "化ギン・久々に帰ってきた平和時空・冬と雪"
+  i.title =  "雪関係がいい"
+  i.is_active =  false
+  i.customer_id = four.id
+  i.tags << tag2
+  i.tags << tag6
+end
+
+idea7 = Idea.find_or_create_by!(id: 7) do |i|
+  i.introduction =  "敵襲とかないマジで何もない休日・平和に過ごしてほしい"
+  i.title =  "三蔵一行の平和(笑)な休日"
+  i.body =  "三蔵の「ぶっ殺すぞテメェら！」から始めたい"
+  i.is_active =  true
+  i.customer_id = five.id
+  i.tags << tag2
+  i.tags << tag7
+end
+
+idea8 = Idea.find_or_create_by!(id: 8) do |i|
+  i.introduction =  "過去話・悟空がめちゃくちゃ甘やかされてほしい・幸せにならんとおかしい"
+  i.title =  "桜入れたい"
+  i.is_active =  true
+  i.customer_id = five.id
+  i.tags << tag2
+  i.tags << tag8
+end
+
+idea9 = Idea.find_or_create_by!(id: 9) do |i|
+  i.introduction =  "大佐が銀時計を失くす話"
+  i.title =  "銀時計にそそぐ金光"
+  i.is_active =  true
+  i.customer_id = six.id
+  i.tags << tag2
+  i.tags << tag7
+end
+
+idea10 = Idea.find_or_create_by!(id: 10) do |i|
+  i.introduction =  "TOP2の牙狩り時代・ケンカ"
+  i.is_active =  true
+  i.customer_id = seven.id
+  i.tags << tag2
+  i.tags << tag6
+end
+
+idea11 = Idea.find_or_create_by!(id: 11) do |i|
+  i.introduction =  "幼児化・ギルベルトさんメイン"
+  i.title =  "ギルベルトさんの完璧育児論"
+  i.body =  "HLでは何が起きても慌てず騒がず落ち着いて行動することが大事です。"
+  i.is_active =  true
+  i.customer_id = seven.id
+  i.tags << tag2
+  i.tags << tag5
+end
+
+idea12 = Idea.find_or_create_by!(id: 12) do |i|
+  i.introduction =  "先代キノ・夢オチ"
+  i.is_active =  true
+  i.customer_id = eight.id
+  i.tags << tag2
+  i.tags << tag4
+end
+
+idea13 = Idea.find_or_create_by!(id: 13) do |i|
+  i.introduction =  "全員がオリゼーだけ見えるようになる"
+  i.is_active =  true
+  i.customer_id = nine.id
+  i.tags << tag2
+  i.tags << tag3
+end
+
+idea14 = Idea.find_or_create_by!(id: 14) do |i|
+  i.introduction =  "艦長副艦長祭り・大人しか出ない・酒盛りさせる？"
+  i.title =  "未来の希望と大人の意地"
+  i.is_active =  true
+  i.customer_id = ten.id
+  i.tags << tag2
+  i.tags << tag1
+end

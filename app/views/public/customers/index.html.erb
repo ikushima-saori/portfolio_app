@@ -24,7 +24,7 @@
               <%= "アイデア数：#{customer.ideas.count}個 " %>
             </td>
             <% if current_customer != customer %>
-              <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>  <!--options:{classは共通テンプレに渡す-->
+              <td><%= render "public/relationships/followbtn", customer: customer %></td>
             <% end %>
           </tr>
           <tr>
@@ -41,10 +41,10 @@
           </tr>
           <tr>
             <td>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
-              <%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %>
+              <%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer) %>
             </td>
             <td>
-              <%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %>
+              <%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer) %>
             </td>
             <td>
               <% if customer.favorites.count > 0 %>  <!---customerに紐づいたfavoritesテーブルのレコードがあれば-->

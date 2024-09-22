@@ -15,39 +15,37 @@
       <tbody>
         <tr>
           <td>
-            <%= image_tag @customer.get_profile_image(100, 100) %>
+            <%= image_tag @customer.get_profile_image(80, 80) %>
             <span><%= @customer.name %></span>
-          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
           </td>
+          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
           <% if is_current_user %>
-            <td>
-              <%= link_to "編集", edit_my_page_customers_path %>
-            </td>
+            <td><%= link_to "編集", edit_my_page_customers_path %></td>
           <% else %>
-            <td><%= render "public/relationships/followbtn", customer: @customer, options: { class: ""} %></td>  <!--options:{classは共通テンプレに渡す-->
+            <td><%= render "public/relationships/followbtn", customer: @customer %></td>
           <% end %>
         </tr>
         <tr>
           <td>好物</td>
-        <tr>
         </tr>
+        <tr>
           <td colspan=4><%= @customer.preference %></td>
         </tr>
         <tr>
           <td>苦手</td>
-        <tr>
         </tr>
+        <tr>
           <td colspan=4><%= @customer.weak %></td>
         </tr>
         <tr>
-          <td><%= link_to "フォロー：#{@customer.follower_customer.count}人", customer_follower_path(@customer) %></td>
-          <td><%= link_to "フォロワー：#{@customer.followed_customer.count}人", customer_followed_path(@customer) %></td>
+          <td><%= link_to "フォロー：#{@customer.follower_customer.count}人", follower_customer_path(@customer) %></td>
+          <td><%= link_to "フォロワー：#{@customer.followed_customer.count}人", followed_customer_path(@customer) %></td>
           <td>
-              <% if @customer.favorites.count > 0 %>
-                <%= link_to "お気に入りアイデア数：#{@favorite_ideas_count}個", favorite_customer_path(@customer) %>
-              <% else %>
-                お気に入り無し
-              <% end %>
+            <% if @customer.favorites.count > 0 %>
+              <%= link_to "お気に入りアイデア数：#{@favorite_ideas_count}個", favorite_customer_path(@customer) %>
+            <% else %>
+              お気に入り無し
+            <% end %>
           </td>
         </tr>
       </tbody>

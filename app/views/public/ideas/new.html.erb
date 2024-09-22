@@ -20,15 +20,15 @@
   <%= form_with model: @idea do |f| %>
     <div class="row">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
-      <% if @idea.tags.present? %>
-        <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
-      <% else %>
-        <%= f.text_field :tag_list, id: "inputTags", placeholder: "アイデアに付けたいタグを[,]区切りで入力してください" %>
+      <% if @idea.tags.present? %>  <!--タグが入力されていたら表示させる-->
+        <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
+      <% else %>  <!--タグが未入力ならホルダー表示-->
+        <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください" %>
       <% end %>
     </div>
     <div class="row">
       <label for="inputIntroduction">アイデア</label><br />
-      <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction" %>
+      <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder: "必須入力　改行対応はしておりません" %>
     </div>
     <div class="row">
       <label>アイデアを公開しますか？</label>
