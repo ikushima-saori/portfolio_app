@@ -38,10 +38,10 @@
     </div>
     <div class="row">
       <label for="inputTitle">タイトル</label><br />
-      <%= f.text_area :title, id: "inputTitle" %>
+      <%= f.text_area :title, id: "inputTitle", placeholder: "改行対応はしておりません" %>
     </div>
     <div class="row">
       <label for="inputBody">本文</label><br />
-      <%= f.text_area :body, id:"inputBody" %>
+      <%= f.text_area :body, id:"inputBody", placeholder: "改行にも対応しております" %>
     </div>
   <% end %>

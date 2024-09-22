@@ -194,3 +194,55 @@ idea8 = Idea.find_or_create_by!(id: 8) do |i|
   i.tags << tag2
   i.tags << tag8
 end
+
+idea9 = Idea.find_or_create_by!(id: 9) do |i|
+  i.introduction =  "大佐が銀時計を失くす話"
+  i.title =  "銀時計にそそぐ金光"
+  i.is_active =  true
+  i.customer_id = six.id
+  i.tags << tag2
+  i.tags << tag7
+end
+
+idea10 = Idea.find_or_create_by!(id: 10) do |i|
+  i.introduction =  "TOP2の牙狩り時代・ケンカ"
+  i.is_active =  true
+  i.customer_id = seven.id
+  i.tags << tag2
+  i.tags << tag6
+end
+
+idea11 = Idea.find_or_create_by!(id: 11) do |i|
+  i.introduction =  "幼児化・ギルベルトさんメイン"
+  i.title =  "ギルベルトさんの完璧育児論"
+  i.body =  "HLでは何が起きても慌てず騒がず落ち着いて行動することが大事です。"
+  i.is_active =  true
+  i.customer_id = seven.id
+  i.tags << tag2
+  i.tags << tag5
+end
+
+idea12 = Idea.find_or_create_by!(id: 12) do |i|
+  i.introduction =  "先代キノ・夢オチ"
+  i.is_active =  true
+  i.customer_id = eight.id
+  i.tags << tag2
+  i.tags << tag4
+end
+
+idea13 = Idea.find_or_create_by!(id: 13) do |i|
+  i.introduction =  "全員がオリゼーだけ見えるようになる"
+  i.is_active =  true
+  i.customer_id = nine.id
+  i.tags << tag2
+  i.tags << tag3
+end
+
+idea14 = Idea.find_or_create_by!(id: 14) do |i|
+  i.introduction =  "艦長副艦長祭り・大人しか出ない・酒盛りさせる？"
+  i.title =  "未来の希望と大人の意地"
+  i.is_active =  true
+  i.customer_id = ten.id
+  i.tags << tag2
+  i.tags << tag1
+end
