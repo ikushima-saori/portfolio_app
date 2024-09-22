@@ -3,9 +3,9 @@ class Public::CustomersController < ApplicationController
   before_action :admin_notview!
 
   def index
-    @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL)  #Customer.allの中にゲストユーザーは含まない
-                        .where(is_active: true)  # is_activeがtrueのユーザーのみを取得
-                        .page(params[:page]).per(4)  # ページネーションで1ページ4人
+    @customers = Customer.where(is_active: true)  # is_activeがtrueのユーザーのみを取得
+                         .where.not(email: "guest@example.com")  #Customer.allの中にゲストユーザーは含まない
+                         .page(params[:page]).per(4)  # ページネーションで1ページ4人
   end
 
   def show
