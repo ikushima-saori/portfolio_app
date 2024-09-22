@@ -1,5 +1,6 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
+  before_action :admin_notview!
 
   def index
     @customers = Customer.where.not(email: Customer::GUEST_USER_EMAIL)  #Customer.allの中にゲストユーザーは含まない

@@ -1,5 +1,7 @@
 class Admin::CustomersController < ApplicationController
-  before_action :authenticate_admin!  #adminログインしているか確認
+  before_action :customer_notview!
+  before_action :admin_login!
+
   def edit
     @customer = Customer.find(params[:id])
   end

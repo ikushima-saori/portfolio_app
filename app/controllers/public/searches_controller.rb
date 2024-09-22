@@ -1,4 +1,7 @@
 class Public::SearchesController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :admin_notview!
+
   def search
     @model = params[:model]  #検索対象のモデル
     @word = params[:word]  #検索するキーワード

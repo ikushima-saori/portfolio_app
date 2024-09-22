@@ -1,4 +1,7 @@
 class Public::TagsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :admin_notview!
+
   def index
     @tags = Tag.all
   end

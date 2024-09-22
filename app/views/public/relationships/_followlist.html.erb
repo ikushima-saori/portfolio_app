@@ -1,46 +1,45 @@
-<div class="container">
-  <div class="row">
-    <table>
-      <tbody>
-        <% customers.each do |customer| %>
-          <tr>
-            <td>
-              <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(100, 100) %>
-                <span><%= customer.name %></span>
-              <% end %>
-            </td>
-              <% if current_customer != customer %>
-                <td><%= render "public/relationships/followbtn", customer: customer, options: { class: ""} %></td>
-                <td>相互ならDMするボタン</td>
-              <% end %>
-          </tr>
-          <tr>
-            <td>好物</td>
-            <td><%= customer.preference %></td>
-          </tr>
-          <tr>
-            <td>苦手</td>
-            <td><%= customer.weak %></td>
-          </tr>
-          <tr>
-            <td><%= link_to "フォロー：#{customer.follower_customer.count}人", customer_follower_path(customer) %></td>
-            <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", customer_followed_path(customer) %></td>
-            <td><%= "アイデア数：#{customer.ideas.count} " %></td>
-            <td>
-              <% if customer.favorites.count > 0 %>
-                <%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>
-              <% else %>
-                お気に入り無し
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
+<table>
+  <tbody>
+    <% customers.each do |customer| %>
+      <tr>
+        <td>
+          <%= link_to customer_path(customer.id) do %>
+            <%= image_tag customer.get_profile_image(80, 80) %>
+            <span><%= customer.name %></span>
+          <% end %>
+        </td>
+        <td><%= "アイデア数：#{customer.ideas.count} " %></td>
+          <% if current_customer != customer %>
+            <td><%= render "public/relationships/followbtn", customer: customer %></td>
+          <% end %>
+      </tr>
+      <tr>
+        <td>好物</td>
+      </tr>
+      <tr>
+        <td colspan=3><%= customer.preference %></td>
+      </tr>
+      <tr>
+        <td>苦手</td>
+      </tr>
+      <tr>
+        <td colspan=3><%= customer.weak %></td>
+      </tr>
+      <tr>
+        <td><%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer) %></td>
+        <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer) %></td>
+        <td>
+          <% if customer.favorites.count > 0 %>
+            <%= link_to "お気に入りアイデア数：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>
+          <% else %>
+            お気に入り無し
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 
-  <div class="row">
-    <%= paginate customers, class: "pagination" %>
-  </div>
+<div>
+  <%= paginate customers, class: "pagination" %>
 </div>

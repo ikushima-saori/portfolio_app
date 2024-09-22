@@ -1,4 +1,7 @@
 class Public::FavoritesController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :admin_notview!
+
   def create
     @idea = Idea.find(params[:idea_id])
     favorite = current_customer.favorites.new(idea_id: @idea.id)  #自分のお気に入りにidea_idが@ideaのidになっているideaを追加する
