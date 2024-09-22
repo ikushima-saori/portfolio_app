@@ -1,6 +1,7 @@
 class Public::IdeasController < ApplicationController
   before_action :authenticate_customer!
   before_action :is_matching_login_customer, only: [:edit, :update, :destroy]  #privateで定義　自分以外のアイデアの編集削除を禁止
+  before_action :admin_notview!
 
   def new
     @idea = Idea.new

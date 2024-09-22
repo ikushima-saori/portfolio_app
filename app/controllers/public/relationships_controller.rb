@@ -1,4 +1,7 @@
 class Public::RelationshipsController < ApplicationController
+  before_action :authenticate_customer!
+  before_action :admin_notview!
+
   def create
     customer = Customer.find(params[:id])
     current_customer.follow(customer)

@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  before_action :admin_notview!
+
   def guest_sign_in
     customer = Customer.guest
     sign_in customer

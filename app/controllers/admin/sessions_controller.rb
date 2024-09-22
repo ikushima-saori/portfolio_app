@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Admin::SessionsController < Devise::SessionsController
+  before_action :customer_notview!
+
   def after_sign_in_path_for(resource)  #ログイン後の遷移先指定
     admin_path
   end
