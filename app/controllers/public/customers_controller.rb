@@ -5,6 +5,7 @@ class Public::CustomersController < ApplicationController
   def index
     @customers = Customer.where(is_active: true)  # is_activeがtrueのユーザーのみを取得
                          .where.not(email: "guest@example.com")  #Customer.allの中にゲストユーザーは含まない
+                         .order(:id)
                          .page(params[:page]).per(4)  # ページネーションで1ページ4人
   end
 
