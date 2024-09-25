@@ -37,20 +37,20 @@
             </td>
           </tr>
           <tr>
-            <td>アイデア</td>
+            <td colspan=4>アイデア</td>
           </tr>
           <tr>
             <td colspan=4><%= idea.introduction %></td>
           </tr>
           <% if idea.customer == current_customer %>
             <tr>
-              <td>タイトル</td>
+              <td colspan=4>タイトル</td>
             </tr>
             <tr>
               <td colspan=4><%= idea.title %></td>
             </tr>
             <tr>
-              <td>本文</td>
+              <td colspan=4>本文</td>
             </tr>
             <tr>
               <td colspan=4><%= simple_format idea.body %></td>
