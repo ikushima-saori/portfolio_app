@@ -5,20 +5,22 @@
     <h1>新規投稿</h1>
   </div>
 
-   <div class="row">
-      <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+  <div class="row">
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
       <% if @idea.errors.any? %>
-        <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
-        <ul>
-          <% @idea.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
+        <div class="validation-messages">
+          <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+          <ul>
+            <% @idea.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
       <% end %>
-    </div>
+  </div>
 
-  <%= form_with model: @idea do |f| %>
-    <div class="row">
+    <%= form_with model: @idea do |f| %>
+    <div class="row field">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
       <% if @idea.tags.present? %>  <!--タグが入力されていたら表示させる-->
         <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
@@ -26,19 +28,19 @@
         <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください" %>
       <% end %>
     </div>
-    <div class="row">
+    <div class="row field">
       <label for="inputIntroduction">アイデア</label><br />
       <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder: "必須入力　改行対応はしておりません" %>
     </div>
-    <div class="row">
+    <div class="row field">
       <label>アイデアを公開しますか？</label>
       <%= f.radio_button :is_active, true, id: "active" %>
       <%= f.label :is_active, "公開", for: "active" %>
       <%= f.radio_button :is_active, false, id: "inactive" %>
       <%= f.label :is_active, "非公開", for: "inactive" %>
     </div>
-    <div class="row">
-      <%= f.submit 'メモする' %>
+    <div class="row field">
+      <%= f.submit 'メモする', class: "btn btn-secondary" %>
     </div>
   <% end %>
 </div>

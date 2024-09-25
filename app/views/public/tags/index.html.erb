@@ -1,9 +1,11 @@
 <%= stylesheet_link_tag 'public/tags' %>
 <div class="container">
-  <h1>タグ一覧</h1>
-  <div class="tag-buttons">
-    <% @tags.each do |tag| %>
-      <%= link_to tag.word, tag_path(tag), class: 'tag' %>
-    <% end %>
+  <div class="row">
+    <h1>タグ一覧</h1>
+    <div>
+      <% @tags.each do |tag| %>
+        <%= link_to tag.word, tag_path(tag), class: 'tag' %>
+      <% end %>
+    </div>
   </div>
 </div>

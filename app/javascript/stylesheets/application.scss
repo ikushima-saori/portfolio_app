@@ -14,73 +14,136 @@ a {
 }
 
 body {
-  background-color: #f4f4f4; /* 背景色は薄いグレーに */
-}
-
-header, footer {
-  background-color: black; /* 背景色は黒に */
-  color: white; /* テキストは白に */
-  padding: 10px 0; /* 上下のパディング */
+  background-color: #c7cdd4; /* 背景色は薄いグレーに */
 }
 
 /* ヘッダーのスタイル */
 header {
-  border-bottom: 1px solid #333; /* ヘッダーの下に薄いボーダーを追加 */
-  display: flex; /* 要素を横並びにする */
+  background-color: black; /* 背景色は黒 */
+  color: white; /* テキストは白 */
+  display: flex; /* 要素を横並び */
   align-items: center; /* 縦方向に中央揃え */
   justify-content: space-between; /* 左右に要素を配置 */
-  padding: 0 20px; /* 左右のパディング */
+  padding: 0 20px; /* 上下左右のパディング */
 }
 
 header h1 {
-  font-family: 'Courier New', Courier, monospace; /* ノートのようなフォントを使用 */
-  margin: 0; /* マージンを削除 */
+  display: flex; /* フレックスボックスを使用 */
+  justify-content: center; /* 水平方向に中央寄せ */
+  align-items: center; /* 垂直方向に中央寄せ */
+  font-family: 'Meiryo', sans-serif; /* メイリオが表示できなければsans-serif */
+  margin: 5px 0; /* 外側の余白 */
+  border-radius: 5px; /* 角を丸くする */
+  padding: 0 5px; /* 内側の余白 */
+  border: 1px solid white !important; /* 枠線の設定 */
+  transition: background-color 0.1s; /* 背景色の変化に時間差をつける */
 }
 
-header .d-flex {
-  display: flex;
+header h1:hover {
+  color: #444444 !important;  /* ホバー時の文字色をグレーに */
+  background-color: #f9f3e5 !important; /* 背景色はクリーム */
+  text-decoration: none !important; /* 下線を削除 */
+}
+
+.logo:hover {
+  color: #444444 !important;  /* ホバー時の文字色をグレーに */
+  text-decoration: none !important; /* 下線を削除 */
+}
+
+header .current_customer {
+  display: flex; /* 要素を横並び */
+  justify-content: center;
   align-items: center; /* 縦方向に中央揃え */
 }
 
-header .d-flex img {
-  border-radius: 50%; /* 円形にする */
+header .current_customer img {
+  border-radius: 20%; /* 円形にする */
   margin-right: 10px; /* 画像と名前の間にマージンを追加 */
 }
 
 header .nav {
-  display: flex;
+  display: flex; /* 要素を横並び */
 }
 
 .nav-link {
-  color: #fff !important; /* ナビゲーションリンクの色を白に設定 */
-  margin: 0 5px; /* 各リンクの間にマージンを追加 */
+  margin: 0 8px; /* 各リンクの間にマージンを追加 */
+  padding: 3px 5px; /* 上下のパディング */
   white-space: nowrap; /* テキストの折り返しを防止 */
   overflow: hidden; /* はみ出た部分を隠す */
   text-overflow: ellipsis; /* はみ出た部分に省略記号を追加 */
+  border: 1px solid white !important; /* 枠線の設定 */
+  transition: background-color 0.1s; /* 背景色の変化に時間差をつける */
 }
 
 .nav-link:hover {
-  color: #ddd !important; /* ホバー時にリンクの色を少し明るく */
+  color: #444444 !important; /* ホバー時の文字色をグレーに */
+  background-color: #f9f3e5; /* 背景色はクリーム */
 }
 
+/* 検索フォームのスタイル */
 .search-form{
   text-align: center; /* テキストを中央寄せ */
   padding: 3px 0; /* 上下のパディング */
 }
 
+.search-label {
+  font-weight: bold; /* ラベルを太字に */
+}
+
 footer {
-  border-top: 1px solid #333; /* フッターの上に薄いボーダーを追加 */
+  padding: 5px 0; /* 上下のパディング */
+  background-color: black; /* 背景色は黒に */
+  color: white; /* テキストは白に */
   text-align: center; /* テキストを中央寄せ */
+}
+
+footer h4 {
+  margin: 0; /* マージンを削除 */
 }
 
 /* フラッシュメッセージのスタイル */
 .flash-message {
-  background-color: #f8d7da; /* エラー背景色 */
-  color: #721c24; /* エラーテキスト色 */
-  border: 1px solid #f5c6cb; /* エラーのボーダー */
-  padding: 10px; /* 内側の余白 */
+  display: flex; /* フレックスボックスを使用 */
+  align-items: center; /* 垂直方向に中央揃え */
+  background-color: #f0f0f0; /* エラー背景色 */
+  color: #333333; /* エラーテキスト色 */
+  padding: 7px 7px 0; /* 内側の余白 */
   border-radius: 3px; /* 角を丸くする */
+  margin-bottom: 15px; /* 下に余白を追加 */
+}
+
+/* バリデーションメッセージのスタイル */
+.validation-messages {
+  background-color: #fff5f5; /* 薄い赤色の背景 */
+  color: #c0392b; /* エラーテキストの色 */
+  border: 1px solid #e74c3c; /* 赤い枠線 */
+  padding: 15px; /* 内側の余白 */
+  border-radius: 5px; /* 角を丸くする */
   margin-bottom: 20px; /* 下に余白を追加 */
+}
+
+.validation-messages ul {
+  list-style-type: disc; /* 黒丸を表示 */
+  padding-left: 20px; /* 左側のパディング */
+  margin: 10px 0 0 0; /* 上部のマージンを削除 */
+}
+
+.validation-messages li {
+  margin: 5px 0; /* 各エラーメッセージの間隔 */
+}
+
+/* ページネーションのスタイル */
+.pagination a {
+  padding: 8px 16px; /* 内側の余白を設定 */
+  border-radius: 4px; /* 角を少し丸くする */
+  margin: 0 4px; /* 左右の余白を設定 */
+  text-decoration: none; /* 下線を消去 */
+  color: #000000; /* 文字色を設定 */
+  background: #d5d6d6; /* 背景色を淡いグレーに設定 */
+}
+
+.pagination a:hover {
+  background: #e2e6ea; /* ホバー時に背景色を変更 */
 }
 
 /* ノート風のスタイル */
@@ -88,8 +151,110 @@ footer {
   background-color: #fff; /* 背景色を白に */
   border: 1px solid #ddd; /* 薄いグレーのボーダー */
   padding: 20px; /* 内側の余白 */
-  margin: 20px auto; /* 上下のマージンと中央寄せ */
-  max-width: 600px; /* 最大幅を設定 */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 軽いシャドウを追加 */
+  margin: 10px auto; /* 上下のマージンと中央寄せ */
+  max-width: 800px; /* 最大幅 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* 軽いシャドウを追加 */
   border-radius: 5px; /* 角を丸くする */
+}
+
+/* タグのスタイル */
+.tag {
+  display: inline-block; /* インラインブロックに設定 */
+  background: #f4a261; /* タグの背景色を設定 */
+  color: #fff; /* タグの文字色を白に設定 */
+  border: 1px solid #ccc; /* 薄いグレーの境界線を追加 */
+  border-radius: 3px; /* 角を少し丸くする */
+  padding: 5px 10px; /* 内側の余白を設定 */
+  text-decoration: none; /* 下線を消去 */
+  transition: background-color 0.1s; /* 背景色の変化をスムーズに */
+}
+
+.tag:hover {
+  color: #444444 !important;  /* ホバー時の文字色をグレーに */
+  background-color: #e76f51; /* ホバー時に背景色を変更 */
+  text-decoration: none; /* 下線を消去 */
+}
+
+/* お気に入りボタンのスタイル */
+.favorite-remove {
+  color: red;
+}
+
+.favorite-remove:hover {
+  color: red;
+  text-decoration: none; /* 下線を削除 */
+}
+
+.favorite-add {
+  color: blue;
+}
+
+.favorite-add:hover {
+  color: blue;
+  text-decoration: none; /* 下線を削除 */
+}
+
+/* フォローボタンのスタイル */
+.follow-add {
+  background: #443ef6; /* 背景色を設定 */
+  color: #fff; /* 文字色を白に設定 */
+  border: 1px solid #ccc; /* 薄いグレーの境界線を追加 */
+  border-radius: 5px; /* 角を少し丸くする */
+  padding: 5px 10px; /* 内側の余白を設定 */
+  transition: background-color 0.1s; /* 背景色の変化をスムーズに */
+}
+
+.follow-add:hover {
+  color: #444444 !important;  /* ホバー時の文字色をグレーに */
+  background-color: #5954ef; /* ホバー時に背景色を変更 */
+  text-decoration: none; /* 下線を消去 */
+}
+
+.follow-remove {
+  background: #dd2828; /* 背景色を設定 */
+  color: #fff; /* 文字色を白に設定 */
+  border: 1px solid #ccc; /* 薄いグレーの境界線を追加 */
+  border-radius: 5px; /* 角を少し丸くする */
+  padding: 5px 10px; /* 内側の余白を設定 */
+  transition: background-color 0.1s; /* 背景色の変化をスムーズに */
+}
+
+.follow-remove:hover {
+  color: #444444 !important;  /* ホバー時の文字色をグレーに */
+  background-color: #cb2626; /* ホバー時に背景色を変更 */
+  text-decoration: none; /* 下線を消去 */
+}
+
+/* リンクのスタイル */
+.link-button {
+  display: inline-block; /* インラインブロックにしてサイズを指定 */
+  padding: 5px 10px; /* 内側の余白 */
+  border: 1px solid #ddd; /* 枠線の設定 */
+  border-radius: 5px; /* 角を丸くする */
+  background-color: #f9f9f9; /* 背景色 */
+  color: #333; /* 文字色 */
+  text-align: center; /* テキストを中央寄せ */
+  transition: background-color 0.3s; /* ホバー時の背景色変化に時間差をつける */
+  text-decoration: none; /* 下線を削除 */
+}
+
+.link-button:hover {
+  background-color: #e0e0e0; /* ホバー時の背景色 */
+  text-decoration: none; /* 下線を削除 */
+}
+
+/* 編集ボタンのスタイル */
+.edit-btn {
+  padding: 8px 16px; /* 内側の余白を設定 */
+  border-radius: 4px; /* 角を少し丸くする */
+  margin: 0 4px; /* 左右の余白を設定 */
+  text-decoration: none; /* 下線を消去 */
+  color: #000000; /* 文字色を設定 */
+  transition: background-color 0.3s; /* ホバー時の背景色変化に時間差をつける */
+  background: #d5d6d6; /* 背景色を淡いグレーに設定 */
+}
+
+.edit-btn:hover {
+  background: #e2e6ea; /* ホバー時に背景色を変更 */
+  text-decoration: none; /* 下線を消去 */
 }

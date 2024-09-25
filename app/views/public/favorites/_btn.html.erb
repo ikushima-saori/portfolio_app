@@ -1,6 +1,6 @@
   <% if idea.favorited_by?(current_customer) %>
-    <%= link_to "お気に入り解除　<i class='fa-solid fa-heart'></i>：#{idea.favorites.count}".html_safe, idea_favorites_path(idea), method: :delete, remote: true %>
+    <%= link_to "お気に入り解除　<i class='fa-solid fa-heart'></i>：#{idea.favorites.count}".html_safe, idea_favorites_path(idea), method: :delete, remote: true, class: 'favorite-remove' %>
   <% else %>
-    <%= link_to "お気に入り登録　<i class='fa-regular fa-heart'></i>：#{idea.favorites.count}".html_safe, idea_favorites_path(idea), method: :post, remote: true %>
+    <%= link_to "お気に入り登録　<i class='fa-regular fa-heart'></i>：#{idea.favorites.count}".html_safe, idea_favorites_path(idea), method: :post, remote: true, class: 'favorite-add' %>
   <% end %>
 

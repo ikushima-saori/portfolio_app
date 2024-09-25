@@ -7,41 +7,47 @@
 
    <div class="row">
       <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
-      <% if @idea.errors.any? %>
-        <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
-        <ul>
-          <% @idea.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
+        <% if @idea.errors.any? %>
+          <div class="validation-messages">
+            <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+            <ul>
+              <% @idea.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
+        <% end %>
     </div>
 
-  <%= form_with model: @idea do |f| %>
-    <div class="row">
-      <%= f.submit "変更を保存", class: "btn btn-primary" %>
-    </div>
-    <div class="row">
-      <label>アイデアを公開しますか？</label>
-      <%= f.radio_button :is_active, true, id: "active" %>
-      <%= f.label :is_active, "公開", for: "active" %>
-      <%= f.radio_button :is_active, false, id: "inactive" %>
-      <%= f.label :is_active, "非公開", for: "inactive" %>
-    </div>
-    <div class="row">
-      <label for="inputTags">タグ（カンマ区切り）</label><br />
-      <%= f.text_field :tag_names, id: "inputTags", value: @idea.tag_names %>  <!--tag_namesはideaモデルで定義　表示用メソッド-->
-    </div>
-    <div class="row">
-      <label for="inputIntroduction">アイデア</label><br />
-      <%= f.text_field :introduction, autofocus: true, id: "inputIntroduction" %>
-    </div>
-    <div class="row">
-      <label for="inputTitle">タイトル</label><br />
-      <%= f.text_area :title, id: "inputTitle", placeholder: "改行対応はしておりません" %>
-    </div>
-    <div class="row">
-      <label for="inputBody">本文</label><br />
-      <%= f.text_area :body, id:"inputBody", placeholder: "改行にも対応しております" %>
-    </div>
-  <% end %>
+    <!--<div class="row">-->
+      <%= form_with model: @idea do |f| %>
+        <div class="row field">
+          <%= f.submit "変更を保存", class: "btn btn-secondary" %>
+        </div>
+        <div class="row radio">
+          <label>アイデアを公開しますか？</label>
+          <div class="radio-buttons">
+            <%= f.radio_button :is_active, true, id: "active" %>
+            <%= f.label :is_active, "公開", for: "active" %>
+            <%= f.radio_button :is_active, false, id: "inactive" %>
+            <%= f.label :is_active, "非公開", for: "inactive" %>
+          </div>
+        </div>
+        <div class="row field">
+          <label for="inputTags">タグ（カンマ区切り）</label>
+          <%= f.text_field :tag_names, id: "inputTags", value: @idea.tag_names %>  <!--tag_namesはideaモデルで定義　表示用メソッド-->
+        </div>
+        <div class="row field">
+          <label for="inputIntroduction">アイデア</label>
+          <%= f.text_area :introduction, autofocus: true, id: "inputIntroduction" %>
+        </div>
+        <div class="row field">
+          <label for="inputTitle">タイトル</label>
+          <%= f.text_area :title, id: "inputTitle", placeholder: "改行対応はしておりません" %>
+        </div>
+        <div class="row field">
+          <label for="inputBody">本文</label>
+          <%= f.text_area :body, id:"inputBody", placeholder: "改行にも対応しております" %>
+        </div>
+      <% end %>
+    <!--</div>-->
