@@ -1,13 +1,13 @@
-<%= stylesheet_link_tag 'public/idea_searches' %>
+<%= stylesheet_link_tag 'public/tags' %>
 <div class="container">
   <div class="row">
     <h3>アイデア：【<%= @word %>】の検索結果 <%= @total_count %>件</h3>
   </div>
 
   <div class="row">
-    <table>
-      <tbody>
-        <% ideas.each do |idea| %>
+    <% ideas.each do |idea| %>
+      <table>
+        <tbody>
           <tr>
             <td>
               <%= link_to customer_path(idea.customer_id) do %>
@@ -47,9 +47,9 @@
           <tr>
             <td colspan=3><%= idea.introduction %></td>
           </tr>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% end %>
   </div>
 
   <div class="row">

@@ -1,63 +1,62 @@
-<%= stylesheet_link_tag 'public/registrations' %>
+<%= stylesheet_link_tag 'public/authentication' %>
 <div class="container">
 
   <div class="row">
     <h1>新規登録</h1>
   </div>
 
-   <div class="row">
-      <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
-      <% if @customer.errors.any? %>
+  <div class="row">
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+    <% if @customer.errors.any? %>
+      <div class="validation-messages">
         <%= @customer.errors.count %>箇所エラーがありますので、再度入力を確認してください。
         <ul>
           <% @customer.errors.full_messages.each do |message| %>
             <li><%= message %></li>
           <% end %>
         </ul>
-      <% end %>
-    </div>
-
-  <div class="row">
-    <%= form_with model: @customer, url: customer_registration_path do |f| %>
-      <div class="field">
-        <%= f.label :"ペンネーム" %>
-        <%= f.text_field :name, autofocus: true, placeholder:"ペンネム子"  %>
-      </div>
-      <div class="field">
-        <%= f.label :"好物" %>
-        <%= f.text_area :preference, placeholder:"例）ほのぼの・相棒を庇って重症からのピンチに復帰するシチュ・ロボットもの"  %>
-      </div>
-      <div class="field">
-        <%= f.label :"苦手" %>
-        <%= f.text_area :weak, placeholder:"例）死亡エンド・ホラー・三角関係の末に1人だけぼっちで終わるシチュ"  %>
-      </div>
-      <div class="field">
-        <%= f.label :email %>
-        <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
-      </div>
-      <div class="field">
-        <%= f.label :password do %>
-          パスワード<% if @minimum_password_length %>(<%= @minimum_password_length %> 文字以上)<% end %>  <!--1行で表示させる-->
-        <% end %>
-        <%= f.password_field :password, autocomplete: "new-password" %>
-      </div>
-      <div class="field">
-        <%= f.label :password_confirmation %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-      </div>
-      <div class="actions">
-        <%= f.submit "新規登録" %>
       </div>
     <% end %>
   </div>
 
-  <div class="row">
-    <div>
+  <%= form_with model: @customer, url: customer_registration_path do |f| %>
+    <div class="row field">
+      <%= f.label :name, "ペンネーム" %>
+      <%= f.text_field :name, autofocus: true, placeholder: "ペンネム子"  %>
+    </div>
+    <div class="row field">
+      <%= f.label :preference, "好物" %>
+      <%= f.text_area :preference, placeholder:"例）ほのぼの・相棒を庇って重症からのピンチに復帰するシチュ・ロボットもの"  %>
+    </div>
+    <div class="row field">
+      <%= f.label :weak, "苦手" %>
+      <%= f.text_area :weak, placeholder:"例）死亡エンド・ホラー・三角関係の末に1人だけぼっちで終わるシチュ"  %>
+    </div>
+    <div class="row field">
+      <%= f.label :email %>
+      <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %>
+    </div>
+    <div class="row field">
+      <%= f.label :password do %>
+        パスワード<% if @minimum_password_length %>(<%= @minimum_password_length %> 文字以上)<% end %>  <!--1行で表示させる-->
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password" %>
+    </div>
+    <div class="row field">
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+    </div>
+    <div class="row field">
+      <%= f.submit "新規登録", class: "btn btn-primary" %>
+    </div>
+  <% end %>
+
+  <div class="row guest field">
       <%= button_to 'ゲストログイン', customer_guest_sign_in_path, method: :post, class: 'btn btn-secondary btn-sm' %>
       ※ゲストはTOPページとAboutページのみ閲覧可能です。
-    </div>
   </div>
 
-  <%= render "public/shared/links" %>
-
+  <div class="row field">
+    <%= render "public/shared/links" %>
+  </div>
 </div>

@@ -2,16 +2,16 @@
     <div>アイデアが未投稿または非公開です</div>
   <% else %>
     <div>
-      アイデア一覧
+      <h5>アイデア一覧</h5>
     </div>
-    <table>
-      <tbody>
-        <% ideas.each do |idea| %>
+    <% ideas.each do |idea| %>
+      <table>
+        <tbody>
           <tr>
             <td colspan=2>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
             <% if idea.customer == current_customer %>  <!--編集と削除は自分だけ-->
-              <td><%= link_to "詳細/編集", edit_idea_path(idea.id) %></td>
-              <td><%= link_to "削除", idea_path(idea.id), method: :delete, data: { confirm: "本当に削除しますか？" } %></td>
+              <td><%= link_to "詳細/編集", edit_idea_path(idea.id), class: 'edit-btn' %></td>
+              <td><%= link_to "削除", idea_path(idea.id), method: :delete, data: { confirm: "本当に削除しますか？" }, class: 'btn btn-danger' %></td>
             <% end %>
           </tr>
           <tr>
@@ -56,9 +56,9 @@
               <td colspan=4><%= simple_format idea.body %></td>
             </tr>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% end %>
   <% end %>
 
   <div>

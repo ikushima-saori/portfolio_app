@@ -2,10 +2,6 @@
 <div class="container">
 
   <div class="row">
-    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
-  </div>
-
-  <div class="row">
     <h1>ユーザー一覧</h1>
     <table>
       <thead>
@@ -24,8 +20,8 @@
               <%= customer.id %>
             </td>
             <td>
-              <%= link_to edit_admin_customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(50, 50) %>
+              <%= link_to edit_admin_customer_path(customer.id), class: 'link-button' do %>
+                <%= image_tag customer.get_profile_image(50, 50), class: 'profile-image' %>
                 <span><%= customer.name %></span>
               <% end %>
             </td>
