@@ -19,7 +19,7 @@
       <% end %>
   </div>
 
-    <%= form_with model: @idea do |f| %>
+  <%= form_with model: @idea do |f| %>
     <div class="row field">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
       <% if @idea.tags.present? %>  <!--タグが入力されていたら表示させる-->
