@@ -1,13 +1,13 @@
 <%- if controller_name != 'sessions' %>
   <div>
     既に登録済みの方はこちら<br />
-    <%= link_to "ログイン", new_session_path(resource_name) %>
+    <%= link_to "ログイン", new_session_path(resource_name), class: "btn btn-success" %>
   </div>
 <% end %>
 
 <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
-  <div>
+  <div style="margin-top: 20px;">
     ユーザー登録がまだの方はこちら<br />
-    <%= link_to "新規登録", new_registration_path(resource_name) %>
+    <%= link_to "新規登録", new_registration_path(resource_name), class: "btn btn-primary" %>
   </div>
 <% end %>

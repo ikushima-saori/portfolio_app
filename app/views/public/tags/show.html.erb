@@ -1,56 +1,58 @@
 <%= stylesheet_link_tag 'public/tags' %>
 <div class="container">
   <div class="row">
-    <h1>【<%= @tag.word %>】のタグが付いているアイデア一覧</h1>
+    <h5><strong>【<%= @tag.word %>】</strong>のタグが付いているアイデア一覧</h5>
+  </div>
+  <div class="row">
     <% if @ideas.empty? %>
-      <p>このタグが付いたアイデアはありません。もしくは非公開となっています。</p>
+      <p>このタグが付いているアイデアは全て非公開となっています。</p>
     <% else %>
-        <table>
-        <tbody>
-          <% @ideas.each do |idea| %>
-            <tr>
-              <td class="profile-info">
-                <%= link_to customer_path(idea.customer_id) do %>
-                  <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
-                  <span class="customer-name"><%= idea.customer.name %></span>
-                <% end %>
-              </td>
-              <td>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
-            </tr>
-            <tr>
-              <td>タグ</td>
-              <% if idea.customer == current_customer %>
+        <% @ideas.each do |idea| %>
+          <table>
+            <tbody>
+              <tr>
                 <td>
-                  <% if idea.favorites.count > 0 %>
-                    <%= link_to "お気に入りアイデア数：#{idea.favorites.count}個", favorite_customer_path(idea.customer_id) %>
-                  <% else %>
-                    お気に入り無し
+                  <%= link_to customer_path(idea.customer_id), class: 'link-button' do %>
+                    <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
+                    <span><%= idea.customer.name %></span>
                   <% end %>
                 </td>
-              <% else %>
-                <td id="favorite_btn_<%= idea.id %>">
-                  <%= render "public/favorites/btn", idea: idea %>
-                </td>
-              <% end %>
-            </tr>
-            <tr>
-              <td colspan=3>
-                <% idea.tags.each do |tag| %>
-                  <%= link_to tag.word, tag_path(tag), class: 'tag' %>
+                <td>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->
+              </tr>
+              <tr>
+                <td>タグ</td>
+                <% if idea.customer == current_customer %>
+                  <td>
+                    <% if idea.favorites.count > 0 %>
+                      お気に入り：<%= idea.favorites.count %>人
+                    <% else %>
+                      お気に入り無し
+                    <% end %>
+                  </td>
+                <% else %>
+                  <td id="favorite_btn_<%= idea.id %>">
+                    <%= render "public/favorites/btn", idea: idea %>
+                  </td>
                 <% end %>
-              </td>
-            </tr>
-            <tr>
-              <td>アイデア</td>
-            </tr>
-            <tr>
-              <td colspan=3><%= idea.introduction %></td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-      <div>
-        <%= paginate @ideas, class: "pagination" %>
+              </tr>
+              <tr>
+                <td colspan=3>
+                  <% idea.tags.each do |tag| %>
+                    <%= link_to tag.word, tag_path(tag), class: 'tag' %>
+                  <% end %>
+                </td>
+              </tr>
+              <tr>
+                <td>アイデア</td>
+              </tr>
+              <tr>
+                <td colspan=3><%= idea.introduction %></td>
+              </tr>
+            </tbody>
+          </table>
+        <% end %>
+      <div class="pagination">
+        <%= paginate @ideas %>
       </div>
     <% end %>
   </div>

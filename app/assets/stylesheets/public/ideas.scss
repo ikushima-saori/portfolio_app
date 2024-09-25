@@ -1,69 +1,51 @@
-/* ノート風デザインのための基本スタイル */
-
-.container {
-  background: #fff; /* ノートの背景色を白に */
-  border: 1px solid #ccc; /* ノート風の枠線 */
-  padding: 20px; /* 内側の余白 */
-  border-radius: 5px; /* 角を丸める */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* 軽い影をつける */
-  margin-bottom: 20px; /* 下部に余白を追加 */
-}
-
 .row {
-  margin-bottom: 15px; /* 行ごとの余白 */
+  margin: 0 auto; /* 中央寄せ */
+  padding: 0 10px 0;
 }
 
-h1, h3 {
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
+h1{
+  margin-bottom: 15px; /* 下に余白を追加 */
 }
 
-label {
-  font-weight: bold;
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
+/* フォームのスタイル */
+.field {
+  margin-bottom: 15px; /* 各フィールドの下に余白を追加 */
+  width: 700px; /* 横幅を600pxに設定 */
 }
 
-textarea, input[type="text"], input[type="email"], input[type="password"] {
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 8px;
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
-  width: 100%;
-  box-sizing: border-box;
-  background-color: #fff; /* フォーム背景色 */
+.field label {
+  display: block; /* ラベルをブロックに */
+  margin-bottom: 5px; /* ラベルの下に余白を追加 */
+}
+
+.field input[type="file"],
+.field input[type="text"],
+textarea {
+  width: 100%; /* フィールドを全幅に */
+  padding: 8px; /* 内側の余白 */
+  border: 1px solid #ccc; /* 枠線 */
+  border-radius: 4px; /* 角を丸める */
 }
 
 textarea {
-  height: 100px;
+  height: 100px; /* 高さを設定 */
 }
 
-input[type="radio"] {
-  margin-right: 5px;
+/* ラジオボタンのスタイル*/
+.radio {
+  margin: 5px auto; /* 各フィールドの下に余白を追加 */
+  width: 700px; /* 横幅を600pxに設定 */
 }
 
-input[type="submit"] {
-  background-color: #f4a261; /* ノート風に合うボタンカラー */
-  border: none;
-  border-radius: 3px;
-  color: #fff;
-  padding: 10px 15px;
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
-  cursor: pointer;
-  transition: background-color 0.3s;
+.radio label {
+  margin-right: 10px; /* ラベル同士の間隔 */
 }
 
-input[type="submit"]:hover {
-  background-color: #e76f51; /* ホバー時の色変更 */
+.radio-buttons label {
+  font-weight: bold;
 }
 
-#error_explanation {
-  background-color: #fdd;
-  border: 1px solid #fbb;
-  padding: 10px;
-  border-radius: 3px;
-  color: #d8000c;
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
-}
-
-p {
-  font-family: 'Courier New', Courier, monospace; /* ノート風フォント */
+.field_with_errors {
+  width: 100%; /* フィールドを全幅に */
+  border-radius: 4px; /* 角を丸める */
 }

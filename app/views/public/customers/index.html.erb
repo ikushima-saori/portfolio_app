@@ -10,53 +10,53 @@
   </div>
 
   <div class="row">
+    <% @customers.each do |customer| %>
     <table>
-      <tbody>
-        <% @customers.each do |customer| %>
-          <tr>
-            <td>
-              <%= link_to customer_path(customer.id) do %>
-                <%= image_tag customer.get_profile_image(80, 80) %>
-                <span><%= customer.name %></span>
+        <tbody>
+            <tr>
+              <td>
+                <%= link_to customer_path(customer.id), class: 'link-button' do %>
+                  <%= image_tag customer.get_profile_image(80, 80), class: 'profile-image' %>
+                  <span><%= customer.name %></span>
+                <% end %>
+              </td>
+              <td>
+                <%= "アイデア数：#{customer.ideas.count}個 " %>
+              </td>
+              <% if current_customer != customer %>
+                <td><%= render "public/relationships/followbtn", customer: customer %></td>
               <% end %>
-            </td>
-            <td>
-              <%= "アイデア数：#{customer.ideas.count}個 " %>
-            </td>
-            <% if current_customer != customer %>
-              <td><%= render "public/relationships/followbtn", customer: customer %></td>
-            <% end %>
-          </tr>
-          <tr>
-            <td>好物</td>
-          </tr>
-          <tr>
-            <td colspan=3><%= customer.preference %></td>
-          </tr>
-          <tr>
-            <td>苦手</td>
-          </tr>
-          <tr>
-            <td colspan=3><%= customer.weak %></td>
-          </tr>
-          <tr>
-            <td>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
-              <%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer) %>
-            </td>
-            <td>
-              <%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer) %>
-            </td>
-            <td>
-              <% if customer.favorites.count > 0 %>  <!---customerに紐づいたfavoritesテーブルのレコードがあれば-->
-                <%= link_to "お気に入りアイデア：#{customer.favorites.count}個", favorite_customer_path(customer.id) %>
-              <% else %>
-                お気に入り無し
-              <% end %>
-            </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+            </tr>
+            <tr>
+              <td>好物</td>
+            </tr>
+            <tr>
+              <td colspan=3><%= customer.preference %></td>
+            </tr>
+            <tr>
+              <td>苦手</td>
+            </tr>
+            <tr>
+              <td colspan=3><%= customer.weak %></td>
+            </tr>
+            <tr>
+              <td>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
+                <%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer), class: 'link-button' %>
+              </td>
+              <td>
+                <%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer), class: 'link-button' %>
+              </td>
+              <td>
+                <% if customer.favorites.count > 0 %>  <!---customerに紐づいたfavoritesテーブルのレコードがあれば-->
+                  <%= link_to "お気に入りアイデア：#{customer.favorites.count}個", favorite_customer_path(customer.id), class: 'link-button' %>
+                <% else %>
+                  お気に入り無し
+                <% end %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
   </div>
 
   <div class="row">

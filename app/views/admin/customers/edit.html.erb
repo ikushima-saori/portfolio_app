@@ -1,11 +1,16 @@
 <%= stylesheet_link_tag 'admin/customers' %>
 <div class="container">
+
+  <div class="row">
+    <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
+  </div>
+
   <div class="row">
     <table>
       <tbody>
         <tr>
           <td>
-            <%= image_tag @customer.get_profile_image(80, 80) %>
+            <%= image_tag @customer.get_profile_image(80, 80), class: 'profile-image' %>
             <span><%= @customer.name %></span>
           </td>
           <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
@@ -15,7 +20,7 @@
               <%= f.label :is_active, "有効", for: "active" %> <!--ラジオボタンとセットで記述する　id:activeで紐づけて文字クリックでも有効にできる-->
               <%= f.radio_button :is_active, false, id: "inactive" %>
               <%= f.label :is_active, "退会", for: "inactive" %>
-              <%= f.submit "切り替える", data: { confirm: "本当に切り替えますか？" } %> <!--確認メッセージを挟む-->
+              <%= f.submit "切り替える", data: { confirm: "本当に切り替えますか？" }, class: "btn btn-secondary" %> <!--確認メッセージを挟む-->
             <% end %>
           </td>
         </tr>

@@ -9,7 +9,8 @@ class Admin::CustomersController < ApplicationController
   def update
     @customer = Customer.find(params[:id])
     @customer.update!(customer_params)  #!=失敗したら、falseを返すのではなく処理を中断してエラーを返すだけでいいのでif分岐ではなく[!]で対応
-    redirect_to admin_path
+    flash[:notice] = "ステータスを切り替えました！"
+    redirect_to edit_admin_customer_path
   end
 
   private
