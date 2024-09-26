@@ -21,11 +21,9 @@ class Idea < ApplicationRecord
       begin
         self.tags << new_post_tag
       rescue => e
-        # new_post_tag.errors.full_messages.each do |msg|
         if new_post_tag.errors.full_messages.size > 1
           self.errors.add(:tags, new_post_tag.errors.full_messages[1])
         end
-        # end
         raise e  #updataにエラーが出ていることを教える　なかったらエラーなのに正常処理として進めてしまう
       end
    end

@@ -27,12 +27,16 @@ class Public::IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-      if @idea.update(idea_params)
-        flash[:notice] = "変更が保存されました！"
-        redirect_to edit_idea_path(@idea.id)
-      else
-        render :edit
-      end
+    if params[:idea][:tag_list].blank?  #ideaモデルの更新時にバリデーションを確認
+      @idea.errors.add(:tags, "を入力してください")
+      render :edit and return  #バリデーションチェックの後、次のif文の処理も続けて実行させたいのでend return
+    end
+    if @idea.update(idea_params)
+      flash[:notice] = "変更が保存されました！"
+      redirect_to edit_idea_path(@idea.id)
+    else
+      render :edit
+    end
   end
 
   def destroy
