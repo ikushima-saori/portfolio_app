@@ -37,7 +37,7 @@
           <tr>
             <td colspan=3>
               <% idea.tags.each do |tag| %>
-                <span><%= link_to tag.word, tag_path(tag), class: 'tag' %></span>
+                <%= link_to (tag.word.length > 5 ? "#{tag.word[0..4]}..." : tag.word), tag_path(tag), class: 'tag', title: tag.word %>
               <% end %>
             </td>
           </tr>

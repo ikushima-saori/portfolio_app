@@ -7,30 +7,30 @@
 
   <div class="row">
     <%= display_flash_messages %> <!--ヘルパーメソッドで指定-->
-      <% if @idea.errors.any? %>
-        <div class="validation-messages">
-          <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
-          <ul>
-            <% @idea.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
+    <% if @idea.errors.any? %>
+      <div class="validation-messages">
+        <%= @idea.errors.count %>箇所エラーがありますので、再度入力を確認してください。
+        <ul>
+          <% @idea.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
   </div>
 
   <%= form_with model: @idea do |f| %>
     <div class="row field">
       <label for="inputTags">タグ（カンマ区切り）</label><br />
       <% if @idea.tags.present? %>  <!--タグが入力されていたら表示させる-->
-        <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
+        <%= f.text_field :tag_list, autofocus: true, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください", value: @idea.tags.map{|tag| tag.word }.join(',') %>
       <% else %>  <!--タグが未入力ならホルダー表示-->
-        <%= f.text_field :tag_list, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください" %>
+        <%= f.text_field :tag_list, autofocus: true, id: "inputTags", placeholder: "必須入力　アイデアに付けたいタグを[,]区切りで入力してください" %>
       <% end %>
     </div>
     <div class="row field">
       <label for="inputIntroduction">アイデア</label><br />
-      <%= f.text_field :introduction, autofocus: true, id:"inputIntroduction", placeholder: "必須入力　改行対応はしておりません" %>
+      <%= f.text_field :introduction, id:"inputIntroduction", placeholder: "必須入力　改行対応はしておりません" %>
     </div>
     <div class="row field">
       <label>アイデアを公開しますか？</label>
