@@ -32,6 +32,9 @@ ja:
       idea:
         introduction: アイデア
         tags: タグ
+        idea_tags: 同じタグを複数設定するの
+      tag:
+        word: ""
       admin:
         confirmation_sent_at: パスワード確認送信時刻
         confirmation_token: パスワード確認用トークン
