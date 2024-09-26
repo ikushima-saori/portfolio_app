@@ -9,8 +9,8 @@ class Public::IdeasController < ApplicationController
 
   def create
     @idea = Idea.new(idea_params)
-    @idea.customer_id = current_customer.id
-    tag_list = params[:idea][:tag_list].split(",").map(&:strip)  #new.htmlのf.text_field :tag_listに入力されたタグをカンマ区切りで空白を消して格納
+    @idea.customer_id = current_customer.id  #　※「スペースい」みたいなタグの作成を防ぐためのmap
+    tag_list = params[:idea][:tag_list].split(",").map { |tag| tag.gsub("　", "").strip }.uniq  #new.htmlのf.text_field :tag_listに入力されたタグをカンマ区切り,スペース削除,重複をまとめて格納
     @idea.save_tag(tag_list)  #ideaモデルで定義　タグの保存
     if @idea.save
       flash[:notice] = "アイデアをメモしました！"
@@ -27,14 +27,12 @@ class Public::IdeasController < ApplicationController
 
   def update
     @idea = Idea.find(params[:id])
-    if @idea.update(idea_params)
-      tag_list = params[:idea][:tag_names].split(",").map(&:strip)  #edit.htmlのf.text_field :tag_namesに入力されたタグをカンマ区切りで空白を消して格納
-      @idea.save_tag(tag_list)  #ideaモデルで定義　タグの保存
-      flash[:notice] = "変更が保存されました！"
-      redirect_to edit_idea_path(@idea.id)
-    else
-      render :edit
-    end
+      if @idea.update(idea_params)
+        flash[:notice] = "変更が保存されました！"
+        redirect_to edit_idea_path(@idea.id)
+      else
+        render :edit
+      end
   end
 
   def destroy
@@ -53,6 +51,6 @@ class Public::IdeasController < ApplicationController
     end
 
     def idea_params
-      params.require(:idea).permit(:introduction, :title, :body, :is_active, :tag_names)
+      params.require(:idea).permit(:introduction, :title, :body, :is_active, :tag_list)
     end
 end

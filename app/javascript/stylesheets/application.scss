@@ -133,6 +133,11 @@ footer h4 {
 }
 
 /* ページネーションのスタイル */
+.pagination {
+  margin-left: auto !important; /* 左右の余白を設定 */
+  margin-right: auto !important; /* 左右の余白を設定 */
+}
+
 .pagination a {
   padding: 8px 16px; /* 内側の余白を設定 */
   border-radius: 4px; /* 角を少し丸くする */
