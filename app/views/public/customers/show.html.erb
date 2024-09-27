@@ -29,13 +29,13 @@
           <td colspan=4>好物</td>
         </tr>
         <tr>
-          <td colspan=4><%= @customer.preference %></td>
+          <td colspan=4 class="preference-style"><%= @customer.preference %></td>
         </tr>
         <tr>
           <td colspan=4>苦手</td>
         </tr>
         <tr>
-          <td colspan=4><%= @customer.weak %></td>
+          <td colspan=4 class="preference-style"><%= @customer.weak %></td>
         </tr>
         <tr>
           <td><%= link_to "フォロー：#{@customer.follower_customer.count}人", follower_customer_path(@customer), class: 'link-button' %></td>
