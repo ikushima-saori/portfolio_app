@@ -1,5 +1,6 @@
   <% if ideas.empty? %>
-    <div>アイデアが未投稿または非公開です</div>
+    <% is_current_user = @customer == current_customer %>
+    <div><%= is_current_user ? 'アイデアが未投稿です' : 'アイデアが未投稿または非公開です' %></div>
   <% else %>
     <div>
       <h5>アイデア一覧</h5>
@@ -53,7 +54,7 @@
               <td colspan=4>本文</td>
             </tr>
             <tr>
-              <td colspan=4><%= simple_format idea.body %></td>
+              <td colspan=4><%= simple_format idea.body, class: "scroll" %></td>
             </tr>
           <% end %>
         </tbody>
