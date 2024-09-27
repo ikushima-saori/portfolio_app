@@ -263,3 +263,8 @@ footer h4 {
   background: #e2e6ea; /* ホバー時に背景色を変更 */
   text-decoration: none; /* 下線を消去 */
 }
+
+table .scroll {
+  max-height: 10em; /* 5行分の高さを指定 */
+  overflow-y: auto; /* 縦方向のスクロールを有効にする */
+}
