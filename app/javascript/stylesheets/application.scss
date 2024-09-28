@@ -265,7 +265,7 @@ footer h4 {
 }
 
 table .scroll {
-  max-height: 10em; /* 5行分の高さを指定 */
+  max-height: 7em; /* 7行分の高さを指定 */
   overflow-y: auto; /* 縦方向のスクロールを有効にする */
   word-wrap: break-word; /* 長い単語を折り返す */
   word-break: break-word; /* ブロック全体の幅を超えた場合も単語を折り返す */

@@ -33,7 +33,7 @@
             <td colspan=2>アイデア</td>
           </tr>
           <tr>
-            <td colspan=2 class="preference-style"><%= idea.introduction %></td>
+            <td colspan=2 class="preference-style"><%= content_tag(:div, idea.introduction, class: "scroll") %></td>
           </tr>
         </tbody>
       </table>
