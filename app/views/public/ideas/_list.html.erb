@@ -41,7 +41,7 @@
             <td colspan=4>アイデア</td>
           </tr>
           <tr>
-            <td colspan=4 class="preference-style"><%= idea.introduction %></td>
+            <td colspan=4 class="preference-style"><%= content_tag(:div, idea.introduction, class: "scroll") %></td>
           </tr>
           <% if idea.customer == current_customer %>
             <tr>
