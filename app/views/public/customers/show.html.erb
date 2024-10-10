@@ -15,8 +15,12 @@
       <tbody>
         <tr>
           <td>
-            <%= image_tag @customer.get_profile_image(80, 80), class: 'profile-image' %>
-            <span><%= @customer.name %></span>
+            <div class="profile-container">
+              <%= image_tag @customer.get_profile_image(80, 80), class: 'profile-image' %>
+                <div class="profile-name">
+                  <span><%= @customer.name %></span>
+                </div>
+            </div>
           </td>
           <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
           <% if is_current_user %>
