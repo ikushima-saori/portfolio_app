@@ -3,7 +3,7 @@
   padding: 0 20px 0;
 }
 
-h1{
+h1 h5{
   margin-bottom: 15px; /* 下に余白を追加 */
 }
 
@@ -21,4 +21,23 @@ td {
 td img {
   border-radius: 20%; /* 角を丸く */
   margin-right: 10px; /* 画像と名前の間にマージンを追加 */
+}
+
+.profile-container {
+    display: flex; /* フレックスボックスを使用 */
+    align-items: center; /* 中央揃え */
+}
+
+.profile-image {
+    width: 80px; /* 画像の幅を指定 */
+    height: 80px; /* 画像の高さを指定 */
+    margin-right: 10px; /* 画像と名前の間にスペースを追加 */
+}
+
+.profile-name {
+    max-width: 10em; /* 最大幅を10emに設定 */
+    word-wrap: break-word; /* 単語の折り返しを許可 */
+    overflow-wrap: break-word; /* ブラウザの互換性のため */
+    white-space: normal; /* 通常の空白処理 */
+    text-align: left; /* テキストを左寄せにする */
 }

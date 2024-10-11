@@ -13,8 +13,12 @@
               <tr>
                 <td>
                   <%= link_to customer_path(idea.customer_id), class: 'link-button' do %>
-                    <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
-                    <span><%= idea.customer.name %></span>
+                    <div class="profile-container">
+                      <%= image_tag idea.customer.get_profile_image(80, 80), class: 'profile-image' %>
+                      <div class="profile-name">
+                        <span><%= idea.customer.name %></span>
+                      </div>
+                    </div>
                   <% end %>
                 </td>
                 <td>更新日：<%= update_time_check(idea) %></td>  <!--アイデアヘルパーで定義-->

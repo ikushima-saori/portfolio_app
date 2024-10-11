@@ -13,7 +13,7 @@ class Public::CustomersController < ApplicationController
     if params[:id]  #currentユーザーの詳細URLにidは含まれないので、
       @customer = Customer.find(params[:id])  #idがあればidユーザーの情報
       if @customer != current_customer  #自分以外の詳細ページの場合
-        @ideas = @customer.ideas.where(is_active: true).page(params[:page]).per(4)  #投稿ステータスが公開のアイデアのみ含める
+        @ideas = @customer.ideas.where(is_active: true).order(updated_at: :desc, created_at: :desc).page(params[:page]).per(4)  #投稿ステータスが公開のアイデアのみ含める
       else
         @ideas = @customer.ideas.page(params[:page]).per(4)  #自分は全てのアイデアを取得
       end
@@ -30,6 +30,7 @@ class Public::CustomersController < ApplicationController
                          .where(favorites: { customer_id: @customer.id })  #favoritesテーブルからcustomerに紐づいたお気に入りアイデアを取得
                          .where(is_active: true)  #公開状態のみを含める
                          .includes(:tags)  # アイデアに関連するタグも同時に読み込むためのメソッド
+                         .order(updated_at: :desc, created_at: :desc)
                          .page(params[:page]).per(4)
   end
 

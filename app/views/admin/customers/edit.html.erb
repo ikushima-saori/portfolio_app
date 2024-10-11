@@ -10,8 +10,12 @@
       <tbody>
         <tr>
           <td>
-            <%= image_tag @customer.get_profile_image(80, 80), class: 'profile-image' %>
-            <span><%= @customer.name %></span>
+            <div class="profile-container">
+              <%= image_tag @customer.get_profile_image(80, 80), class: 'profile-image' %>
+                <div class="profile-name">
+                  <span><%= @customer.name %></span>
+                </div>
+            </div>
           </td>
           <td><%= "アイデア数：#{@customer.ideas.count}個" %></td>
           <td>
@@ -39,13 +43,13 @@
           <td colspan=3>好物</td>
         </tr>
         <tr>
-          <td colspan="3" class="preference-style"><%= @customer.preference %></td>
+          <td colspan="3" class="preference-style"><%= content_tag(:div, @customer.preference, class: "scroll") %></td>
         </tr>
         <tr>
           <td colspan=3>苦手</td>
         </tr>
         <tr>
-          <td colspan="3" class="preference-style"><%= @customer.weak %></td>
+          <td colspan="3" class="preference-style"><%= content_tag(:div, @customer.weak, class: "scroll") %></td>
         </tr>
       </tbody>
     </table>

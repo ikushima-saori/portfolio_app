@@ -264,6 +264,7 @@ footer h4 {
   text-decoration: none; /* 下線を消去 */
 }
 
+/* スクロールと折り返しのスタイル */
 table .scroll {
   max-height: 7em; /* 7行分の高さを指定 */
   overflow-y: auto; /* 縦方向のスクロールを有効にする */
