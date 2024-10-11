@@ -20,6 +20,7 @@ class Public::SearchesController < ApplicationController
     else
       @records = Idea.where(is_active: true)  # is_activeがtrueのアイデアのみを取得
                      .search_for(@word, @method) # Customerモデル内を検索ワードと検索方法で検索して該当するユーザーを取得
+                     .order(updated_at: :desc, created_at: :desc)
                      .page(params[:page]).per(4)
       @total_count = Idea.where(is_active: true)
                          .search_for(@word, @method)

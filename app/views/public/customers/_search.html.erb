@@ -1,7 +1,7 @@
 <%= stylesheet_link_tag 'public/customers' %>
 <div class="container">
   <div class="row">
-      <h3>ユーザー：【<%= @word %>】の検索結果 <%= @total_count %>件</h3>
+      <h5>ユーザー:<strong>【<%= @word %>】</strong>の検索結果 <%= @total_count %>件</5>
   </div>
 
   <div class="row">
@@ -11,8 +11,12 @@
           <tr>
             <td>
               <%= link_to customer_path(customer.id), class: 'link-button' do %>
-                <%= image_tag customer.get_profile_image(80, 80), class: 'profile-image' %>
-                <span><%= customer.name %></span>
+                <div class="profile-container">
+                  <%= image_tag customer.get_profile_image(80, 80), class: 'profile-image' %>
+                  <div class="profile-name">
+                    <span><%= customer.name %></span>
+                  </div>
+                </div>
               <% end %>
             </td>
             <td><%= "アイデア数：#{customer.ideas.count} " %></td>
