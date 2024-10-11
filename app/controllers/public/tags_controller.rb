@@ -8,6 +8,6 @@ class Public::TagsController < ApplicationController
 
   def show
     @tag = Tag.find(params[:id])
-    @ideas = @tag.ideas.where(is_active: true).page(params[:page]).per(4)
+    @ideas = @tag.ideas.where(is_active: true).order(updated_at: :desc, created_at: :desc).page(params[:page]).per(4)
   end
 end

@@ -10,11 +10,11 @@
     <table>
       <thead>
         <tr>
-          <th>ユーザーID</th>
+          <th>ID</th>
           <th>ユーザー</th>
-          <th>ユーザーステータス</th>
-          <th>メールアドレス</th>
-          <th>最新投稿 or 編集日時</th>
+          <th>ステータス</th>
+          <th>アドレス</th>
+          <th>最新編集</th>
         </tr>
       </thead>
       <tbody>
@@ -25,8 +25,12 @@
             </td>
             <td>
               <%= link_to edit_admin_customer_path(customer.id), class: 'link-button' do %>
-                <%= image_tag customer.get_profile_image(50, 50), class: 'profile-image' %>
-                <span><%= customer.name %></span>
+                <div class="profile-container">
+                  <%= image_tag customer.get_profile_image(50, 50), class: 'profile-image' %>
+                  <div class="profile-name">
+                    <span><%= customer.name %></span>
+                  </div>
+                </div>
               <% end %>
             </td>
             <td>  <!--?で真偽値を判定 is_activeカラムはtrueかfalseで判断するので、trueなら有効falseなら退会を表示が使える-->
