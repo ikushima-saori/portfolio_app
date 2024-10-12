@@ -59,8 +59,8 @@ ActiveRecord::Schema.define(version: 2024_09_03_052701) do
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
     t.string "name", null: false
-    t.string "preference", null: false
-    t.string "weak", null: false
+    t.text "preference", null: false
+    t.text "weak", null: false
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -89,8 +89,8 @@ ActiveRecord::Schema.define(version: 2024_09_03_052701) do
 
   create_table "ideas", force: :cascade do |t|
     t.integer "customer_id", null: false
-    t.string "introduction", null: false
-    t.string "title"
+    t.text "introduction", null: false
+    t.text "title"
     t.text "body"
     t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
