@@ -36,6 +36,9 @@ Rails.application.routes.draw do
     resources :ideas, only: %i[new create edit update destroy] do
       resource :favorites, only: %i[create destroy]
     end
+    resources :favorites, only: [] do
+      get 'favorite_customers', on: :member, to: 'favorites#favorite_customers', as: 'customers'
+    end
     resources :tags, only: [:index, :show]
     get "/search", to: "searches#search"
   end
