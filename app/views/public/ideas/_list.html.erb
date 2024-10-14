@@ -19,7 +19,11 @@
             <td>タグ</td>
             <% if @customer == current_customer %>
               <td>
-                お気に入り：<%= idea.favorites.count %>人
+                <% if idea.favorites.count > 0 %>
+                  <%= link_to "お気に入り：#{idea.favorites.count}人", customers_favorite_path(idea), class: 'link-button' %>
+                <% else %>
+                  お気に入り：0人
+                <% end %>
               </td>
             <% else %>
               <td id="favorite_btn_<%= idea.id %>">
