@@ -22,11 +22,15 @@
                 </div>
             </div>
           </td>
-          <td><%= "アイデア数：#{@customer.ideas.count} " %></td>
+          <td><%= "アイデア数：#{@customer.ideas.count} 個" %></td>
           <% if is_current_user %>
             <td><%= link_to "編集", edit_my_page_customers_path, class: 'edit-btn' %></td>
           <% else %>
-            <td><%= render "public/relationships/followbtn", customer: @customer %></td>
+            <td>
+              <div id="follow_btn_<%= @customer.id %>">
+                <%= render "public/relationships/followbtn", customer: @customer %>
+              </div>
+            </td>
           <% end %>
         </tr>
         <tr>
