@@ -3,15 +3,13 @@ class Public::RelationshipsController < ApplicationController
   before_action :admin_notview!
 
   def create
-    customer = Customer.find(params[:id])
-    current_customer.follow(customer)
-    redirect_to request.referer
+    @customer = Customer.find(params[:id])
+    current_customer.follow(@customer)
   end
 
   def destroy
-    customer = Customer.find(params[:id])
-    current_customer.unfollow(customer)
-    redirect_to  request.referer
+    @customer = Customer.find(params[:id])
+    current_customer.unfollow(@customer)
   end
 
   def follower_customer  #自分がフォローしているユーザーを取得する
