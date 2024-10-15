@@ -28,7 +28,11 @@
                 <%= "アイデア数：#{customer.ideas.count}個 " %>
               </td>
               <% if current_customer != customer %>
-                <td><%= render "public/relationships/followbtn", customer: customer %></td>
+                <td>
+                  <div id="follow_btn_<%= customer.id %>">
+                    <%= render "public/relationships/followbtn", customer: customer %>
+                  </div>
+                </td>
               <% end %>
             </tr>
             <tr>
@@ -43,13 +47,9 @@
             <tr>
               <td colspan=3 class="preference-style"><%= content_tag(:div, customer.weak, class: "scroll") %></td>
             </tr>
-            <tr>
-              <td>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
-                <%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer), class: 'link-button' %>
-              </td>
-              <td>
-                <%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer), class: 'link-button' %>
-              </td>
+            <tr>  <!--follower_customerとfollowed_customerはcustomerモデルで定義-->
+              <td><%= link_to "フォロー：#{customer.follower_customer.count}人", follower_customer_path(customer), class: 'link-button' %></td>
+              <td><%= link_to "フォロワー：#{customer.followed_customer.count}人", followed_customer_path(customer), class: 'link-button' %></td>
               <td>
                 <% if customer.favorites.count > 0 %>  <!---customerに紐づいたfavoritesテーブルのレコードがあれば-->
                   <%= link_to "お気に入りアイデア：#{customer.favorites.count}個", favorite_customer_path(customer.id), class: 'link-button' %>

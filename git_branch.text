@@ -18,3 +18,4 @@ ideatag = タグ登録機能作成
 
 3rd_layout = 最終提出用レイアウト調整
 favorite_user = お気に入りしてくれたユーザー一覧作成
+follow_async = フォローボタン非同期設定
