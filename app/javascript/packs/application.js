@@ -15,3 +15,9 @@ import "../stylesheets/application";
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+ //ウィンドウにpopstate(=履歴が変わる=戻るボタンなど)イベントが起きた時、ページを再読み込み&コンソールにReload!と表示させる
+window.addEventListener('popstate', function (e) {
+window.location.reload();
+console.log("Reload!");
+});
